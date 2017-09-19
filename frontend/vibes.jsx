@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         email: 'jonsnow@gmail.com',
         img_url:'https://openclipart.org/download/269638/lowercase-v.svg'};
 
-  // window.user = user;
+  window.user = user;
   // window.postUser = postUser;
   // window.getUsers = getUsers;
   // window.postSession = postSession;

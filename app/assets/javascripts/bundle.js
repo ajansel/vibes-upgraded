@@ -10303,7 +10303,7 @@ document.addEventListener('DOMContentLoaded', function () {
     email: 'jonsnow@gmail.com',
     img_url: 'https://openclipart.org/download/269638/lowercase-v.svg' };
 
-  // window.user = user;
+  window.user = user;
   // window.postUser = postUser;
   // window.getUsers = getUsers;
   // window.postSession = postSession;
@@ -23649,7 +23649,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _session_actions = __webpack_require__(88);
 
-var _nullSession = {};
+var _nullSession = {
+  currentUser: null
+};
 
 var SessionReducer = function SessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
@@ -23720,7 +23722,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _session_actions = __webpack_require__(88);
 
-var _nullSessionErrors = {};
+var _nullSessionErrors = [];
 
 var SessionErrorsReducer = function SessionErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSessionErrors;
