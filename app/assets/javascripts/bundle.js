@@ -10289,42 +10289,40 @@ var _store = __webpack_require__(192);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _session_actions = __webpack_require__(88);
+var _app = __webpack_require__(215);
+
+var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// DELETE THIS LATER
+// import {getUsers, postUser, postSession, deleteSession} from './util/session_api_util';
+// import {signup, login, logout} from './actions/session_actions';
 // DELETE THIS LATER
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
   var store = (0, _store2.default)();
   // DELETE THIS LATER
-  var user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
-    email: 'jonsnow@gmail.com',
-    img_url: 'https://openclipart.org/download/269638/lowercase-v.svg' };
-
-  window.user = user;
+  // let user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
+  //       email: 'jonsnow@gmail.com',
+  //       img_url:'https://openclipart.org/download/269638/lowercase-v.svg'};
+  //
+  // window.user = user;
   // window.postUser = postUser;
   // window.getUsers = getUsers;
   // window.postSession = postSession;
   // window.deleteSession = deleteSession;
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.signup = _session_actions.signup;
-  window.login = _session_actions.login;
-  window.logout = _session_actions.logout;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
+  // window.signup = signup;
+  // window.login = login;
+  // window.logout = logout;
 
   // DELETE THIS LATER
 
-  _reactDom2.default.render(_react2.default.createElement(
-    'h1',
-    null,
-    'Welcome to vibes'
-  ), root);
+  _reactDom2.default.render(_react2.default.createElement(_app2.default, { store: store }), root);
 });
-
-// DELETE THIS LATER
-// import {getUsers, postUser, postSession, deleteSession} from './util/session_api_util';
 
 /***/ }),
 /* 90 */
@@ -23765,6 +23763,37 @@ var ErrorsReducer = (0, _redux.combineReducers)({
 });
 
 exports.default = ErrorsReducer;
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(90);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Welcome to vibes'
+    )
+  );
+};
+
+exports.default = App;
 
 /***/ })
 /******/ ]);
