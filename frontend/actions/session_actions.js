@@ -1,0 +1,35 @@
+import {postUser, postSession, deleteSession} from '../util/session_api_util';
+
+export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+
+const receiveCurrentUser = (currentUser) => ({
+  type: RECEIVE_USER,
+  currentUser
+});
+
+const receiveSessionErrors = (errors) => ({
+  type: RECEIVE_SESSION_ERRORS,
+  errors
+});
+
+export const signup = (formUser) => (dispatch) => (
+  postUser(formUser).then(
+    (user) => dispatch(receiveCurrentUser(user)),
+    (err) => dispatch(receiveSessionErrors(err.responseJSON))
+  )
+);
+
+export const login = (formUser) => (dispatch) => (
+  postSession(formUser).then(
+    (user) => dispatch(receiveCurrentUser(user)),
+    (err) => dispatch(receiveSessionErrors(err.responseJSON))
+  )
+);
+
+export const logout = (formUser) => (dispatch) => (
+  postSession(formUser).then(
+    () => dispatch(receiveCurrentUser(null)),
+    (err) => dispatch(receiveSessionErrors(err.responseJSON))
+  )
+);

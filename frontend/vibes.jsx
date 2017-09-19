@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
         email: 'jonsnow@gmail.com',
         img_url:'https://openclipart.org/download/269638/lowercase-v.svg'};
-        
+
   window.user = user;
   window.postUser = postUser;
   window.getUsers = getUsers;
