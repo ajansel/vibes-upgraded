@@ -22460,7 +22460,7 @@ var postSession = exports.postSession = function postSession(user) {
 
 var deleteSession = exports.deleteSession = function deleteSession() {
   return $.ajax({
-    method: 'POST',
+    method: 'DELETE',
     url: 'api/sessions'
   });
 };
