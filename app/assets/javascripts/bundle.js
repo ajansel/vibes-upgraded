@@ -9764,6 +9764,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
     email: 'jonsnow@gmail.com',
     img_url: 'https://openclipart.org/download/269638/lowercase-v.svg' };
+
   window.user = user;
   window.postUser = _session_api_util.postUser;
   window.getUsers = _session_api_util.getUsers;

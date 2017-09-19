@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
   // DELETE THIS LATER
-  let user= { username: 'jonsnow', password: 'password', name: 'Jon Snow',
+  let user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
         email: 'jonsnow@gmail.com',
         img_url:'https://openclipart.org/download/269638/lowercase-v.svg'};
+        
   window.user = user;
   window.postUser = postUser;
   window.getUsers = getUsers;
