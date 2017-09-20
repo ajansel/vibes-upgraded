@@ -29574,7 +29574,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     loggedIn: Boolean(state.session.currentUser),
-    errors: state.errors.session, //Does this need to be Object.values?
+    errors: state.errors.session,
     formType: ownProps.location.pathname.slice(1) // Get rid of "/" in front
   };
 };
@@ -29738,7 +29738,6 @@ var SessionForm = function (_React$Component) {
         'div',
         { className: 'SessionFormDiv' },
         welcomeMessage,
-        this.props.errors,
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit(), className: 'SessionForm' },
@@ -29747,6 +29746,7 @@ var SessionForm = function (_React$Component) {
             null,
             headerText
           ),
+          this.props.errors,
           fullName,
           _react2.default.createElement(
             'label',

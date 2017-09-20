@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
   loggedIn: Boolean(state.session.currentUser),
-  errors: state.errors.session, //Does this need to be Object.values?
+  errors: state.errors.session,
   formType: ownProps.location.pathname.slice(1) // Get rid of "/" in front
 });
 

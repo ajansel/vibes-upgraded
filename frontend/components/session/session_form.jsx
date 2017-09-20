@@ -84,9 +84,9 @@ class SessionForm extends React.Component {
     return (
       <div className="SessionFormDiv">
         {welcomeMessage}
-        {this.props.errors}
         <form onSubmit={this.handleSubmit()} className="SessionForm">
           <h1>{headerText}</h1>
+          {this.props.errors}
           {fullName}
           <label>
             <input type="text" onChange={this.handleChange("username")}
