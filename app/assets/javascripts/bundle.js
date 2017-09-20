@@ -5088,7 +5088,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logout = exports.login = exports.signup = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
+exports.logout = exports.login = exports.signup = exports.receiveSessionErrors = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
 
 var _session_api_util = __webpack_require__(239);
 
@@ -5102,7 +5102,7 @@ var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   };
 };
 
-var receiveSessionErrors = function receiveSessionErrors(errors) {
+var receiveSessionErrors = exports.receiveSessionErrors = function receiveSessionErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
@@ -29585,6 +29585,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
       return dispatch((0, _session_actions.login)(user));
     } : function (user) {
       return dispatch((0, _session_actions.signup)(user));
+    },
+    receiveSessionErrors: function receiveSessionErrors() {
+      return dispatch((0, _session_actions.receiveSessionErrors)(null));
     }
   };
 };
@@ -29659,6 +29662,11 @@ var SessionForm = function (_React$Component) {
         e.preventDefault();
         _this3.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount(newprops) {
+      this.props.receiveSessionErrors();
     }
   }, {
     key: 'render',

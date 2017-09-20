@@ -30,6 +30,10 @@ class SessionForm extends React.Component {
     };
   }
 
+  componentDidMount(newprops){
+    this.props.receiveSessionErrors();
+  }
+
   render(){
     const headerText = this.props.formType === 'login' ?
                     "Log In" : "Create a New Account";
