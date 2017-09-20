@@ -85,12 +85,19 @@ class SessionForm extends React.Component {
       "Create Account" :
       "Log In";
 
+    const renderErrors =
+      <ul>
+          {this.props.errors.map(
+            (err) => (<li key={err}>{err}</li>)
+          )}
+      </ul>;
+
     return (
       <div className="SessionFormDiv">
         {welcomeMessage}
         <form onSubmit={this.handleSubmit()} className="SessionForm">
           <h1>{headerText}</h1>
-          {this.props.errors}
+          {renderErrors}
           {fullName}
           <label>
             <input type="text" onChange={this.handleChange("username")}

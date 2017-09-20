@@ -29587,7 +29587,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
       return dispatch((0, _session_actions.signup)(user));
     },
     receiveSessionErrors: function receiveSessionErrors() {
-      return dispatch((0, _session_actions.receiveSessionErrors)(null));
+      return dispatch((0, _session_actions.receiveSessionErrors)([]));
     }
   };
 };
@@ -29742,6 +29742,18 @@ var SessionForm = function (_React$Component) {
 
       var buttonText = this.props.formType === 'signup' ? "Create Account" : "Log In";
 
+      var renderErrors = _react2.default.createElement(
+        'ul',
+        null,
+        this.props.errors.map(function (err) {
+          return _react2.default.createElement(
+            'li',
+            { key: err },
+            err
+          );
+        })
+      );
+
       return _react2.default.createElement(
         'div',
         { className: 'SessionFormDiv' },
@@ -29754,7 +29766,7 @@ var SessionForm = function (_React$Component) {
             null,
             headerText
           ),
-          this.props.errors,
+          renderErrors,
           fullName,
           _react2.default.createElement(
             'label',

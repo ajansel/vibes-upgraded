@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   processForm: ownProps.location.pathname.slice(1) === 'login' ?
     (user) => dispatch(login(user)) :
     (user) => dispatch(signup(user)),
-  receiveSessionErrors: () => dispatch(receiveSessionErrors(null))
+  receiveSessionErrors: () => dispatch(receiveSessionErrors([]))
 });
 
 export default withRouter(
