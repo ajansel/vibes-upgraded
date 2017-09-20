@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
 
   render(){
     const headerText = this.props.formType === 'login' ?
-                    "Log In" : "Create a New Account";
+                    <h1>Log In</h1> : <h1>Sign In</h1>;
 
     let welcomeMessage = undefined;
     if (this.props.formType === 'signup') {
@@ -96,7 +96,7 @@ class SessionForm extends React.Component {
       <div className="SessionFormDiv">
         {welcomeMessage}
         <form onSubmit={this.handleSubmit()} className="SessionForm">
-          <h1>{headerText}</h1>
+          {headerText}
           {renderErrors}
           {fullName}
           <label>

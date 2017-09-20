@@ -29671,7 +29671,15 @@ var SessionForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var headerText = this.props.formType === 'login' ? "Log In" : "Create a New Account";
+      var headerText = this.props.formType === 'login' ? _react2.default.createElement(
+        'h1',
+        null,
+        'Log In'
+      ) : _react2.default.createElement(
+        'h1',
+        null,
+        'Sign In'
+      );
 
       var welcomeMessage = undefined;
       if (this.props.formType === 'signup') {
@@ -29761,11 +29769,7 @@ var SessionForm = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit(), className: 'SessionForm' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            headerText
-          ),
+          headerText,
           renderErrors,
           fullName,
           _react2.default.createElement(
