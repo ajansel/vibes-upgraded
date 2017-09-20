@@ -12711,34 +12711,20 @@ var _root = __webpack_require__(282);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _session_actions = __webpack_require__(60);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// DELETE THIS LATER
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
-  var store = (0, _store2.default)();
-  // DELETE THIS LATER
-  // let user = { username: 'jonsnow', password: 'password', name: 'Jon Snow',
-  //       email: 'jonsnow@gmail.com',
-  //       img_url:'https://openclipart.org/download/269638/lowercase-v.svg'};
-  //
-  // window.user = user;
-  // window.getState = store.getState;
-  // window.dispatch = store.dispatch;
-  // window.signup = signup;
-  // window.login = login;
-  // window.logout = logout;
+  var preloadedState = {};
 
-  // DELETE THIS LATER
+  if (window.currentUser) {
+    preloadedState.session = { currentUser: window.currentUser };
+    delete window.currentUser;
+  }
 
+  var store = (0, _store2.default)(preloadedState);
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
-
-// DELETE THIS LATER
-// import * as ApiUtil from './util/session_api_util';
 
 /***/ }),
 /* 117 */
