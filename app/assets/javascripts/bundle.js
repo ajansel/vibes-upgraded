@@ -7148,9 +7148,9 @@ var login = exports.login = function login(formUser) {
   };
 };
 
-var logout = exports.logout = function logout(formUser) {
+var logout = exports.logout = function logout() {
   return function (dispatch) {
-    return (0, _session_api_util.postSession)(formUser).then(function () {
+    return (0, _session_api_util.deleteSession)().then(function () {
       return dispatch(receiveCurrentUser(null));
     }, function (err) {
       return dispatch(receiveSessionErrors(err.responseJSON));
