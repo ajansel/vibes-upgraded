@@ -11,7 +11,7 @@ class SessionButtons extends React.Component {
 
   handleClick() {
     return (e) => {
-      e.preventDeafult();
+      e.preventDefault();
       this.logout();
     };
   }
