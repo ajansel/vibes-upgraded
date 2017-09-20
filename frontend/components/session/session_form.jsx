@@ -31,7 +31,6 @@ class SessionForm extends React.Component {
   }
 
   render(){
-    if (this.props.loggedIn) return <Redirect to='/' />;
     const headerText = this.props.formType === 'login' ?
                     "Log In" : "Create a New Account";
 
