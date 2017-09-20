@@ -1,3 +1,68 @@
 // Place all the styles related to the API::Session controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.SessionButtons {
+  display: flex;
+  width: 160px;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.SessionButtons > *{
+  padding: 3px;
+  color: white;
+  width: 65px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+.SessionFormDiv {
+  // https://stackoverflow.com/questions/779434/how-do-i-prevent-the-padding-property-from-changing-width-or-height-in-css
+  // Credit the following three lines to the SO overaticle found in the link above
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #E9EBEE;
+}
+
+.WelcomeMessage {
+  color: #333333;
+  width: 310px;
+  text-align: center;
+}
+
+.WelcomeMessage > p {
+  font-size: 18px;
+}
+
+.SessionForm {
+  width: 310px;
+}
+
+.SessionForm > label > input {
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #C0C0C0;
+}
+
+.SessionForm h1, .SessionFormDiv h1 {
+  color: #333333;
+}
+
+.SessionFormSubmit {
+  color: #333333;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 12px;
+  border-radius: 5px;
+  border: 0px;
+}

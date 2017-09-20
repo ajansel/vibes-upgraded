@@ -34,13 +34,29 @@ class SessionForm extends React.Component {
     const headerText = this.props.formType === 'login' ?
                     "Log In" : "Create a New Account";
 
+    let welcomeMessage = undefined;
+    if (this.props.formType === 'signup') {
+      welcomeMessage=
+      <div className="WelcomeMessage">
+          <h1>Welcome to Vibes</h1>
+          <p> Search for your favorite song, highlight the snippet of
+            lyrics that fits your vibe, and click post. It’s fast,
+            easy, and free!  </p>
+      </div>;
+    } else {
+      welcomeMessage=
+      <div className="WelcomeMessage">
+          <h1>Welcome back</h1>
+          <p>Sign in to see what's new!</p>
+      </div>;
+    }
+
     let fullName = undefined;
     if (this.props.formType === 'signup') {
       fullName=
-      <label>Full Name:
-        <br />
+      <label>
         <input type="text" onChange={this.handleChange("name")}
-          value={this.state.name}/>
+          placeholder="Full Name" value={this.state.name}/>
         <br />
         <br />
       </label>;
@@ -49,13 +65,12 @@ class SessionForm extends React.Component {
     let email = undefined;
     if (this.props.formType === 'signup') {
       email=
-      <label>Email:
-        <br />
+        <label>
         <input type="text" onChange={this.handleChange("email")}
-               value={this.state.email}/>
+               placeholder="Email" value={this.state.email}/>
         <br />
         <br />
-     </label>;
+        </label>;
     }
 
     const link = this.props.formType === 'login' ?
@@ -67,28 +82,26 @@ class SessionForm extends React.Component {
       "Log In";
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit()} className="sessionForm">
-          {headerText}
-          <br />
-          <br />
+      <div className="SessionFormDiv">
+        {welcomeMessage}
+        <form onSubmit={this.handleSubmit()} className="SessionForm">
+          <h1>{headerText}</h1>
           {fullName}
-          <label>Username:
-            <br />
+          <label>
             <input type="text" onChange={this.handleChange("username")}
-              value={this.state.username}/>
+              placeholder="Username"value={this.state.username}/>
             <br />
             <br />
           </label>
           {email}
-          <label>Password:
-            <br />
+          <label>
             <input type="password" onChange={this.handleChange("password")}
-              value={this.state.password}/>
+              placeholder="Password" value={this.state.password}/>
             <br />
             <br />
           </label>
-          <input type="submit" value={buttonText} />
+          <button className="SessionFormSubmit"
+                 type="submit">{buttonText}</button>
         </form>
       </div>
     );

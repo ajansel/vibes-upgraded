@@ -6,14 +6,17 @@ import { AuthRoute } from '../util/route_util';
 
 const App = (props) => {
   return (
-    <div>
+    <div className="EntirePageBody">
       <header className="NavBar">
-        <h1>Welcome to vibes</h1>
-        <SessionButtonsContainer />
+        <div className="NavBarContent">
+          <h1 className="HeaderLogo">Vibes (Logo)</h1>
+          <SessionButtonsContainer />
+        </div>
       </header>
-
-      <AuthRoute path="/login" component={SessionFormContainer} />
-      <AuthRoute path="/signup" component={SessionFormContainer} />
+      <main className="PageContainer">
+        <AuthRoute path="/login" component={SessionFormContainer} />
+        <AuthRoute path="/signup" component={SessionFormContainer} />
+      </main>
     </div>
   );
 };
