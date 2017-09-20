@@ -7,7 +7,7 @@ class SessionForm extends React.Component {
 
     this.state = { username: '', password: '',
       name: '', email: '',
-      img_url:'https://openclipart.org/download/269638/lowercase-v.svg'
+      img_url:'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
     };
 
     this.processForm = this.props.processForm;

@@ -6,10 +6,19 @@
   display: flex;
   width: 160px;
   justify-content: space-between;
+  align-items: center;
   padding-right: 10px;
 }
 
-.SessionButtons > *{
+.SessionButtons > img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.SessionButtons > a {
   padding: 3px;
   color: white;
   width: 65px;

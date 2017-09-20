@@ -29518,14 +29518,9 @@ var SessionButtons = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           { className: 'SessionButtons' },
+          _react2.default.createElement('img', { src: this.props.currentUser.img_url, className: 'ImgCircle' }),
           _react2.default.createElement(
-            'h3',
-            null,
-            'Hello ',
-            this.props.currentUser.username
-          ),
-          _react2.default.createElement(
-            'button',
+            'a',
             { onClick: this.handleClick() },
             'Logout'
           )
@@ -29636,7 +29631,7 @@ var SessionForm = function (_React$Component) {
 
     _this.state = { username: '', password: '',
       name: '', email: '',
-      img_url: 'https://openclipart.org/download/269638/lowercase-v.svg'
+      img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
     };
 
     _this.processForm = _this.props.processForm;
