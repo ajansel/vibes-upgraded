@@ -25742,7 +25742,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Root = function Root(_ref) {
   var store = _ref.store;
 
-  console.log(store);
   return _react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
@@ -29518,7 +29517,7 @@ var SessionButtons = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           { className: 'SessionButtons' },
-          _react2.default.createElement('img', { src: this.props.currentUser.img_url, className: 'ImgCircle' }),
+          _react2.default.createElement('img', { src: this.props.currentUser.img_url }),
           _react2.default.createElement(
             'a',
             { onClick: this.handleClick() },
@@ -29739,6 +29738,7 @@ var SessionForm = function (_React$Component) {
         'div',
         { className: 'SessionFormDiv' },
         welcomeMessage,
+        this.props.errors,
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit(), className: 'SessionForm' },

@@ -20,7 +20,7 @@ class SessionButtons extends React.Component {
     if (this.props.currentUser) {
       return (
         <div className="SessionButtons">
-          <img src={this.props.currentUser.img_url} className="ImgCircle"/>
+          <img src={this.props.currentUser.img_url}/>
           <a onClick={this.handleClick()}>Logout</a>
         </div>
       );
