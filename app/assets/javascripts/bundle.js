@@ -29693,9 +29693,13 @@ var App = function App(props) {
     _react2.default.createElement(
       'main',
       { className: 'PageContainer' },
-      _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
-      _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _homepage_container2.default })
+      _react2.default.createElement(
+        _reactRouterDom.Switch,
+        null,
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _homepage_container2.default })
+      )
     )
   );
 };
@@ -30196,7 +30200,7 @@ var Homepage = function (_React$Component) {
         { className: 'Homepage' },
         _react2.default.createElement(
           'section',
-          null,
+          { className: 'Intro' },
           _react2.default.createElement(
             'h1',
             null,
@@ -30208,14 +30212,18 @@ var Homepage = function (_React$Component) {
             'No more custom posts or subtweets. Vibes let\'s you express yourself through lytics. Search for your favorite song, highlight the snippet of lyrics that fits your fibe, and click post. It\'s fast, easy, and free!'
           ),
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/signup' },
-            'Sign Up'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/signup' },
-            'See Demo'
+            'div',
+            { className: 'SignupButtons' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'Sign Up'
+            ),
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'See Demo'
+            )
           )
         )
       );

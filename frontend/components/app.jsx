@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SessionButtonsContainer from './session/session_buttons_container';
 import SessionFormContainer from './session/session_form_container';
 import HomepageContainer from './homepage/homepage_container';
@@ -15,9 +15,11 @@ const App = (props) => {
         </div>
       </header>
       <main className="PageContainer">
-        <AuthRoute path="/login" component={SessionFormContainer} />
-        <AuthRoute path="/signup" component={SessionFormContainer} />
-        <Route path="/" component={HomepageContainer} />
+        <Switch>
+          <AuthRoute path="/login" component={SessionFormContainer} />
+          <AuthRoute path="/signup" component={SessionFormContainer} />
+          <Route path="/" component={HomepageContainer} />
+        </Switch>
       </main>
     </div>
   );

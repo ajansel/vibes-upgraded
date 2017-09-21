@@ -1,0 +1,31 @@
+.Homepage {
+  display: flex;
+  justify-content: center;
+}
+
+.Intro {
+  width: 500px;
+  text-align: center;
+  color: #333333;
+  background-color: black;
+}
+
+.Intro > p {
+  font-size: 18px;
+}
+
+.SignupButtons {
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SignupButtons > a {
+  padding: 3px;
+  color: white;
+  width: 70px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 25px;
+}
