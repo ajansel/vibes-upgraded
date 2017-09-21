@@ -37,7 +37,7 @@ class SessionForm extends React.Component {
 
   render(){
     const headerText = this.props.formType === 'login' ?
-                    <h1>Log In</h1> : <h1>Sign In</h1>;
+                    <h1>Log In</h1> : <h1>Create a New Account</h1>;
 
     let welcomeMessage = undefined;
     if (this.props.formType === 'signup') {

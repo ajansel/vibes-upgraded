@@ -29962,7 +29962,7 @@ var SessionForm = function (_React$Component) {
       ) : _react2.default.createElement(
         'h1',
         null,
-        'Sign In'
+        'Create a New Account'
       );
 
       var welcomeMessage = undefined;
