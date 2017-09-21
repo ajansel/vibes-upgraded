@@ -35,6 +35,9 @@ User.create!(
 end
 
 # --The following is to scrap songs, artists, & albums from Genius Lyrics ---
+Artist.destroy_all
+Album.destroy_all
+Song.destroy_all
 
 require 'nokogiri'
 require 'open-uri'
@@ -107,7 +110,7 @@ end
 
 artist_db.each do |artist|
   img_url = artist[1]
-  if img_url == ''
+  if img_url == nil
     img_url = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
   end
 
@@ -119,7 +122,7 @@ end
 
 album_db.each do |album|
   img_url = album[1]
-  if img_url == ''
+  if img_url == nil
     img_url = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
   end
 
@@ -131,8 +134,8 @@ album_db.each do |album|
 end
 
 song_db.each do |song|
-  img_url = song[1]
-  if img_url == ''
+  img_url = song[2]
+  if img_url == nil
     img_url = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
   end
 
