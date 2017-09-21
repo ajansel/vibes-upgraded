@@ -12,7 +12,7 @@ class SessionButtons extends React.Component {
   handleClick() {
     return (e) => {
       e.preventDefault();
-      this.logout();
+      this.logout().then(() => this.props.history.push("/login"));
     };
   }
 

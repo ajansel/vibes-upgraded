@@ -29795,7 +29795,9 @@ var SessionButtons = function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
-        _this2.logout();
+        _this2.logout().then(function () {
+          return _this2.props.history.push("/login");
+        });
       };
     }
   }, {
@@ -29937,7 +29939,9 @@ var SessionForm = function (_React$Component) {
         e.preventDefault();
         // Must be destructured into user_params
         var user = Object.assign({}, _this2.state);
-        _this2.props.processForm(user);
+        _this2.props.processForm(user).then(function () {
+          return _this2.props.history.push("/dashboard");
+        });
       };
     }
   }, {
@@ -30171,8 +30175,12 @@ var Homepage = function (_React$Component) {
   _createClass(Homepage, [{
     key: 'handleClick',
     value: function handleClick() {
+      var _this2 = this;
+
       var demoUser = { username: 'jonsnow', password: 'password' };
-      this.props.login(demoUser);
+      this.props.login(demoUser).then(function () {
+        return _this2.props.history.push("/dashboard");
+      });
     }
   }, {
     key: 'render',

@@ -10,7 +10,7 @@ class Homepage extends React.Component {
 
   handleClick() {
     const demoUser = { username: 'jonsnow', password: 'password' };
-    this.props.login(demoUser);
+    this.props.login(demoUser).then(() => this.props.history.push("/dashboard"));
   }
 
   render(){
