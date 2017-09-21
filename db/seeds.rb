@@ -10,9 +10,17 @@ require 'faker'
 
 User.destroy_all
 
-10.times do
-  name = Faker::GameOfThrones.character
-  name_arr = name.split(' ')
+User.create!(
+  name: 'Jon Snow',
+  username: 'jonsnow',
+  email: 'jonsnow@gmail.com',
+  img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+  password: 'password'
+)
+
+9.times do
+  name = Faker::Name.unique.name
+  name_arr = name.remove('.').split(' ')
   username = name_arr[0]
   username += '_' + name_arr[1] if name_arr[1]
   email = username + '@gmail.com'
