@@ -12917,7 +12917,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // DELETE LATER
   window.dispatch = store.dispatch;
-  window.getState = store.dispatch;
+  window.getState = store.getState;
   window.fetchArtist = _music_actions.fetchArtist;
   window.fetchArtists = _music_actions.fetchArtists;
   window.fetchAlbum = _music_actions.fetchAlbum;
@@ -29683,9 +29683,9 @@ var App = function App(props) {
         'div',
         { className: 'NavBarContent' },
         _react2.default.createElement(
-          'h1',
-          { className: 'HeaderLogo' },
-          'Vibes (Logo)'
+          _reactRouterDom.Link,
+          { className: 'HeaderLogo', to: '/' },
+          'Vibes'
         ),
         _react2.default.createElement(_session_buttons_container2.default, null)
       )
@@ -29919,7 +29919,6 @@ var SessionForm = function (_React$Component) {
       img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
     };
 
-    _this.processForm = _this.props.processForm;
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
@@ -29933,7 +29932,7 @@ var SessionForm = function (_React$Component) {
         e.preventDefault();
         // Must be destructured into user_params
         var user = Object.assign({}, _this2.state);
-        _this2.processForm(user);
+        _this2.props.processForm(user);
       };
     }
   }, {
@@ -29947,9 +29946,11 @@ var SessionForm = function (_React$Component) {
       };
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount(newprops) {
-      this.props.receiveSessionErrors();
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(newprops) {
+      if (this.props.match.path !== newprops.match.path) {
+        this.props.receiveSessionErrors();
+      }
     }
   }, {
     key: 'render',
@@ -30035,7 +30036,7 @@ var SessionForm = function (_React$Component) {
 
       var renderErrors = _react2.default.createElement(
         'ul',
-        null,
+        { className: 'ErrorsList' },
         this.props.errors.map(function (err) {
           return _react2.default.createElement(
             'li',
@@ -30144,6 +30145,8 @@ var _homepage = __webpack_require__(289);
 
 var _homepage2 = _interopRequireDefault(_homepage);
 
+var _session_actions = __webpack_require__(40);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -30151,7 +30154,11 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    login: function login(user) {
+      return dispatch((0, _session_actions.login)(user));
+    }
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_homepage2.default);
@@ -30189,17 +30196,26 @@ var Homepage = function (_React$Component) {
   function Homepage(props) {
     _classCallCheck(this, Homepage);
 
-    return _possibleConstructorReturn(this, (Homepage.__proto__ || Object.getPrototypeOf(Homepage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Homepage.__proto__ || Object.getPrototypeOf(Homepage)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
   }
 
   _createClass(Homepage, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      var demoUser = { username: 'jonsnow', password: 'password' };
+      this.props.login(demoUser);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'Homepage' },
         _react2.default.createElement(
-          'section',
+          'div',
           { className: 'Intro' },
           _react2.default.createElement(
             'h1',
@@ -30220,8 +30236,8 @@ var Homepage = function (_React$Component) {
               'Sign Up'
             ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/signup' },
+              'a',
+              { onClick: this.handleClick },
               'See Demo'
             )
           )

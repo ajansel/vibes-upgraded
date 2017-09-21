@@ -10,7 +10,6 @@ class SessionForm extends React.Component {
       img_url:'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
     };
 
-    this.processForm = this.props.processForm;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,7 +18,7 @@ class SessionForm extends React.Component {
       e.preventDefault();
       // Must be destructured into user_params
       const user = Object.assign({}, this.state);
-      this.processForm(user);
+      this.props.processForm(user);
     };
   }
 
@@ -30,8 +29,10 @@ class SessionForm extends React.Component {
     };
   }
 
-  componentDidMount(newprops){
-    this.props.receiveSessionErrors();
+  componentWillUpdate(newprops){
+    if (this.props.match.path !== newprops.match.path) {
+      this.props.receiveSessionErrors();
+    }
   }
 
   render(){
@@ -86,7 +87,7 @@ class SessionForm extends React.Component {
       "Log In";
 
     const renderErrors =
-      <ul>
+      <ul className="ErrorsList">
           {this.props.errors.map(
             (err) => (<li key={err}>{err}</li>)
           )}

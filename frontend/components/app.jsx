@@ -4,13 +4,14 @@ import SessionButtonsContainer from './session/session_buttons_container';
 import SessionFormContainer from './session/session_form_container';
 import HomepageContainer from './homepage/homepage_container';
 import { AuthRoute } from '../util/route_util';
+import { Link } from 'react-router-dom';
 
 const App = (props) => {
   return (
     <div className="EntirePageBody">
       <header className="NavBar">
         <div className="NavBarContent">
-          <h1 className="HeaderLogo">Vibes (Logo)</h1>
+          <Link className="HeaderLogo" to="/">Vibes</Link>
           <SessionButtonsContainer />
         </div>
       </header>

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // DELETE LATER
   window.dispatch = store.dispatch;
-  window.getState = store.dispatch;
+  window.getState = store.getState;
   window.fetchArtist = fetchArtist;
   window.fetchArtists = fetchArtists;
   window.fetchAlbum = fetchAlbum;

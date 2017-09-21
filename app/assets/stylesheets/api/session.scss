@@ -38,16 +38,19 @@
   justify-content: space-around;
   padding: 10px;
   background-color: #E9EBEE;
+  background-image: url('https://github.com/ajansel/vibes/blob/master/my_non_rails_files/wesley-tingey-223059.jpg?raw=true');
+  background-size: cover;
+  height: 600px;
 }
 
 .WelcomeMessage {
-  color: #333333;
+  color: white;
   width: 310px;
   text-align: center;
 }
 
 .WelcomeMessage > p {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .SessionForm {
@@ -64,14 +67,20 @@
 }
 
 .SessionForm h1, .SessionFormDiv h1 {
-  color: #333333;
+  color: white;
+  font-size: 36px;
 }
 
 .SessionFormSubmit {
-  color: #333333;
+  color: white;
   font-size: 18px;
   font-family: sans-serif;
   padding: 12px;
   border-radius: 5px;
   border: 0px;
+}
+
+.ErrorsList > li {
+  color: white;
+  font-size: 18px;
 }
