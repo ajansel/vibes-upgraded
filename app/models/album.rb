@@ -11,7 +11,7 @@
 #
 
 class Album < ApplicationRecord
-  valides :title, :img_url, presence: true
+  validates :title, :img_url, presence: true
 
   belongs_to :artist,
     primary_key: :id,
