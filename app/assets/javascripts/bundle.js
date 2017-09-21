@@ -25575,9 +25575,14 @@ var _errors_reducer = __webpack_require__(240);
 
 var _errors_reducer2 = _interopRequireDefault(_errors_reducer);
 
+var _entities_reducer = __webpack_require__(286);
+
+var _entities_reducer2 = _interopRequireDefault(_entities_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
+  entities: _entities_reducer2.default,
   session: _session_reducer2.default,
   errors: _errors_reducer2.default
 });
@@ -29843,6 +29848,15 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
+
+/***/ }),
+/* 284 */,
+/* 285 */,
+/* 286 */
+/***/ (function(module, __webpack_exports__) {
+
+"use strict";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/ajansel/AppAcademy/Fullstack/frontend/reducers/entities_reducer'\n    at Error (native)");
 
 /***/ })
 /******/ ]);
