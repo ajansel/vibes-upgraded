@@ -1,3 +1,3 @@
-json.array! @album do |album|
-  json.partial! 'api/album/album', album: album
+json.array! @albums do |album|
+  json.partial! 'api/albums/album', album: album
 end
