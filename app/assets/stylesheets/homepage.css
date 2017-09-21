@@ -1,17 +1,23 @@
 .Homepage {
   display: flex;
   justify-content: center;
+  background-image: url('https://github.com/ajansel/vibes/blob/master/my_non_rails_files/splash.jpg?raw=true');
+  background-size: cover;
+  height: 768px;
+  opacity: 50%
 }
 
 .Intro {
   width: 500px;
   text-align: center;
-  color: #333333;
-  background-color: black;
+  color: #3396ff;
+  height: 275px;
+  background-color:rgba(255, 255, 255, 0.5)
 }
 
 .Intro > p {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .SignupButtons {
@@ -23,9 +29,10 @@
 .SignupButtons > a {
   padding: 3px;
   color: white;
+  background-color: #3396ff;
   width: 70px;
   text-align: center;
   text-decoration: none;
-  border: 2px solid white;
+  border: 2px solid #3396ff;
   border-radius: 25px;
 }
