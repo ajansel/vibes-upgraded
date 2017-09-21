@@ -7,3 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+
+User.destroy_all
+
+10.times do
+  name = Faker::GameOfThrones.character
+  name_arr = name.split(' ')
+  username = name_arr[0]
+  username += '_' + name_arr[1] if name_arr[1]
+  email = username + '@gmail.com'
+
+  User.create!(
+    name: name,
+    username: username,
+    email: email,
+    img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+    password: 'password'
+  )
+end
