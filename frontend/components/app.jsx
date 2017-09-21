@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import SessionButtonsContainer from './session/session_buttons_container';
 import SessionFormContainer from './session/session_form_container';
 import HomepageContainer from './homepage/homepage_container';
-import { AuthRoute } from '../util/route_util';
+import DashboardContainer from './dashboard/dashboard_container';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Link } from 'react-router-dom';
 
 const App = (props) => {
@@ -19,6 +20,7 @@ const App = (props) => {
         <Switch>
           <AuthRoute path="/login" component={SessionFormContainer} />
           <AuthRoute path="/signup" component={SessionFormContainer} />
+          <ProtectedRoute path="/dashboard" component={DashboardContainer} />
           <Route path="/" component={HomepageContainer} />
         </Switch>
       </main>
