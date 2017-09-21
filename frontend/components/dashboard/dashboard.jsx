@@ -10,18 +10,18 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard">
         <div className="UserWidget">
-          <h3>Test User widget</h3>
+          <p>Test User widget</p>
         </div>
         <div className="SearchAndFeed">
           <div className="MusicSearch">
-            <h3>Test Music Search</h3>
+            <p>Test Music Search</p>
           </div>
           <div className="Feed">
-            <h3>Test Feed</h3>
+            <p>Test Feed</p>
           </div>
         </div>
         <div className="BonusWidget">
-          <h3>Test Bonus widget</h3>
+          <p>Test Bonus widget</p>
         </div>
       </div>
     );

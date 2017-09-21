@@ -1,0 +1,31 @@
+.Dashboard {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.UserWidget, .BonusWidget {
+  width: 200px;
+}
+
+.SearchAndFeed {
+  width: 500px;
+}
+
+.Dashboard > .UserWidget, .Dashboard > .BonusWidget {
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+  text-align: center;
+}
+
+.MusicSearch, .Feed {
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+  text-align: center;
+}
+
+.MusicSearch {
+  margin-bottom: 10px;
+}

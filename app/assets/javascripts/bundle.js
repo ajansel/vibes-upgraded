@@ -30343,7 +30343,7 @@ var Dashboard = function (_React$Component) {
           'div',
           { className: 'UserWidget' },
           _react2.default.createElement(
-            'h3',
+            'p',
             null,
             'Test User widget'
           )
@@ -30355,7 +30355,7 @@ var Dashboard = function (_React$Component) {
             'div',
             { className: 'MusicSearch' },
             _react2.default.createElement(
-              'h3',
+              'p',
               null,
               'Test Music Search'
             )
@@ -30364,7 +30364,7 @@ var Dashboard = function (_React$Component) {
             'div',
             { className: 'Feed' },
             _react2.default.createElement(
-              'h3',
+              'p',
               null,
               'Test Feed'
             )
@@ -30374,7 +30374,7 @@ var Dashboard = function (_React$Component) {
           'div',
           { className: 'BonusWidget' },
           _react2.default.createElement(
-            'h3',
+            'p',
             null,
             'Test Bonus widget'
           )
