@@ -40,7 +40,7 @@ export const SongsReducer = (state = {}, action) => {
       newState[action.songs.id] = action.songs;
       return newState;
     case RECEIVE_SONGS:
-      return action.songss;
+      return action.songs;
     default:
       return state;
   }
