@@ -1,6 +1,6 @@
 class Api::SongsController < ApplicationController
   def index
-    @songs = Song.all
+    @songs = Song.all.limit(10)
     render :index
   end
 

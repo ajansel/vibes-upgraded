@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MusicSearchContainer from '../music_search/music_search_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Dashboard extends React.Component {
         </div>
         <div className="SearchAndFeed">
           <div className="MusicSearch">
-            <p>Test Music Search</p>
+            <MusicSearchContainer />
           </div>
           <div className="Feed">
             <p>Test Feed</p>
