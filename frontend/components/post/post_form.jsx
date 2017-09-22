@@ -6,13 +6,26 @@ class PostForm extends React.Component {
     super(props);
 
     this.state = {body: ""};
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    console.log("Time to make form post action");
+  }
+
+  handleHighlight() {
+    if (window.getSelection().toString() !== "") {
+      const body = window.getSelection().toString();
+      this.setState({body});
+    }
   }
 
   render(){
     const lyricsArr = this.props.song.lyrics.split('\n');
     const div =
           lyricsArr.map(
-            (line) => <div>{line}<br /></div>
+            (line, idx) => <div key={idx}>{line}<br /></div>
         );
     return (
       <div className="PostForm">
@@ -31,10 +44,12 @@ class PostForm extends React.Component {
           <br />
           <br />
         </label>
-        <button>Post</button>
+        <button onClick={this.handleClick}>Post</button>
 
         <p>{this.props.song.title}</p>
-        {div}
+        <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
+          {div}
+        </div>
       </div>
     );
   }

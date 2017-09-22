@@ -31977,17 +31977,34 @@ var PostForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
 
     _this.state = { body: "" };
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
   _createClass(PostForm, [{
+    key: 'handleClick',
+    value: function handleClick(e) {
+      e.preventDefault();
+      console.log("Time to make form post action");
+    }
+  }, {
+    key: 'handleHighlight',
+    value: function handleHighlight() {
+      if (window.getSelection().toString() !== "") {
+        var body = window.getSelection().toString();
+        this.setState({ body: body });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var lyricsArr = this.props.song.lyrics.split('\n');
-      var div = lyricsArr.map(function (line) {
+      var div = lyricsArr.map(function (line, idx) {
         return _react2.default.createElement(
           'div',
-          null,
+          { key: idx },
           line,
           _react2.default.createElement('br', null)
         );
@@ -32025,7 +32042,7 @@ var PostForm = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          null,
+          { onClick: this.handleClick },
           'Post'
         ),
         _react2.default.createElement(
@@ -32033,7 +32050,13 @@ var PostForm = function (_React$Component) {
           null,
           this.props.song.title
         ),
-        div
+        _react2.default.createElement(
+          'div',
+          { className: 'Lyrics', onMouseUp: function onMouseUp() {
+              return _this2.handleHighlight();
+            } },
+          div
+        )
       );
     }
   }]);
