@@ -29711,6 +29711,10 @@ var _dashboard_container = __webpack_require__(289);
 
 var _dashboard_container2 = _interopRequireDefault(_dashboard_container);
 
+var _profile_container = __webpack_require__(309);
+
+var _profile_container2 = _interopRequireDefault(_profile_container);
+
 var _route_util = __webpack_require__(295);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29742,6 +29746,7 @@ var App = function App(props) {
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
+        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/profile', component: _profile_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _homepage_container2.default })
       )
     )
@@ -32065,6 +32070,210 @@ var PostForm = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = PostForm;
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(21);
+
+var _profile = __webpack_require__(310);
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _music_actions = __webpack_require__(42);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.session.currentUser,
+    allAlbums: state.entities.albums,
+    artist: state.entities.artists
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchAlbums: function fetchAlbums() {
+      return dispatch((0, _music_actions.fetchAlbums)());
+    },
+    fetchArtist: function fetchArtist(id) {
+      return dispatch((0, _music_actions.fetchArtist)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_profile2.default);
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Profile = function (_React$Component) {
+  _inherits(Profile, _React$Component);
+
+  function Profile(props) {
+    _classCallCheck(this, Profile);
+
+    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+
+    _this.state = { albumOfTheDay: {}, artist: "" };
+    return _this;
+  }
+
+  _createClass(Profile, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.fetchAlbums().then(function () {
+        var albumOfTheDay = _this2.getRandomAlbum();
+        _this2.setState({ albumOfTheDay: albumOfTheDay }, function () {
+          _this2.props.fetchArtist(_this2.state.albumOfTheDay.artist_id).then(function () {
+            _this2.setState({ artist: Object.values(_this2.props.artist)[0] });
+          });
+        });
+      });
+    }
+  }, {
+    key: 'getRandomAlbum',
+    value: function getRandomAlbum() {
+      var albumsArr = Object.values(this.props.allAlbums);
+      return albumsArr[Math.floor(Math.random() * albumsArr.length)];
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'Dashboard' },
+        _react2.default.createElement(
+          'div',
+          { className: 'UserWidget' },
+          _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url }),
+          _react2.default.createElement(
+            'p',
+            { className: 'Name' },
+            this.props.currentUser.name
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'Name' },
+            "@" + this.props.currentUser.username
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'StatHeaders' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Posts'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Followers'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Following'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'Stats' },
+            _react2.default.createElement(
+              'p',
+              null,
+              '30'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '406'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '384'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'SearchAndFeed' },
+          _react2.default.createElement(
+            'div',
+            { className: 'Feed' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Test Feed'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'BonusWidget' },
+          _react2.default.createElement(
+            'p',
+            { className: 'SuggestedAlbum' },
+            'Suggested Album'
+          ),
+          _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
+          _react2.default.createElement(
+            'p',
+            { className: 'SuggestedAlbumTitle' },
+            'Title: ',
+            this.state.albumOfTheDay.title
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'SuggestedAlbumArtist' },
+            'By: ',
+            this.state.artist.name
+          )
+        )
+      );
+    }
+  }]);
+
+  return Profile;
+}(_react2.default.Component);
+
+exports.default = Profile;
 
 /***/ })
 /******/ ]);

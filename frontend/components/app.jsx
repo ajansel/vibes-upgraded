@@ -4,6 +4,7 @@ import SessionButtonsContainer from './session/session_buttons_container';
 import SessionFormContainer from './session/session_form_container';
 import HomepageContainer from './homepage/homepage_container';
 import DashboardContainer from './dashboard/dashboard_container';
+import ProfileContainer from './profile/profile_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ const App = (props) => {
           <AuthRoute path="/login" component={SessionFormContainer} />
           <AuthRoute path="/signup" component={SessionFormContainer} />
           <ProtectedRoute path="/dashboard" component={DashboardContainer} />
+          <ProtectedRoute path="/profile" component={ProfileContainer} />
           <Route path="/" component={HomepageContainer} />
         </Switch>
       </main>
