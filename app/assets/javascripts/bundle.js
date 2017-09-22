@@ -32042,7 +32042,7 @@ var PostForm = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { onClick: this.handleClick },
+          { className: 'PostPost', onClick: this.handleClick },
           'Post'
         ),
         _react2.default.createElement(

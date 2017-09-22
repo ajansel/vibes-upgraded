@@ -44,7 +44,7 @@ class PostForm extends React.Component {
           <br />
           <br />
         </label>
-        <button onClick={this.handleClick}>Post</button>
+        <button className="PostPost" onClick={this.handleClick}>Post</button>
 
         <p>{this.props.song.title}</p>
         <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
