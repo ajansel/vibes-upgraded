@@ -22,8 +22,8 @@ const App = (props) => {
           <AuthRoute path="/login" component={SessionFormContainer} />
           <AuthRoute path="/signup" component={SessionFormContainer} />
           <ProtectedRoute path="/dashboard" component={DashboardContainer} />
-          <ProtectedRoute path="/profile" component={ProfileContainer} />
-          <Route path="/" component={HomepageContainer} />
+          <ProtecteRoute path="/profile" component={ProfileContainer} />
+          <AuthRoute path="/" component={HomepageContainer} />
         </Switch>
       </main>
     </div>

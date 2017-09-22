@@ -29746,8 +29746,8 @@ var App = function App(props) {
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
-        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/profile', component: _profile_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _homepage_container2.default })
+        _react2.default.createElement(ProtecteRoute, { path: '/profile', component: _profile_container2.default }),
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/', component: _homepage_container2.default })
       )
     )
   );
@@ -30907,7 +30907,7 @@ var Auth = function Auth(_ref) {
       path = _ref.path,
       loggedIn = _ref.loggedIn;
   return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
-      return !loggedIn ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+      return !loggedIn ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/dashboard' });
     } });
 };
 
