@@ -30470,7 +30470,7 @@ var MusicSearch = function (_React$Component) {
     // this.databaseValues = [];
     var _this = _possibleConstructorReturn(this, (MusicSearch.__proto__ || Object.getPrototypeOf(MusicSearch)).call(this, props));
 
-    _this.state = { searchVal: '' };
+    _this.state = { searchVal: '', firstTime: true };
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleClick = _this.handleClick.bind(_this);
@@ -30485,9 +30485,12 @@ var MusicSearch = function (_React$Component) {
       e.preventDefault();
 
       var newVal = e.target.value;
-      this.setState({ searchVal: newVal }, function () {
-        return _this2.props.searchDatabase(_this2.state.searchVal);
+      this.setState({ searchVal: newVal, firstTime: false }, function () {
+        _this2.props.searchDatabase(_this2.state.searchVal);
       });
+      // this.setState({ searchVal: newVal }, () => (
+      //   this.props.searchDatabase(this.state.searchVal)
+      // ));
     }
   }, {
     key: 'handleClick',
@@ -30504,7 +30507,8 @@ var MusicSearch = function (_React$Component) {
         'div',
         { className: 'MusicSearch' },
         _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', value: this.state.searchVal }),
-        _react2.default.createElement(_search_index2.default, { searchItems: Object.values(this.props.searchResults) })
+        _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
+          searchItems: Object.values(this.props.searchResults) })
       );
     }
   }]);
@@ -30536,13 +30540,114 @@ var _search_index_item2 = _interopRequireDefault(_search_index_item);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (_ref) {
-  var searchItems = _ref.searchItems;
-  return _react2.default.createElement(
-    'ul',
+  var searchItems = _ref.searchItems,
+      firstTime = _ref.firstTime;
+
+  var songs = [];
+  var artists = [];
+  var albums = [];
+
+  searchItems.forEach(function (item) {
+    if (item.type === "song") {
+      songs.push(item);
+    } else if (item.type === "artist") {
+      artists.push(item);
+    } else if (item.type === "album") {
+      albums.push(item);
+    }
+  });
+
+  var songsUl = void 0;
+  var artistsUl = void 0;
+  var albumsUl = void 0;
+  var songsHeader = void 0;
+  var artistsHeader = void 0;
+  var albumsHeader = void 0;
+
+  if (firstTime === false) songsHeader = _react2.default.createElement(
+    'h3',
     null,
-    searchItems.map(function (item) {
-      return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
-    })
+    'Songs'
+  );
+  if (songs.length !== 0) {
+    songsUl = _react2.default.createElement(
+      'ul',
+      null,
+      songs.map(function (item) {
+        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+      })
+    );
+  } else if (firstTime === false) {
+    songsUl = _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'No matchings songs'
+      )
+    );
+  }
+
+  if (firstTime === false) artistsHeader = _react2.default.createElement(
+    'h3',
+    null,
+    'Artists'
+  );
+  if (artists.length !== 0) {
+    artistsUl = _react2.default.createElement(
+      'ul',
+      null,
+      artists.map(function (item) {
+        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+      })
+    );
+  } else if (firstTime === false) {
+    artistsUl = _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'No matchings artists'
+      )
+    );
+  }
+
+  if (firstTime === false) albumsHeader = _react2.default.createElement(
+    'h3',
+    null,
+    'Albums'
+  );
+  if (albums.length !== 0) {
+    albumsUl = _react2.default.createElement(
+      'ul',
+      null,
+      albums.map(function (item) {
+        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+      })
+    );
+  } else if (firstTime === false) {
+    albumsUl = _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'No matchings albums'
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    songsHeader,
+    songsUl,
+    artistsHeader,
+    artistsUl,
+    albumsHeader,
+    albumsUl
   );
 };
 
@@ -30565,11 +30670,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (_ref) {
   var item = _ref.item;
-  return _react2.default.createElement(
-    'li',
-    null,
-    item.title
-  );
+
+  if (item.type === 'artist') {
+    return _react2.default.createElement(
+      'li',
+      null,
+      item.name
+    );
+  } else {
+    return _react2.default.createElement(
+      'li',
+      null,
+      item.title
+    );
+  }
 };
 
 /***/ }),

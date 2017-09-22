@@ -14,7 +14,7 @@ class MusicSearch extends React.Component {
     // this.props.fetchSongs().then(getDatabaseValues(this.props.entities));
 
     // this.databaseValues = [];
-    this.state = { searchVal: '' };
+    this.state = { searchVal: '', firstTime: true };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -24,9 +24,12 @@ class MusicSearch extends React.Component {
     e.preventDefault();
 
     const newVal = e.target.value;
-    this.setState({ searchVal: newVal }, () => (
-      this.props.searchDatabase(this.state.searchVal)
-    ));
+    this.setState({ searchVal: newVal, firstTime: false }, () => {
+      this.props.searchDatabase(this.state.searchVal);
+    });
+    // this.setState({ searchVal: newVal }, () => (
+    //   this.props.searchDatabase(this.state.searchVal)
+    // ));
   }
 
   handleClick(e) {
@@ -40,7 +43,8 @@ class MusicSearch extends React.Component {
     return (
       <div className="MusicSearch">
         <input onChange={this.handleChange} type="text" value={this.state.searchVal}></input>
-        <SearchIndex searchItems={Object.values(this.props.searchResults)} />
+        <SearchIndex firstTime={this.state.firstTime}
+          searchItems={Object.values(this.props.searchResults)} />
       </div>
     );
   }
