@@ -21,4 +21,9 @@ class Artist < ApplicationRecord
     primary_key: :id,
     foreign_key: :artist_id,
       class_name: :Album
+
+  def self.top_five_results(query_param)
+    param = '%' + query_param.downcase + '%'
+    Artist.where('lower(title) LIKE ?', param).limit(5)
+  end
 end

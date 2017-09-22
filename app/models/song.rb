@@ -29,4 +29,9 @@ class Song < ApplicationRecord
     primary_key: :id,
     foreign_key: :song_id,
     class_name: :Post
+
+  def self.top_five_results(query_param)
+    param = '%' + query_param.downcase + '%'
+    Song.where('lower(title) LIKE ?', param).limit(5)
+  end
 end

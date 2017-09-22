@@ -22,4 +22,9 @@ class Album < ApplicationRecord
     primary_key: :id,
     foreign_key: :album_id,
     class_name: :Song
+
+  def self.top_five_results(query_param)
+    param = '%' + query_param.downcase + '%'
+    Album.where('lower(title) LIKE ?', param).limit(5)
+  end
 end
