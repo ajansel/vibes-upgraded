@@ -30751,6 +30751,26 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var customStyles = {
+  content: {
+    top: '175',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '500px'
+  },
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  }
+};
+
 var SearchIndexItem = function (_React$Component) {
   _inherits(SearchIndexItem, _React$Component);
 
@@ -30781,14 +30801,6 @@ var SearchIndexItem = function (_React$Component) {
     key: 'afterOpenModal',
     value: function afterOpenModal() {}
   }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      e.preventDefault();
-
-      console.log("Hello there. Your search is working!");
-      // Add logic for pop up modole when working
-    }
-  }, {
     key: 'render',
     value: function render() {
       var li = void 0;
@@ -30816,7 +30828,8 @@ var SearchIndexItem = function (_React$Component) {
             isOpen: this.state.modalIsOpen,
             onAfterOpen: this.afterOpenModal,
             onRequestClose: this.closeModal,
-            contentLabel: 'Example Modal'
+            contentLabel: 'Example Modal',
+            style: customStyles
           },
           _react2.default.createElement(
             'p',
@@ -30832,21 +30845,6 @@ var SearchIndexItem = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = SearchIndexItem;
-
-// export default ({item}) => {
-//   const handleClick = (e) => {
-//     e.preventDefault();
-//
-//     console.log("Hello there. Your search is working!");
-//     // Add logic for pop up modole when working
-//   };
-//
-//   if (item.type === 'artist'){
-//     return <li onClick={handleClick}>{item.name}</li>;
-//   } else {
-//     return <li onClick={handleClick}>{item.title}</li>;
-//   }
-// };
 
 /***/ }),
 /* 295 */

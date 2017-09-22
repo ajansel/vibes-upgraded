@@ -1,6 +1,26 @@
 import React from 'react';
 import Modal from 'react-modal';
 
+const customStyles = {
+  content : {
+    top                   : '175',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width                 : '500px'
+  },
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+  }
+};
+
 class SearchIndexItem extends React.Component {
   constructor(props) {
     super(props);
@@ -24,13 +44,6 @@ class SearchIndexItem extends React.Component {
 
   }
 
-  handleClick(e){
-    e.preventDefault();
-
-    console.log("Hello there. Your search is working!");
-    // Add logic for pop up modole when working
-  }
-
   render() {
     let li;
     if (this.item.type === 'artist') {
@@ -47,6 +60,7 @@ class SearchIndexItem extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
+          style={customStyles}
           >
           <p>Hello there. Your search is working! </p>
         </Modal>
@@ -56,18 +70,3 @@ class SearchIndexItem extends React.Component {
 }
 
 export default SearchIndexItem;
-
-// export default ({item}) => {
-//   const handleClick = (e) => {
-//     e.preventDefault();
-//
-//     console.log("Hello there. Your search is working!");
-//     // Add logic for pop up modole when working
-//   };
-//
-//   if (item.type === 'artist'){
-//     return <li onClick={handleClick}>{item.name}</li>;
-//   } else {
-//     return <li onClick={handleClick}>{item.title}</li>;
-//   }
-// };
