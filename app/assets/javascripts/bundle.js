@@ -30778,6 +30778,7 @@ var customStyles = {
     transform: 'translate(-50%, -50%)',
     width: '500px',
     height: '500px'
+    // overflow              : 'hidden'
   },
   overlay: {
     position: 'fixed',
@@ -32041,7 +32042,7 @@ var PostForm = function (_React$Component) {
         _react2.default.createElement(
           'label',
           { className: 'PostBody' },
-          _react2.default.createElement('textarea', { type: 'text',
+          _react2.default.createElement('textarea', { disabled: 'yes', type: 'text',
             placeholder: 'Highlight lyrics below to fill the body of your post',
             value: this.state.body }),
           _react2.default.createElement('br', null),
