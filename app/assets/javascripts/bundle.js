@@ -11761,7 +11761,7 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
+exports.searchMusicDatabse = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
 
 var _music_api_util = __webpack_require__(245);
 
@@ -11771,6 +11771,7 @@ var RECEIVE_ALBUM = exports.RECEIVE_ALBUM = "RECEIVE_ALBUM";
 var RECEIVE_ALBUMS = exports.RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 var RECEIVE_SONG = exports.RECEIVE_SONG = "RECEIVE_SONG";
 var RECEIVE_SONGS = exports.RECEIVE_SONGS = "RECEIVE_SONGS";
+var RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SEARCH_RESULTS = "RECEIVE_SEARCH_RESULTS";
 
 var receiveArtist = function receiveArtist(artist) {
   return {
@@ -11811,6 +11812,13 @@ var receiveSongs = function receiveSongs(songs) {
   return {
     type: RECEIVE_SONGS,
     songs: songs
+  };
+};
+
+var receiveSearchResults = function receiveSearchResults(searchResults) {
+  return {
+    type: RECEIVE_SEARCH_RESULTS,
+    searchResults: searchResults
   };
 };
 
@@ -11858,6 +11866,14 @@ var fetchSongs = exports.fetchSongs = function fetchSongs() {
   return function (dispatch) {
     return (0, _music_api_util.getSongs)().then(function (songs) {
       return dispatch(receiveSongs(songs));
+    });
+  };
+};
+
+var searchMusicDatabse = exports.searchMusicDatabse = function searchMusicDatabse(query) {
+  return function (dispatch) {
+    return searchMusicDatabse(query).then(function (results) {
+      return dispatch(receiveSearchResults(results));
     });
   };
 };
@@ -25988,6 +26004,13 @@ var getSongs = exports.getSongs = function getSongs() {
   });
 };
 
+var searchMusicDatabse = exports.searchMusicDatabse = function searchMusicDatabse() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches'
+  });
+};
+
 /***/ }),
 /* 246 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -30488,17 +30511,6 @@ var MusicSearch = function (_React$Component) {
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
-  //
-  // componentDidUpdate() {
-  //   let getDatabaseValues = (entities) => {
-  //     let obj = Object.assign({}, entities.songs);
-  //     return Object.values(obj);
-  //   };
-  //
-  //   this.props.fetchSongs();
-  //
-  //   this.databaseValues = getDatabaseValues(this.props.entities);
-  // }
 
   _createClass(MusicSearch, [{
     key: 'handleChange',
@@ -30506,7 +30518,7 @@ var MusicSearch = function (_React$Component) {
       e.preventDefault();
 
       var newVal = e.target.value;
-      this.setState({ searchVal: newVal });
+      this.setState({ searchVal: newVal }).then(this.props.searchDatabse(this.state.searchVal));
     }
   }, {
     key: 'handleClick',
@@ -30515,27 +30527,6 @@ var MusicSearch = function (_React$Component) {
 
       console.log("Hello there. Your search is working!");
       // Add logic for pop up modole when working
-    }
-  }, {
-    key: 'renderList',
-    value: function renderList() {
-      var _this2 = this;
-
-      var listItems = this.databaseValues.filter(function (value) {
-        return value.toUpperCase().indexOf(_this2.state.searchVal.toUpperCase()) !== -1;
-      }).map(function (value, idx) {
-        return _react2.default.createElement(
-          'li',
-          { key: value + idx,
-            className: 'SearchIndexItem' },
-          value
-        );
-      });
-      return _react2.default.createElement(
-        'ul',
-        { onClick: this.handleClick },
-        listItems
-      );
     }
   }, {
     key: 'render',

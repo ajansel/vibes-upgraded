@@ -19,23 +19,13 @@ class MusicSearch extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  //
-  // componentDidUpdate() {
-  //   let getDatabaseValues = (entities) => {
-  //     let obj = Object.assign({}, entities.songs);
-  //     return Object.values(obj);
-  //   };
-  //
-  //   this.props.fetchSongs();
-  //
-  //   this.databaseValues = getDatabaseValues(this.props.entities);
-  // }
 
   handleChange(e) {
     e.preventDefault();
 
     const newVal = e.target.value;
-    this.setState({ searchVal: newVal });
+    this.setState({ searchVal: newVal }).then(
+      this.props.searchDatabse(this.state.searchVal));
   }
 
   handleClick(e) {
@@ -43,15 +33,6 @@ class MusicSearch extends React.Component {
 
     console.log("Hello there. Your search is working!");
     // Add logic for pop up modole when working
-  }
-
-  renderList() {
-    const listItems = this.databaseValues
-    .filter(value => value.toUpperCase()
-                    .indexOf(this.state.searchVal.toUpperCase()) !== -1)
-    .map((value, idx) => <li key={value + idx}
-                            className="SearchIndexItem">{value}</li>);
-    return <ul onClick={this.handleClick}>{ listItems }</ul>;
   }
 
   render(){

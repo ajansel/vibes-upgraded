@@ -39,3 +39,10 @@ export const getSongs = () => {
     url: 'api/songs'
   });
 };
+
+export const searchMusicDatabse = () => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches'
+  });
+};
