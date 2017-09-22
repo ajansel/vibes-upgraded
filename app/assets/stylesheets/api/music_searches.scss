@@ -6,6 +6,16 @@
   align-items: center;
 }
 
+.MusicSearch > input {
+  font-size: 14px;
+  font-family: sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #C0C0C0;
+  width: 225px;
+}
+
 .SearchIndex > ul > * {
   list-style-type: none;
   text-align: center;

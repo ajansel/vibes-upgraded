@@ -30580,7 +30580,9 @@ var MusicSearch = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'MusicSearch' },
-        _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', value: this.state.searchVal }),
+        _react2.default.createElement('input', { onChange: this.handleChange, type: 'text',
+          placeholder: 'Search for a song, artist, or album',
+          value: this.state.searchVal }),
         _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.searchResults),
           searchVal: this.state.searchVal,
