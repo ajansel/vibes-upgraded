@@ -1,13 +1,13 @@
 import {connect} from 'react-redux';
 import MusicSearch from './music_search';
-import {fetchSongs} from '../../actions/music_actions';
+import {searchDatabase} from '../../actions/music_actions';
 
 const mapStateToProps = (state) => ({
-  entities: state.entities
+  searchResults: state.entities.searchResults
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSongs: () => dispatch(fetchSongs())
+  searchDatabase: (query) => dispatch(searchDatabase(query))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MusicSearch);
