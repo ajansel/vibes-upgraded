@@ -11,7 +11,19 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard">
         <div className="UserWidget">
-          <p>Test User widget</p>
+          <img className="DashboardPic" src={this.props.currentUser.img_url}/>
+          <p className="Name">{this.props.currentUser.name}</p>
+          <p className="Name">{"@" + this.props.currentUser.username}</p>
+          <div className="StatHeaders">
+            <p>Posts</p>
+            <p>Followers</p>
+            <p>Following</p>
+          </div>
+          <div className="Stats">
+            <p>30</p>
+            <p>406</p>
+            <p>384</p>
+          </div>
         </div>
         <div className="SearchAndFeed">
           <div className="MusicSearch">

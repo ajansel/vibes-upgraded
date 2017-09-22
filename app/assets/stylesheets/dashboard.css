@@ -29,3 +29,26 @@
 .MusicSearch {
   margin-bottom: 10px;
 }
+
+.DashboardPic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 0px;
+}
+
+.Name, .Username {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+}
+
+.Stats, .StatHeaders {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 3px;
+}
+
+.Stats > p, .StatHeaders > p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}

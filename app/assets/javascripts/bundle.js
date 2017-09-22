@@ -30344,10 +30344,54 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'UserWidget' },
+          _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url }),
           _react2.default.createElement(
             'p',
-            null,
-            'Test User widget'
+            { className: 'Name' },
+            this.props.currentUser.name
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'Name' },
+            "@" + this.props.currentUser.username
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'StatHeaders' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Posts'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Followers'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Following'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'Stats' },
+            _react2.default.createElement(
+              'p',
+              null,
+              '30'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '406'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '384'
+            )
           )
         ),
         _react2.default.createElement(
