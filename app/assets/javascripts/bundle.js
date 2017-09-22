@@ -30458,22 +30458,10 @@ var MusicSearch = function (_React$Component) {
   function MusicSearch(props) {
     _classCallCheck(this, MusicSearch);
 
-    // this.databaseValues = ["empty"];
-    //
-    //   let getDatabaseValues = () => (entities) => {
-    //     let obj = Object.assign({}, entities.songs);
-    //     this.databaseValues = Object.values(obj);
-    //   };
-    //
-    // this.props.fetchSongs().then(getDatabaseValues(this.props.entities));
-
-    // this.databaseValues = [];
     var _this = _possibleConstructorReturn(this, (MusicSearch.__proto__ || Object.getPrototypeOf(MusicSearch)).call(this, props));
 
     _this.state = { searchVal: '', firstTime: true };
-
     _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
@@ -30488,17 +30476,6 @@ var MusicSearch = function (_React$Component) {
       this.setState({ searchVal: newVal, firstTime: false }, function () {
         _this2.props.searchDatabase(_this2.state.searchVal);
       });
-      // this.setState({ searchVal: newVal }, () => (
-      //   this.props.searchDatabase(this.state.searchVal)
-      // ));
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      e.preventDefault();
-
-      console.log("Hello there. Your search is working!");
-      // Add logic for pop up modole when working
     }
   }, {
     key: 'render',
@@ -30508,7 +30485,8 @@ var MusicSearch = function (_React$Component) {
         { className: 'MusicSearch' },
         _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', value: this.state.searchVal }),
         _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
-          searchItems: Object.values(this.props.searchResults) })
+          searchItems: Object.values(this.props.searchResults),
+          searchVal: this.state.searchVal })
       );
     }
   }]);
@@ -30541,8 +30519,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (_ref) {
   var searchItems = _ref.searchItems,
-      firstTime = _ref.firstTime;
+      firstTime = _ref.firstTime,
+      searchVal = _ref.searchVal;
 
+  if (searchVal === "") return _react2.default.createElement('ul', null);
   var songs = [];
   var artists = [];
   var albums = [];
@@ -30641,7 +30621,7 @@ exports.default = function (_ref) {
 
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'SearchIndex' },
     songsHeader,
     songsUl,
     artistsHeader,
@@ -30671,16 +30651,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (_ref) {
   var item = _ref.item;
 
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+
+    console.log("Hello there. Your search is working!");
+    // Add logic for pop up modole when working
+  };
+
   if (item.type === 'artist') {
     return _react2.default.createElement(
       'li',
-      null,
+      { onClick: handleClick },
       item.name
     );
   } else {
     return _react2.default.createElement(
       'li',
-      null,
+      { onClick: handleClick },
       item.title
     );
   }

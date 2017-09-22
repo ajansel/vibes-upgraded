@@ -4,20 +4,9 @@ import SearchIndex from './search_index';
 class MusicSearch extends React.Component {
   constructor(props) {
     super(props);
-    // this.databaseValues = ["empty"];
-    //
-    //   let getDatabaseValues = () => (entities) => {
-    //     let obj = Object.assign({}, entities.songs);
-    //     this.databaseValues = Object.values(obj);
-    //   };
-    //
-    // this.props.fetchSongs().then(getDatabaseValues(this.props.entities));
 
-    // this.databaseValues = [];
     this.state = { searchVal: '', firstTime: true };
-
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
@@ -27,16 +16,6 @@ class MusicSearch extends React.Component {
     this.setState({ searchVal: newVal, firstTime: false }, () => {
       this.props.searchDatabase(this.state.searchVal);
     });
-    // this.setState({ searchVal: newVal }, () => (
-    //   this.props.searchDatabase(this.state.searchVal)
-    // ));
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-
-    console.log("Hello there. Your search is working!");
-    // Add logic for pop up modole when working
   }
 
   render(){
@@ -44,7 +23,8 @@ class MusicSearch extends React.Component {
       <div className="MusicSearch">
         <input onChange={this.handleChange} type="text" value={this.state.searchVal}></input>
         <SearchIndex firstTime={this.state.firstTime}
-          searchItems={Object.values(this.props.searchResults)} />
+          searchItems={Object.values(this.props.searchResults)}
+          searchVal={this.state.searchVal} />
       </div>
     );
   }

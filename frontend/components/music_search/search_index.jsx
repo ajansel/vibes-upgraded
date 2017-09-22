@@ -1,7 +1,8 @@
 import React from 'react';
 import SearchIndexItem from './search_index_item';
 
-export default ({searchItems, firstTime}) => {
+export default ({searchItems, firstTime, searchVal}) => {
+  if (searchVal === "") return (<ul></ul>);
   let songs = [];
   let artists = [];
   let albums = [];
@@ -40,7 +41,7 @@ export default ({searchItems, firstTime}) => {
     </ul>;
   }
 
-  if (firstTime === false) artistsHeader = <h3>Artists</h3>;
+  if (firstTime === false) artistsHeader = <h3>Artists</h3>
   if (artists.length !== 0) {
     artistsUl =
     <ul>
@@ -71,7 +72,7 @@ export default ({searchItems, firstTime}) => {
   }
 
   return(
-    <div>
+    <div className="SearchIndex">
       {songsHeader}
       {songsUl}
       {artistsHeader}
