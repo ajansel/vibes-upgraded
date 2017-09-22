@@ -2,16 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.UserWidget, .BonusWidget {
-  height: 200px;
-}
-
 .MusicSearch {
   align-items: center;
 }
 
-.SearchIndex > ul > li {
-  // list-style-type: none;
+.SearchIndex > ul > * {
+  list-style-type: none;
   text-align: center;
   box-sizing: border-box;
   padding: 5px;
@@ -20,10 +16,10 @@
   display: inline-block;
 }
 
-.SearchIndex > ul > li:nth-child(2n) {
+.SearchIndex > ul > *:nth-child(2n) {
   background-color: rgb(175, 175, 175);
 }
 
-.SearchIndex > ul > li:nth-child(2n+1) {
+.SearchIndex > ul > *:nth-child(2n+1) {
   background-color: rgb(200, 200, 200);
 }

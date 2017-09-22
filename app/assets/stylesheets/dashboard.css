@@ -6,6 +6,7 @@
 
 .UserWidget, .BonusWidget {
   width: 200px;
+  height: 225px;
 }
 
 .SearchAndFeed {
@@ -38,7 +39,7 @@
 }
 
 .Name, .Username {
-  margin: 5px 0 0 0;
+  margin: 10px 0 0 0;
   font-size: 18px;
 }
 
@@ -49,21 +50,22 @@
 }
 
 .Stats > p, .StatHeaders > p {
-  margin: 5px 0 0 0;
+  margin: 10px 0 0 0;
   font-size: 14px;
 }
 
 .SuggestedAlbumPic {
-  margin: 5px 0 0 0;
+  margin: 10px 0 0 0;
   width: 80px;
   height: 80px;
 }
 
-.SuggestedAlbumTitle, .SuggestedAlbumArtist, .SuggestedAlbum {
-  margin: 5px 0 0 0;
+.SuggestedAlbumTitle, .SuggestedAlbumArtist {
+  margin: 10px 0 0 0;
   font-size: 16px;
 }
 
 .SuggestedAlbum {
+  margin: 5px 0 0 0;
   font-size: 18px;
 }
