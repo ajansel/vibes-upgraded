@@ -52,3 +52,18 @@
   margin: 5px 0 0 0;
   font-size: 14px;
 }
+
+.SuggestedAlbumPic {
+  margin: 5px 0 0 0;
+  width: 80px;
+  height: 80px;
+}
+
+.SuggestedAlbumTitle, .SuggestedAlbumArtist, .SuggestedAlbum {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+}
+
+.SuggestedAlbum {
+  font-size: 18px;
+}

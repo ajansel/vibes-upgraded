@@ -41,7 +41,7 @@ export default ({searchItems, firstTime, searchVal}) => {
     </ul>;
   }
 
-  if (firstTime === false) artistsHeader = <h3>Artists</h3>
+  if (firstTime === false) artistsHeader = <h3>Artists</h3>;
   if (artists.length !== 0) {
     artistsUl =
     <ul>

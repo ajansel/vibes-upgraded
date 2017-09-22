@@ -5,6 +5,23 @@ import MusicSearchContainer from '../music_search/music_search_container';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {albumOfTheDay: {}, artist: ""};
+  }
+
+  componentDidMount() {
+    this.props.fetchAlbums().then(() => {
+      const albumOfTheDay = this.getRandomAlbum();
+        this.setState({albumOfTheDay}, () => {
+          this.props.fetchArtist(this.state.albumOfTheDay.artist_id).then(() => {
+            this.setState({artist: Object.values(this.props.artist)[0]});
+          });
+        });
+      });
+  }
+
+  getRandomAlbum() {
+    const albumsArr = Object.values(this.props.allAlbums);
+    return albumsArr[Math.floor(Math.random() * albumsArr.length)];
   }
 
   render(){
@@ -34,7 +51,10 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="BonusWidget">
-          <p>Test Bonus widget</p>
+          <p className="SuggestedAlbum">Suggested Album</p>
+          <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
+          <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
+          <p className="SuggestedAlbumArtist">By: {this.state.artist.name}</p>
         </div>
       </div>
     );

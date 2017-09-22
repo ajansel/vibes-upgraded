@@ -1,7 +1,7 @@
 export const getArtist = (artistId) => {
   return $.ajax({
     method: 'GET',
-    url: `api/artist/${artistId}`
+    url: `api/artists/${artistId}`
   });
 };
 
