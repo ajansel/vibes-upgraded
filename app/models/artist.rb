@@ -24,6 +24,6 @@ class Artist < ApplicationRecord
 
   def self.top_five_results(query_param)
     param = '%' + query_param.downcase + '%'
-    Artist.where('lower(title) LIKE ?', param).limit(5)
+    Artist.where('lower(name) LIKE ?', param).limit(5)
   end
 end

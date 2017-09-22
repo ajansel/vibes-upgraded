@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux';
-import { ArtistsReducer, AlbumsReducer, SongsReducer } from './music_reducers';
+import { ArtistsReducer, AlbumsReducer, SongsReducer, SearchReducer } from './music_reducers';
 
 const EntitiesReducer = combineReducers({
   artists: ArtistsReducer,
   albums: AlbumsReducer,
-  songs: SongsReducer
+  songs: SongsReducer,
+  searchResults: SearchReducer
 });
 
 export default EntitiesReducer;

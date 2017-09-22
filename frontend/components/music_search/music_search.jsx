@@ -25,7 +25,7 @@ class MusicSearch extends React.Component {
 
     const newVal = e.target.value;
     this.setState({ searchVal: newVal }).then(
-      this.props.searchDatabse(this.state.searchVal));
+      this.props.searchDatabase(this.state.searchVal));
   }
 
   handleClick(e) {

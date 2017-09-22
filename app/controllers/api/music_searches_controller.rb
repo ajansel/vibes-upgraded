@@ -3,7 +3,7 @@ class Api::MusicSearchesController < ApplicationController
     @artists = Artist.top_five_results(search_params[:query])
     @albums = Album.top_five_results(search_params[:query])
     @songs = Song.top_five_results(search_params[:query])
-    render :search
+    render :index
   end
 
   private

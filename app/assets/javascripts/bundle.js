@@ -11761,7 +11761,7 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.searchMusicDatabse = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
+exports.searchDatabase = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
 
 var _music_api_util = __webpack_require__(245);
 
@@ -11870,9 +11870,9 @@ var fetchSongs = exports.fetchSongs = function fetchSongs() {
   };
 };
 
-var searchMusicDatabse = exports.searchMusicDatabse = function searchMusicDatabse(query) {
+var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
   return function (dispatch) {
-    return searchMusicDatabse(query).then(function (results) {
+    return (0, _music_api_util.searchMusicDatabase)(query).then(function (results) {
       return dispatch(receiveSearchResults(results));
     });
   };
@@ -12940,6 +12940,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.fetchAlbums = _music_actions.fetchAlbums;
   window.fetchSong = _music_actions.fetchSong;
   window.fetchSongs = _music_actions.fetchSongs;
+  window.searchDatabase = _music_actions.searchDatabase;
 
   // DELETE LATER
 
@@ -25879,7 +25880,8 @@ var _music_reducers = __webpack_require__(244);
 var EntitiesReducer = (0, _redux.combineReducers)({
   artists: _music_reducers.ArtistsReducer,
   albums: _music_reducers.AlbumsReducer,
-  songs: _music_reducers.SongsReducer
+  songs: _music_reducers.SongsReducer,
+  searchResults: _music_reducers.SearchReducer
 });
 
 exports.default = EntitiesReducer;
@@ -25894,7 +25896,7 @@ exports.default = EntitiesReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SongsReducer = exports.AlbumsReducer = exports.ArtistsReducer = undefined;
+exports.SearchReducer = exports.SongsReducer = exports.AlbumsReducer = exports.ArtistsReducer = undefined;
 
 var _music_actions = __webpack_require__(106);
 
@@ -25952,6 +25954,19 @@ var SongsReducer = exports.SongsReducer = function SongsReducer() {
   }
 };
 
+var SearchReducer = exports.SearchReducer = function SearchReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    case _music_actions.RECEIVE_SEARCH_RESULTS:
+      return action.searchResults;
+    default:
+      return state;
+  }
+};
+
 /***/ }),
 /* 245 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -26004,10 +26019,11 @@ var getSongs = exports.getSongs = function getSongs() {
   });
 };
 
-var searchMusicDatabse = exports.searchMusicDatabse = function searchMusicDatabse() {
+var searchMusicDatabase = exports.searchMusicDatabase = function searchMusicDatabase(query) {
   return $.ajax({
     method: 'GET',
-    url: 'api/music_searches'
+    url: 'api/music_searches',
+    data: { search: { query: query } }
   });
 };
 
@@ -30518,7 +30534,7 @@ var MusicSearch = function (_React$Component) {
       e.preventDefault();
 
       var newVal = e.target.value;
-      this.setState({ searchVal: newVal }).then(this.props.searchDatabse(this.state.searchVal));
+      this.setState({ searchVal: newVal }).then(this.props.searchDatabase(this.state.searchVal));
     }
   }, {
     key: 'handleClick',

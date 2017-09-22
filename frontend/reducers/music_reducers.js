@@ -1,5 +1,6 @@
 import {RECEIVE_ARTIST, RECEIVE_ARTISTS, RECEIVE_ALBUM, RECEIVE_ALBUMS,
-  RECEIVE_SONG, RECEIVE_SONGS,} from '../actions/music_actions';
+        RECEIVE_SONG, RECEIVE_SONGS, RECEIVE_SEARCH_RESULTS}
+        from '../actions/music_actions';
 
 export const ArtistsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -41,6 +42,16 @@ export const SongsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_SONGS:
       return action.songs;
+    default:
+      return state;
+  }
+};
+
+export const SearchReducer = (state = {}, action) => {
+  Object.freeze(state);
+  switch (action.type) {
+    case RECEIVE_SEARCH_RESULTS:
+      return action.searchResults;
     default:
       return state;
   }

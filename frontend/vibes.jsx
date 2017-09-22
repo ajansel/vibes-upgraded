@@ -4,7 +4,8 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 import {fetchArtist, fetchArtists, fetchAlbum, fetchAlbums,
-  fetchSong, fetchSongs} from './actions/music_actions';
+        fetchSong, fetchSongs, searchDatabase}
+        from './actions/music_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchAlbums = fetchAlbums;
   window.fetchSong = fetchSong;
   window.fetchSongs = fetchSongs;
+  window.searchDatabase = searchDatabase;
 
   // DELETE LATER
 

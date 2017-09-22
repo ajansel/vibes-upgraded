@@ -40,9 +40,10 @@ export const getSongs = () => {
   });
 };
 
-export const searchMusicDatabse = () => {
+export const searchMusicDatabase = (query) => {
   return $.ajax({
     method: 'GET',
-    url: 'api/music_searches'
+    url: 'api/music_searches',
+    data: {search: { query } }
   });
 };
