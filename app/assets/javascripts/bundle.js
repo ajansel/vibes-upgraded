@@ -32034,7 +32034,7 @@ var PostForm = function (_React$Component) {
         _react2.default.createElement(
           'label',
           { className: 'PostBody' },
-          _react2.default.createElement('input', { type: 'text',
+          _react2.default.createElement('textarea', { type: 'text',
             placeholder: 'Highlight lyrics below to fill the body of your post',
             value: this.state.body }),
           _react2.default.createElement('br', null),

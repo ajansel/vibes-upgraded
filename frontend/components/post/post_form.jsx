@@ -38,7 +38,7 @@ class PostForm extends React.Component {
         </div>
 
         <label className="PostBody">
-          <input type="text"
+          <textarea type="text"
             placeholder="Highlight lyrics below to fill the body of your post"
             value={this.state.body}/>
           <br />
