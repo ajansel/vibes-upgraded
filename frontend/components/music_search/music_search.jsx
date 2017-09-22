@@ -24,7 +24,8 @@ class MusicSearch extends React.Component {
         <input onChange={this.handleChange} type="text" value={this.state.searchVal}></input>
         <SearchIndex firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.searchResults)}
-          searchVal={this.state.searchVal} />
+          searchVal={this.state.searchVal}
+          currentUser={this.props.currentUser} />
       </div>
     );
   }

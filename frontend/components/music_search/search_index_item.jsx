@@ -1,15 +1,17 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PostForm from '../post/post_form';
 
 const customStyles = {
   content : {
-    top                   : '175',
+    top                   : '56%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    width                 : '500px'
+    width                 : '500px',
+    height                : '500px'
   },
   overlay : {
     position          : 'fixed',
@@ -25,6 +27,7 @@ class SearchIndexItem extends React.Component {
   constructor(props) {
     super(props);
 
+    this.currentUser = props.currentUser;
     this.state = { modalIsOpen: false };
     this.item = props.item;
     this.openModal = this.openModal.bind(this);
@@ -52,6 +55,16 @@ class SearchIndexItem extends React.Component {
       li = <li onClick={this.openModal}>{this.item.title}</li>;
     }
 
+    let form;
+    if (this.item.type === 'song') {
+      form = <PostForm currentUser={this.props.currentUser}
+                        song={this.props.item}/>;
+    } else if (this.item.type === 'artist') {
+      form = <p>Change this to artist modal</p>;
+    } else if (this.item.type === 'album') {
+      form = <p>Change this to album modal</p>;
+    }
+
     return(
       <div>
         {li}
@@ -62,7 +75,7 @@ class SearchIndexItem extends React.Component {
           contentLabel="Example Modal"
           style={customStyles}
           >
-          <p>Hello there. Your search is working! </p>
+          {form}
         </Modal>
       </div>
     );

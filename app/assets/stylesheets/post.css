@@ -1,0 +1,27 @@
+.PostForm > label > input {
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #C0C0C0;
+  width: 400px;
+  height: 75px;
+}
+
+.UserInfo > img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-bottom: 0px;
+}
+
+.UserInfo {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.UserNames > p {
+  margin: 0;
+}

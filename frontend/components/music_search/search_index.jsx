@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchIndexItem from './search_index_item';
 
-export default ({searchItems, firstTime, searchVal}) => {
+export default ({searchItems, firstTime, searchVal, currentUser}) => {
   if (searchVal === "") return (<ul></ul>);
   let songs = [];
   let artists = [];
@@ -31,7 +31,8 @@ export default ({searchItems, firstTime, searchVal}) => {
     songsUl =
     <ul>
       {songs.map(
-        (item) => (<SearchIndexItem item={item} key={item.id}/>)
+        (item) => (<SearchIndexItem currentUser={currentUser}
+          item={item} key={item.id}/>)
       )}
     </ul>;
   } else if (firstTime === false){
@@ -46,7 +47,8 @@ export default ({searchItems, firstTime, searchVal}) => {
     artistsUl =
     <ul>
       {artists.map(
-        (item) => (<SearchIndexItem item={item} key={item.id}/>)
+        (item) => (<SearchIndexItem currentUser={currentUser}
+          item={item} key={item.id}/>)
       )}
     </ul>;
   } else if (firstTime === false){
@@ -61,7 +63,8 @@ export default ({searchItems, firstTime, searchVal}) => {
     albumsUl =
     <ul>
       {albums.map(
-        (item) => (<SearchIndexItem item={item} key={item.id}/>)
+        (item) => (<SearchIndexItem currentUser={currentUser}
+          item={item} key={item.id}/>)
       )}
     </ul>;
   } else if (firstTime === false){

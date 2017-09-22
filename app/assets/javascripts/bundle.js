@@ -30500,6 +30500,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    currentUser: state.session.currentUser,
     searchResults: state.entities.searchResults
   };
 };
@@ -30577,7 +30578,8 @@ var MusicSearch = function (_React$Component) {
         _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', value: this.state.searchVal }),
         _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.searchResults),
-          searchVal: this.state.searchVal })
+          searchVal: this.state.searchVal,
+          currentUser: this.props.currentUser })
       );
     }
   }]);
@@ -30611,7 +30613,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (_ref) {
   var searchItems = _ref.searchItems,
       firstTime = _ref.firstTime,
-      searchVal = _ref.searchVal;
+      searchVal = _ref.searchVal,
+      currentUser = _ref.currentUser;
 
   if (searchVal === "") return _react2.default.createElement('ul', null);
   var songs = [];
@@ -30645,7 +30648,8 @@ exports.default = function (_ref) {
       'ul',
       null,
       songs.map(function (item) {
-        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+        return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
+          item: item, key: item.id });
       })
     );
   } else if (firstTime === false) {
@@ -30670,7 +30674,8 @@ exports.default = function (_ref) {
       'ul',
       null,
       artists.map(function (item) {
-        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+        return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
+          item: item, key: item.id });
       })
     );
   } else if (firstTime === false) {
@@ -30695,7 +30700,8 @@ exports.default = function (_ref) {
       'ul',
       null,
       albums.map(function (item) {
-        return _react2.default.createElement(_search_index_item2.default, { item: item, key: item.id });
+        return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
+          item: item, key: item.id });
       })
     );
   } else if (firstTime === false) {
@@ -30743,6 +30749,10 @@ var _reactModal = __webpack_require__(300);
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
+var _post_form = __webpack_require__(308);
+
+var _post_form2 = _interopRequireDefault(_post_form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30753,13 +30763,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var customStyles = {
   content: {
-    top: '175',
+    top: '56%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '500px'
+    width: '500px',
+    height: '500px'
   },
   overlay: {
     position: 'fixed',
@@ -30779,6 +30790,7 @@ var SearchIndexItem = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SearchIndexItem.__proto__ || Object.getPrototypeOf(SearchIndexItem)).call(this, props));
 
+    _this.currentUser = props.currentUser;
     _this.state = { modalIsOpen: false };
     _this.item = props.item;
     _this.openModal = _this.openModal.bind(_this);
@@ -30818,6 +30830,24 @@ var SearchIndexItem = function (_React$Component) {
         );
       }
 
+      var form = void 0;
+      if (this.item.type === 'song') {
+        form = _react2.default.createElement(_post_form2.default, { currentUser: this.props.currentUser,
+          song: this.props.item });
+      } else if (this.item.type === 'artist') {
+        form = _react2.default.createElement(
+          'p',
+          null,
+          'Change this to artist modal'
+        );
+      } else if (this.item.type === 'album') {
+        form = _react2.default.createElement(
+          'p',
+          null,
+          'Change this to album modal'
+        );
+      }
+
       return _react2.default.createElement(
         'div',
         null,
@@ -30831,11 +30861,7 @@ var SearchIndexItem = function (_React$Component) {
             contentLabel: 'Example Modal',
             style: customStyles
           },
-          _react2.default.createElement(
-            'p',
-            null,
-            'Hello there. Your search is working! '
-          )
+          form
         )
       );
     }
@@ -31913,6 +31939,109 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 }());
 
+
+/***/ }),
+/* 307 */,
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PostForm = function (_React$Component) {
+  _inherits(PostForm, _React$Component);
+
+  function PostForm(props) {
+    _classCallCheck(this, PostForm);
+
+    var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
+
+    _this.state = { body: "" };
+    return _this;
+  }
+
+  _createClass(PostForm, [{
+    key: 'render',
+    value: function render() {
+      var lyricsArr = this.props.song.lyrics.split('\n');
+      var div = lyricsArr.map(function (line) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          line,
+          _react2.default.createElement('br', null)
+        );
+      });
+      return _react2.default.createElement(
+        'div',
+        { className: 'PostForm' },
+        _react2.default.createElement(
+          'div',
+          { className: 'UserInfo' },
+          _react2.default.createElement('img', { src: this.props.currentUser.img_url }),
+          _react2.default.createElement(
+            'div',
+            { className: 'UserNames' },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.currentUser.name
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              "@" + this.props.currentUser.username
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'label',
+          { className: 'PostBody' },
+          _react2.default.createElement('input', { type: 'text',
+            placeholder: 'Highlight lyrics below to fill the body of your post',
+            value: this.state.body }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null)
+        ),
+        _react2.default.createElement(
+          'button',
+          null,
+          'Post'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          this.props.song.title
+        ),
+        div
+      );
+    }
+  }]);
+
+  return PostForm;
+}(_react2.default.Component);
+
+exports.default = PostForm;
 
 /***/ })
 /******/ ]);
