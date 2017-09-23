@@ -51,7 +51,7 @@ song_db = []
 
 # [0..49] works
 counter = 1
-links.each do |link|
+links[0..49].each do |link|
 
   doc = Nokogiri::HTML(open(link))
   #store the artist's name
