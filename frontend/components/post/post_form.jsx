@@ -11,7 +11,7 @@ class PostForm extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log("Time to make form post action");
+
     const post = {
       body: this.state.body,
       song_id: this.props.song.id,
@@ -19,8 +19,8 @@ class PostForm extends React.Component {
     };
 
     // Method here with post as param
-    debugger
     this.props.createPost(post);
+    this.props.closeModal();
   }
 
   handleHighlight() {

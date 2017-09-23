@@ -31212,7 +31212,7 @@ var SearchIndexItem = function (_React$Component) {
       var form = void 0;
       if (this.item.type === 'song') {
         form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser,
-          song: this.props.item });
+          song: this.props.item, closeModal: this.closeModal });
       } else if (this.item.type === 'artist') {
         form = _react2.default.createElement(
           'p',
@@ -32121,7 +32121,7 @@ var PostForm = function (_React$Component) {
     key: 'handleClick',
     value: function handleClick(e) {
       e.preventDefault();
-      console.log("Time to make form post action");
+
       var post = {
         body: this.state.body,
         song_id: this.props.song.id,
@@ -32129,8 +32129,8 @@ var PostForm = function (_React$Component) {
       };
 
       // Method here with post as param
-      debugger;
       this.props.createPost(post);
+      this.props.closeModal();
     }
   }, {
     key: 'handleHighlight',

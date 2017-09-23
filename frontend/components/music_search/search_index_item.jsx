@@ -59,7 +59,7 @@ class SearchIndexItem extends React.Component {
     let form;
     if (this.item.type === 'song') {
       form = <PostFormContainer currentUser={this.props.currentUser}
-                        song={this.props.item}/>;
+                        song={this.props.item} closeModal={this.closeModal}/>;
     } else if (this.item.type === 'artist') {
       form = <p>Change this to artist modal</p>;
     } else if (this.item.type === 'album') {
