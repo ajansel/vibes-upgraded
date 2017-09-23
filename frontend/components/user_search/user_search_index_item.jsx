@@ -66,9 +66,21 @@ class UserSearchIndexItem extends React.Component {
     //   form = <p>Change this to album modal</p>;
     // }
 
+    let followButton;
+    if (this.user.followed_by_current_user) {
+      // Unfollow button
+      followButton = <button>Unfollow</button>;
+    } else {
+      // follow button
+      followButton = <button>Follow</button>;
+    }
+
     return(
       <div>
-        <li>{this.user.username}</li>
+        <li>
+          {this.user.username}
+          {followButton}
+        </li>
       </div>
     );
   }
