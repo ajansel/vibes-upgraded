@@ -25822,10 +25822,15 @@ var _session_errors_reducer = __webpack_require__(242);
 
 var _session_errors_reducer2 = _interopRequireDefault(_session_errors_reducer);
 
+var _post_errors_reducer = __webpack_require__(312);
+
+var _post_errors_reducer2 = _interopRequireDefault(_post_errors_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ErrorsReducer = (0, _redux.combineReducers)({
-  session: _session_errors_reducer2.default
+  session: _session_errors_reducer2.default,
+  post: _post_errors_reducer2.default
 });
 
 exports.default = ErrorsReducer;
@@ -25877,11 +25882,14 @@ var _redux = __webpack_require__(30);
 
 var _music_reducers = __webpack_require__(244);
 
+var _posts_reducer = __webpack_require__(311);
+
 var EntitiesReducer = (0, _redux.combineReducers)({
   artists: _music_reducers.ArtistsReducer,
   albums: _music_reducers.AlbumsReducer,
   songs: _music_reducers.SongsReducer,
-  searchResults: _music_reducers.SearchReducer
+  searchResults: _music_reducers.SearchReducer,
+  posts: _posts_reducer.PostsReducer
 });
 
 exports.default = EntitiesReducer;
@@ -32284,6 +32292,143 @@ var Profile = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Profile;
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/ajansel/AppAcademy/Fullstack/frontend/reducers/posts_reducer'\n    at Error (native)");
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _post_actions = __webpack_require__(313);
+
+var _nullPostErrors = [];
+
+var PostErrorsReducer = function PostErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullPostErrors;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    case _post_actions.RECEIVE_POST_ERRORS:
+      return action.errors;
+    default:
+      return state;
+  }
+};
+
+exports.default = PostErrorsReducer;
+
+/***/ }),
+/* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createPost = exports.fetchPosts = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+
+var _post_api_util = __webpack_require__(314);
+
+var RECEIVE_POST = exports.RECEIVE_POST = "RECEIVE_POST";
+var RECEIVE_POSTS = exports.RECEIVE_POSTS = "RECEIVE_POSTS";
+var RECEIVE_POST_ERRORS = exports.RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
+
+var receivePost = function receivePost(post) {
+  return {
+    type: RECEIVE_POST,
+    post: post
+  };
+};
+
+var receivePosts = exports.receivePosts = function receivePosts(posts) {
+  return {
+    type: RECEIVE_POSTS,
+    posts: posts
+  };
+};
+
+var receivePostErrors = exports.receivePostErrors = function receivePostErrors(errors) {
+  return {
+    type: RECEIVE_POST_ERRORS,
+    errors: errors
+  };
+};
+
+var fetchPost = exports.fetchPost = function fetchPost(id) {
+  return function (dispatch) {
+    return (0, _post_api_util.getPost)(id).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (err) {
+      return dispatch(receivePostErrors(err.responseJSON));
+    });
+  };
+};
+
+var fetchPosts = exports.fetchPosts = function fetchPosts() {
+  return function (dispatch) {
+    return (0, _post_api_util.getPosts)().then(function (posts) {
+      return dispatch(receivePosts(posts));
+    }, function (err) {
+      return dispatch(receivePostErrors(err.responseJSON));
+    });
+  };
+};
+
+var createPost = exports.createPost = function createPost(formPost) {
+  return function (dispatch) {
+    return (0, _post_api_util.postPost)(formPost).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (err) {
+      return dispatch(receivePostErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getPost = exports.getPost = function getPost(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/posts/' + id
+  });
+};
+
+var getPosts = exports.getPosts = function getPosts() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/posts'
+  });
+};
+
+var postPosts = exports.postPosts = function postPosts(post) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/posts',
+    data: { post: post }
+  });
+};
 
 /***/ })
 /******/ ]);
