@@ -26320,6 +26320,10 @@ var _user_search_reducer = __webpack_require__(256);
 
 var _user_search_reducer2 = _interopRequireDefault(_user_search_reducer);
 
+var _users_reducer = __webpack_require__(320);
+
+var _users_reducer2 = _interopRequireDefault(_users_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var EntitiesReducer = (0, _redux.combineReducers)({
@@ -26328,7 +26332,8 @@ var EntitiesReducer = (0, _redux.combineReducers)({
   songs: _music_reducers.SongsReducer,
   searchResults: _music_reducers.SearchReducer,
   posts: _posts_reducer2.default,
-  userSearchResults: _user_search_reducer2.default
+  userSearchResults: _user_search_reducer2.default,
+  users: _users_reducer2.default
 });
 
 exports.default = EntitiesReducer;
@@ -32682,6 +32687,41 @@ var deleteFollow = exports.deleteFollow = function deleteFollow(followId) {
     url: 'api/followers/' + followId
   });
 };
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _user_actions = __webpack_require__(109);
+
+var _nullUser = {};
+
+var UsersReducer = function UsersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullUser;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = void 0;
+  switch (action.type) {
+    case _user_actions.RECEIVE_USER:
+      newState = Object.assign({}, state);
+      newState[action.user.id] = action.user;
+      return newState;
+    // case RECEIVE_POSTS:
+    //   return action.posts;
+    default:
+      return state;
+  }
+};
+
+exports.default = UsersReducer;
 
 /***/ })
 /******/ ]);
