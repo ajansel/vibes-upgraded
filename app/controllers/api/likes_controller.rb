@@ -1,28 +1,27 @@
 class Api::LikesController < ApplicationController
   def create
-    @like = Like.new(like_params)
+    @like = Like.new
+    @like.user_id = current_user.id
+    @like.post_id = params[:id]
 
     if @like.save
-      render :show
+      @post = @like.post
+      render 'api/posts/show'
     else
-      render json: @like.errors.full_messages, status: 422
+      render json: @like.errors.full_messages, status: 401
     end
   end
 
   def destroy
-    @like = Like.find(params[:id])
+    @like = Like.find_by(user_id: current_user.id, post_id: params[:id])
 
-    if @like && @like.user_id == current_user.id
-      @like.destroy!
-      render :show
+    if @like
+      @like.destroy
+      @post = @like.post
+      render 'api/posts/show'
     else
+      # This status is likely not correct
       render json: ["You can only destroy your likes"], status: 404
     end
-  end
-
-  private
-
-  def like_params
-    params.require(:like).permit(:user_id, :post_id)
   end
 end
