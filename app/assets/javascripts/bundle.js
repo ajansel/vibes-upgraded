@@ -32979,8 +32979,8 @@ var UserSearchIndexItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (UserSearchIndexItem.__proto__ || Object.getPrototypeOf(UserSearchIndexItem)).call(this, props));
 
     _this.currentUser = props.currentUser;
-    // this.state = { modalIsOpen: false };
     _this.user = props.user;
+    _this.state = { following: _this.user.followed_by_current_user };
     _this.followUser = props.followUser;
     _this.unfollowUser = props.unfollowUser;
     // this.openModal = this.openModal.bind(this);
@@ -33009,9 +33009,15 @@ var UserSearchIndexItem = function (_React$Component) {
       return function (e) {
         e.preventDefault();
         if (action === "follow") {
-          _this2.followUser(_this2.user.id);
+          var oppositeCurrentFollowing = !_this2.user.followed_by_current_user;
+          _this2.setState({ following: oppositeCurrentFollowing }, function () {
+            _this2.followUser(_this2.user.id);
+          });
         } else {
-          _this2.unfollowUser(_this2.user.id);
+          var _oppositeCurrentFollowing = !_this2.user.followed_by_current_user;
+          _this2.setState({ following: _oppositeCurrentFollowing }, function () {
+            _this2.unfollowUser(_this2.user.id);
+          });
         }
       };
     }
@@ -33036,12 +33042,12 @@ var UserSearchIndexItem = function (_React$Component) {
       // }
 
       var followButton = void 0;
-      if (this.user.followed_by_current_user) {
+      if (this.state.following) {
         // Unfollow button
         followButton = _react2.default.createElement(
           "button",
           { onClick: this.handleClick("unfollow") },
-          "Unfollow"
+          "Following"
         );
       } else {
         // follow button
