@@ -31994,6 +31994,13 @@ var PostForm = function (_React$Component) {
     value: function handleClick(e) {
       e.preventDefault();
       console.log("Time to make form post action");
+      var post = {
+        body: this.state.body,
+        song_id: this.props.song.id,
+        author_id: this.props.currentUser.id
+      };
+
+      // Method here with post as param
     }
   }, {
     key: 'handleHighlight',
