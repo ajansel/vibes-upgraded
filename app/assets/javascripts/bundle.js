@@ -32128,7 +32128,6 @@ var PostForm = function (_React$Component) {
         author_id: this.props.currentUser.id
       };
 
-      // Method here with post as param
       this.props.createPost(post);
       this.props.closeModal();
     }
