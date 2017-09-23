@@ -27,7 +27,7 @@ export const fetchPost = (id) => (dispatch) => (
   )
 );
 
-export const fetchPosts = () => (dispatch) => (
+export const fetchPostsFromFollowers = () => (dispatch) => (
   getPosts().then(
     (posts) => dispatch(receivePosts(posts)),
     (err) => dispatch(receivePostErrors(err.responseJSON))

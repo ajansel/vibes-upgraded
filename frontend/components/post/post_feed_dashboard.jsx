@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PostFeedDashboardItem from './post_feed_dashboard_item';
 
 class PostFeedDashboard extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    // Logic here to pop up the display post, functions the same as
-    // post creation except the post body box isn't there
+  componentWillMount() {
+    this.props.fetchPostsFromFollowers();
   }
 
   render(){
+    const posts = this.props.posts.map(
+      (post) => <PostFeedDashboardItem post={post}/>
+    );
 
     return (
       <div className="PostFeedDashboard">
-        
+        {posts}
       </div>
     );
   }

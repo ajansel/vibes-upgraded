@@ -7373,7 +7373,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePost = exports.likePost = exports.createPost = exports.fetchPosts = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+exports.deletePost = exports.likePost = exports.createPost = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
 
 var _post_api_util = __webpack_require__(250);
 
@@ -7414,7 +7414,7 @@ var fetchPost = exports.fetchPost = function fetchPost(id) {
   };
 };
 
-var fetchPosts = exports.fetchPosts = function fetchPosts() {
+var fetchPostsFromFollowers = exports.fetchPostsFromFollowers = function fetchPostsFromFollowers() {
   return function (dispatch) {
     return (0, _post_api_util.getPosts)().then(function (posts) {
       return dispatch(receivePosts(posts));

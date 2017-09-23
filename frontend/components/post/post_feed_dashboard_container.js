@@ -3,11 +3,12 @@ import PostFeedDashboard from './post_form';
 import {fetchPostsFromFollowers} from '../../actions/post_actions';
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  posts: state.entities.posts
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPostsFromFollowers: (id) => dispatch(fetchPostsFromFollowers(id))
+  fetchPostsFromFollowers: () => dispatch(fetchPostsFromFollowers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostFeedDashboard);
