@@ -142,9 +142,15 @@ song_db.each do |song|
     img_url = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
   end
 
+  lyrics = song[1]
+
+  if lyrics == nil || lyrics == "" || lyrics.length == 0
+    lyrics = "This song did not have lyrics"
+  end
+
   Song.create!(
     title: song[0],
-    lyrics: song[1],
+    lyrics: lyrics,
     img_url: img_url,
     artist_id: Artist.find_by_name(song[3]).id,
     album_id: Album.find_by_title(song[4]).id
