@@ -30,7 +30,7 @@ class PostForm extends React.Component {
 
   render(){
     const lyricsArr = this.props.song.lyrics.split('\n');
-    const div =
+    const lyrics =
           lyricsArr.map(
             (line, idx) => <div key={idx}>{line}<br /></div>
         );
@@ -55,7 +55,7 @@ class PostForm extends React.Component {
 
         <p>{this.props.song.title}</p>
         <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
-          {div}
+          {lyrics}
         </div>
       </div>
     );

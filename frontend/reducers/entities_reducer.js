@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import { ArtistsReducer, AlbumsReducer, SongsReducer, SearchReducer } from './music_reducers';
-import { PostsReducer } from './posts_reducer';
+import PostsReducer from './posts_reducer';
 
 const EntitiesReducer = combineReducers({
   artists: ArtistsReducer,
