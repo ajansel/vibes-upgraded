@@ -1,7 +1,7 @@
 import {RECEIVE_USER_SEARCH_RESULTS}
         from '../actions/user_actions';
 
-export const SearchReducer = (state = {}, action) => {
+const UserSearchReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_USER_SEARCH_RESULTS:
@@ -10,3 +10,5 @@ export const SearchReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export default UserSearchReducer;

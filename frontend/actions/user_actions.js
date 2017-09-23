@@ -1,4 +1,4 @@
-import {searchUserDatabase} from '../util/users_api_util';
+import {searchUserDatabase} from '../util/user_api_util';
 
 export const RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 // export const RECEIVE_USER_SEARCH_RESULTS_ERRORS =

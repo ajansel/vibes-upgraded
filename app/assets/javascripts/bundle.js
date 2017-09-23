@@ -32516,11 +32516,10 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SearchReducer = undefined;
 
 var _user_actions = __webpack_require__(316);
 
-var SearchReducer = exports.SearchReducer = function SearchReducer() {
+var UserSearchReducer = function UserSearchReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
@@ -32532,6 +32531,8 @@ var SearchReducer = exports.SearchReducer = function SearchReducer() {
       return state;
   }
 };
+
+exports.default = UserSearchReducer;
 
 /***/ }),
 /* 316 */
@@ -32545,7 +32546,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.searchDatabase = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
 
-var _users_api_util = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../util/users_api_util\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _user_api_util = __webpack_require__(317);
 
 var RECEIVE_USER_SEARCH_RESULTS = exports.RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 // export const RECEIVE_USER_SEARCH_RESULTS_ERRORS =
@@ -32560,10 +32561,28 @@ var receiveUserSearchResults = function receiveUserSearchResults(users) {
 
 var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
   return function (dispatch) {
-    return (0, _users_api_util.searchUserDatabase)(query).then(function (users) {
+    return (0, _user_api_util.searchUserDatabase)(query).then(function (users) {
       return dispatch(receiveUserSearchResults(users));
     });
   };
+};
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var searchUserDatabase = exports.searchUserDatabase = function searchUserDatabase(query) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users',
+    data: { search: { query: query } }
+  });
 };
 
 /***/ })
