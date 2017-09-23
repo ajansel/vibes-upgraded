@@ -1,8 +1,8 @@
-export const postLike = (like) => {
+export const postLike = (postId) => {
   return $.ajax({
     method: 'POST',
     url: `api/likes`,
-    data: { like }
+    data: { id: postId }
   });
 };
 

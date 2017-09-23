@@ -1,4 +1,5 @@
 import {getPost, getPosts, postPost} from '../util/post_api_util';
+import {postLike, deleteLike } from '../util/like_api_util';
 
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
@@ -37,5 +38,17 @@ export const createPost = (formPost) => (dispatch) => (
   postPost(formPost).then(
     (post) => dispatch(receivePost(post)),
     (err) => dispatch(receivePostErrors(err.responseJSON))
+  )
+);
+
+export const likePost = (id) => (dispatch) => (
+  postLike(id).then(
+    post => dispatch(receivePost(post))
+  )
+);
+
+export const deletePost = (id) => (dispatch) => (
+  deleteLike(id).then(
+    post => dispatch(receivePost(post))
   )
 );
