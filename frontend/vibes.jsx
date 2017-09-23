@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import {fetchArtist, fetchArtists, fetchAlbum, fetchAlbums,
-        fetchSong, fetchSongs, searchDatabase}
-        from './actions/music_actions';
+// import {fetchArtist, fetchArtists, fetchAlbum, fetchAlbums,
+//         fetchSong, fetchSongs, searchDatabase}
+//         from './actions/music_actions';
+import {searchDatabase} from './actions/user_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -21,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // DELETE LATER
   window.dispatch = store.dispatch;
   window.getState = store.getState;
-  window.fetchArtist = fetchArtist;
-  window.fetchArtists = fetchArtists;
-  window.fetchAlbum = fetchAlbum;
-  window.fetchAlbums = fetchAlbums;
-  window.fetchSong = fetchSong;
-  window.fetchSongs = fetchSongs;
+  // window.fetchArtist = fetchArtist;
+  // window.fetchArtists = fetchArtists;
+  // window.fetchAlbum = fetchAlbum;
+  // window.fetchAlbums = fetchAlbums;
+  // window.fetchSong = fetchSong;
+  // window.fetchSongs = fetchSongs;
   window.searchDatabase = searchDatabase;
 
   // DELETE LATER

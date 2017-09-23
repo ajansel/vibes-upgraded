@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   def self.top_fifteen_results(query_param)
     param = '%' + query_param.downcase + '%'
-    Song.where('lower(name) LIKE ? or lower(username) LIKE ?', param, param).limit(15)
+    User.where('lower(name) LIKE ? or lower(username) LIKE ?', param, param).limit(15)
   end
 
   def ensure_session_token
