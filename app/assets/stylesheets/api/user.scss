@@ -1,3 +1,35 @@
 // Place all the styles related to the API::User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.UserSearch {
+  align-items: center;
+}
+
+.UserSearch > input {
+  font-size: 14px;
+  font-family: sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #C0C0C0;
+  width: 225px;
+}
+
+.UserSearchIndex > ul > * {
+  list-style-type: none;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 250px;
+
+  display: inline-block;
+}
+
+.UserSearchIndex > ul > *:nth-child(2n) {
+  background-color: rgb(175, 175, 175);
+}
+
+.UserSearchIndex > ul > *:nth-child(2n+1) {
+  background-color: rgb(200, 200, 200);
+}
