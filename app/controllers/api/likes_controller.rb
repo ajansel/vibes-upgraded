@@ -10,7 +10,14 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
+    @like = Like.find(params[:id])
 
+    if @like && @like.user_id == current_user.id
+      @like.destroy!
+      render :show
+    else
+      render json: ["You can only destroy your likes"], status: 404
+    end
   end
 
   private
