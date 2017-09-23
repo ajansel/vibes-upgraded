@@ -30867,6 +30867,10 @@ var _music_search_container = __webpack_require__(303);
 
 var _music_search_container2 = _interopRequireDefault(_music_search_container);
 
+var _user_search_container = __webpack_require__(321);
+
+var _user_search_container2 = _interopRequireDefault(_user_search_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30972,7 +30976,8 @@ var Dashboard = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'MusicSearch' },
-            _react2.default.createElement(_music_search_container2.default, null)
+            _react2.default.createElement(_music_search_container2.default, null),
+            _react2.default.createElement(_user_search_container2.default, null)
           ),
           _react2.default.createElement(
             'div',
@@ -32722,6 +32727,320 @@ var UsersReducer = function UsersReducer() {
 };
 
 exports.default = UsersReducer;
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(18);
+
+var _user_search = __webpack_require__(322);
+
+var _user_search2 = _interopRequireDefault(_user_search);
+
+var _user_actions = __webpack_require__(109);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.session.currentUser,
+    userSearchResults: state.entities.userSearchResults
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    searchDatabase: function searchDatabase(query) {
+      return dispatch((0, _user_actions.searchDatabase)(query));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user_search2.default);
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _user_search_index = __webpack_require__(323);
+
+var _user_search_index2 = _interopRequireDefault(_user_search_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserSearch = function (_React$Component) {
+  _inherits(UserSearch, _React$Component);
+
+  function UserSearch(props) {
+    _classCallCheck(this, UserSearch);
+
+    var _this = _possibleConstructorReturn(this, (UserSearch.__proto__ || Object.getPrototypeOf(UserSearch)).call(this, props));
+
+    _this.state = { searchVal: '', firstTime: true };
+    _this.handleChange = _this.handleChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(UserSearch, [{
+    key: 'handleChange',
+    value: function handleChange(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+
+      var newVal = e.target.value;
+      this.setState({ searchVal: newVal, firstTime: false }, function () {
+        _this2.props.searchDatabase(_this2.state.searchVal);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'UserSearch' },
+        _react2.default.createElement('input', { onChange: this.handleChange, type: 'text',
+          placeholder: 'Search for a user',
+          value: this.state.searchVal }),
+        _react2.default.createElement(_user_search_index2.default, { firstTime: this.state.firstTime,
+          searchItems: Object.values(this.props.userSearchResults),
+          searchVal: this.state.searchVal,
+          currentUser: this.props.currentUser })
+      );
+    }
+  }]);
+
+  return UserSearch;
+}(_react2.default.Component);
+
+exports.default = UserSearch;
+
+/***/ }),
+/* 323 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _user_search_index_item = __webpack_require__(324);
+
+var _user_search_index_item2 = _interopRequireDefault(_user_search_index_item);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var searchItems = _ref.searchItems,
+      firstTime = _ref.firstTime,
+      searchVal = _ref.searchVal,
+      currentUser = _ref.currentUser;
+
+  if (searchVal === "") return _react2.default.createElement('ul', null);
+
+  var usersUl = void 0;
+  var usersHeader = void 0;
+
+  if (firstTime === false) usersHeader = _react2.default.createElement(
+    'h3',
+    null,
+    'Users'
+  );
+  if (searchItems.length !== 0) {
+    usersUl = _react2.default.createElement(
+      'ul',
+      null,
+      searchItems.map(function (user) {
+        return _react2.default.createElement(_user_search_index_item2.default, { currentUser: currentUser,
+          user: user, key: user.id });
+      })
+    );
+  } else if (firstTime === false) {
+    usersUl = _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'No matchings users'
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'UserSearchIndex' },
+    usersHeader,
+    usersUl
+  );
+};
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import Modal from 'react-modal';
+// import PostFormContainer from '../post/post_form_container';
+//
+// const customStyles = {
+//   content : {
+//     top                   : '56%',
+//     left                  : '50%',
+//     right                 : 'auto',
+//     bottom                : 'auto',
+//     marginRight           : '-50%',
+//     transform             : 'translate(-50%, -50%)',
+//     width                 : '500px',
+//     height                : '500px',
+//     // overflow              : 'hidden'
+//   },
+//   overlay : {
+//     position          : 'fixed',
+//     top               : 0,
+//     left              : 0,
+//     right             : 0,
+//     bottom            : 0,
+//     backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+//   }
+// };
+
+var UserSearchIndexItem = function (_React$Component) {
+  _inherits(UserSearchIndexItem, _React$Component);
+
+  function UserSearchIndexItem(props) {
+    _classCallCheck(this, UserSearchIndexItem);
+
+    var _this = _possibleConstructorReturn(this, (UserSearchIndexItem.__proto__ || Object.getPrototypeOf(UserSearchIndexItem)).call(this, props));
+
+    _this.currentUser = props.currentUser;
+    // this.state = { modalIsOpen: false };
+    _this.user = props.user;
+    // this.openModal = this.openModal.bind(this);
+    // this.afterModal = this.afterOpenModal.bind(this);
+    // this.closeModal = this.closeModal.bind(this);
+    return _this;
+  }
+
+  // openModal() {
+  //   this.setState({modalIsOpen: true});
+  // }
+  //
+  // closeModal() {
+  //   this.setState({modalIsOpen: false});
+  // }
+  //
+  // afterOpenModal() {
+  //
+  // }
+
+  _createClass(UserSearchIndexItem, [{
+    key: 'render',
+    value: function render() {
+      // let li;
+      // if (this.user.type === 'artist') {
+      //   li = <li onClick={this.openModal}>{this.user.name}</li>;
+      // } else {
+      //   li = <li onClick={this.openModal}>{this.user.title}</li>;
+      // }
+
+      // let form;
+      // if (this.user.type === 'song') {
+      //   form = <PostFormContainer currentUser={this.props.currentUser}
+      //                     song={this.props.user} closeModal={this.closeModal}/>;
+      //                 } else if (this.user.type === 'artist') {
+      //   form = <p>Change this to artist modal</p>;
+      // } else if (this.user.type === 'album') {
+      //   form = <p>Change this to album modal</p>;
+      // }
+
+      var followButton = void 0;
+      if (this.user.followed_by_current_user) {
+        // Unfollow button
+        followButton = _react2.default.createElement(
+          'button',
+          null,
+          'Unfollow'
+        );
+      } else {
+        // follow button
+        followButton = _react2.default.createElement(
+          'button',
+          null,
+          'Follow'
+        );
+      }
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'li',
+          null,
+          this.user.username,
+          followButton
+        )
+      );
+    }
+  }]);
+
+  return UserSearchIndexItem;
+}(_react2.default.Component);
+
+exports.default = UserSearchIndexItem;
 
 /***/ })
 /******/ ]);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MusicSearchContainer from '../music_search/music_search_container';
+import UserSearchContainer from '../user_search/user_search_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Dashboard extends React.Component {
         <div className="SearchAndFeed">
           <div className="MusicSearch">
             <MusicSearchContainer />
+            <UserSearchContainer />
           </div>
           <div className="Feed">
             <p>Test Feed</p>
