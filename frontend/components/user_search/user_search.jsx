@@ -27,7 +27,9 @@ class UserSearch extends React.Component {
         <UserSearchIndex firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.userSearchResults)}
           searchVal={this.state.searchVal}
-          currentUser={this.props.currentUser} />
+          currentUser={this.props.currentUser}
+          followUser={this.props.followUser}
+          unfollowUser={this.props.unfollowUser}/>
       </div>
     );
   }

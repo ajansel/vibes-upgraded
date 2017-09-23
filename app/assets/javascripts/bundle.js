@@ -32760,6 +32760,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     searchDatabase: function searchDatabase(query) {
       return dispatch((0, _user_actions.searchDatabase)(query));
+    },
+    followUser: function followUser(followeeId) {
+      return dispatch((0, _user_actions.followUser)(followeeId));
+    },
+    unfollowUser: function unfollowUser(followeeId) {
+      return dispatch((0, _user_actions.unfollowUser)(followeeId));
     }
   };
 };
@@ -32832,7 +32838,9 @@ var UserSearch = function (_React$Component) {
         _react2.default.createElement(_user_search_index2.default, { firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.userSearchResults),
           searchVal: this.state.searchVal,
-          currentUser: this.props.currentUser })
+          currentUser: this.props.currentUser,
+          followUser: this.props.followUser,
+          unfollowUser: this.props.unfollowUser })
       );
     }
   }]);
@@ -32867,7 +32875,9 @@ exports.default = function (_ref) {
   var searchItems = _ref.searchItems,
       firstTime = _ref.firstTime,
       searchVal = _ref.searchVal,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      followUser = _ref.followUser,
+      unfollowUser = _ref.unfollowUser;
 
   if (searchVal === "") return _react2.default.createElement('ul', null);
 
@@ -32885,7 +32895,9 @@ exports.default = function (_ref) {
       null,
       searchItems.map(function (user) {
         return _react2.default.createElement(_user_search_index_item2.default, { currentUser: currentUser,
-          user: user, key: user.id });
+          user: user, key: user.id,
+          followUser: followUser,
+          unfollowUser: unfollowUser });
       })
     );
   } else if (firstTime === false) {
@@ -32969,6 +32981,8 @@ var UserSearchIndexItem = function (_React$Component) {
     _this.currentUser = props.currentUser;
     // this.state = { modalIsOpen: false };
     _this.user = props.user;
+    _this.followUser = props.followUser;
+    _this.unfollowUser = props.unfollowUser;
     // this.openModal = this.openModal.bind(this);
     // this.afterModal = this.afterOpenModal.bind(this);
     // this.closeModal = this.closeModal.bind(this);
@@ -32988,7 +33002,21 @@ var UserSearchIndexItem = function (_React$Component) {
   // }
 
   _createClass(UserSearchIndexItem, [{
-    key: 'render',
+    key: "handleClick",
+    value: function handleClick(action) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (action === "follow") {
+          _this2.followUser(_this2.user.id);
+        } else {
+          _this2.unfollowUser(_this2.user.id);
+        }
+      };
+    }
+  }, {
+    key: "render",
     value: function render() {
       // let li;
       // if (this.user.type === 'artist') {
@@ -33011,24 +33039,24 @@ var UserSearchIndexItem = function (_React$Component) {
       if (this.user.followed_by_current_user) {
         // Unfollow button
         followButton = _react2.default.createElement(
-          'button',
-          null,
-          'Unfollow'
+          "button",
+          { onClick: this.handleClick("unfollow") },
+          "Unfollow"
         );
       } else {
         // follow button
         followButton = _react2.default.createElement(
-          'button',
-          null,
-          'Follow'
+          "button",
+          { onClick: this.handleClick("follow") },
+          "Follow"
         );
       }
 
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'li',
+          "li",
           null,
           this.user.username,
           followButton

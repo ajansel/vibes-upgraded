@@ -1,7 +1,7 @@
 import React from 'react';
 import UserSearchIndexItem from './user_search_index_item';
 
-export default ({searchItems, firstTime, searchVal, currentUser}) => {
+export default ({searchItems, firstTime, searchVal, currentUser, followUser, unfollowUser}) => {
   if (searchVal === "") return (<ul></ul>);
 
   let usersUl;
@@ -13,7 +13,9 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
     <ul>
       {searchItems.map(
         (user) => (<UserSearchIndexItem currentUser={currentUser}
-          user={user} key={user.id}/>)
+          user={user} key={user.id}
+          followUser={followUser}
+          unfollowUser={unfollowUser}/>)
       )}
     </ul>;
   } else if (firstTime === false){

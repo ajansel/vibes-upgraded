@@ -31,6 +31,8 @@ class UserSearchIndexItem extends React.Component {
     this.currentUser = props.currentUser;
     // this.state = { modalIsOpen: false };
     this.user = props.user;
+    this.followUser = props.followUser;
+    this.unfollowUser = props.unfollowUser;
     // this.openModal = this.openModal.bind(this);
     // this.afterModal = this.afterOpenModal.bind(this);
     // this.closeModal = this.closeModal.bind(this);
@@ -47,6 +49,17 @@ class UserSearchIndexItem extends React.Component {
   // afterOpenModal() {
   //
   // }
+
+  handleClick(action) {
+    return (e) => {
+      e.preventDefault();
+      if (action === "follow") {
+        this.followUser(this.user.id);
+      } else {
+        this.unfollowUser(this.user.id);
+      }
+    };
+  }
 
   render() {
     // let li;
@@ -69,10 +82,10 @@ class UserSearchIndexItem extends React.Component {
     let followButton;
     if (this.user.followed_by_current_user) {
       // Unfollow button
-      followButton = <button>Unfollow</button>;
+      followButton = <button onClick={this.handleClick("unfollow")}>Unfollow</button>;
     } else {
       // follow button
-      followButton = <button>Follow</button>;
+      followButton = <button onClick={this.handleClick("follow")}>Follow</button>;
     }
 
     return(
