@@ -26210,6 +26210,10 @@ var _posts_reducer = __webpack_require__(253);
 
 var _posts_reducer2 = _interopRequireDefault(_posts_reducer);
 
+var _user_search_reducer = __webpack_require__(315);
+
+var _user_search_reducer2 = _interopRequireDefault(_user_search_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var EntitiesReducer = (0, _redux.combineReducers)({
@@ -26217,7 +26221,8 @@ var EntitiesReducer = (0, _redux.combineReducers)({
   albums: _music_reducers.AlbumsReducer,
   songs: _music_reducers.SongsReducer,
   searchResults: _music_reducers.SearchReducer,
-  posts: _posts_reducer2.default
+  posts: _posts_reducer2.default,
+  userSearchResults: _user_search_reducer2.default
 });
 
 exports.default = EntitiesReducer;
@@ -32500,6 +32505,66 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_post_form2.default);
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SearchReducer = undefined;
+
+var _user_actions = __webpack_require__(316);
+
+var SearchReducer = exports.SearchReducer = function SearchReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    case _user_actions.RECEIVE_USER_SEARCH_RESULTS:
+      return action.users;
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.searchDatabase = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
+
+var _users_api_util = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../util/users_api_util\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var RECEIVE_USER_SEARCH_RESULTS = exports.RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
+// export const RECEIVE_USER_SEARCH_RESULTS_ERRORS =
+//               "RECEIVE_USER_SEARCH_RESULTS_ERRORS";
+
+var receiveUserSearchResults = function receiveUserSearchResults(users) {
+  return {
+    type: RECEIVE_USER_SEARCH_RESULTS,
+    users: users
+  };
+};
+
+var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
+  return function (dispatch) {
+    return (0, _users_api_util.searchUserDatabase)(query).then(function (users) {
+      return dispatch(receiveUserSearchResults(users));
+    });
+  };
+};
 
 /***/ })
 /******/ ]);
