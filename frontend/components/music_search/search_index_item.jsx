@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import PostForm from '../post/post_form';
+import PostFormContainer from '../post/post_form_container';
 
 const customStyles = {
   content : {
@@ -58,7 +58,7 @@ class SearchIndexItem extends React.Component {
 
     let form;
     if (this.item.type === 'song') {
-      form = <PostForm currentUser={this.props.currentUser}
+      form = <PostFormContainer currentUser={this.props.currentUser}
                         song={this.props.item}/>;
     } else if (this.item.type === 'artist') {
       form = <p>Change this to artist modal</p>;

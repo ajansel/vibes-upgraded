@@ -19,6 +19,8 @@ class PostForm extends React.Component {
     };
 
     // Method here with post as param
+    debugger
+    this.props.createPost(post);
   }
 
   handleHighlight() {

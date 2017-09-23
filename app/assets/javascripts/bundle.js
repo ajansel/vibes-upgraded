@@ -26183,7 +26183,7 @@ var getPosts = exports.getPosts = function getPosts() {
   });
 };
 
-var postPosts = exports.postPosts = function postPosts(post) {
+var postPost = exports.postPost = function postPost(post) {
   return $.ajax({
     method: 'POST',
     url: 'api/posts',
@@ -31127,9 +31127,9 @@ var _reactModal = __webpack_require__(303);
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
-var _post_form = __webpack_require__(310);
+var _post_form_container = __webpack_require__(314);
 
-var _post_form2 = _interopRequireDefault(_post_form);
+var _post_form_container2 = _interopRequireDefault(_post_form_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31211,7 +31211,7 @@ var SearchIndexItem = function (_React$Component) {
 
       var form = void 0;
       if (this.item.type === 'song') {
-        form = _react2.default.createElement(_post_form2.default, { currentUser: this.props.currentUser,
+        form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser,
           song: this.props.item });
       } else if (this.item.type === 'artist') {
         form = _react2.default.createElement(
@@ -32129,6 +32129,8 @@ var PostForm = function (_React$Component) {
       };
 
       // Method here with post as param
+      debugger;
+      this.props.createPost(post);
     }
   }, {
     key: 'handleHighlight',
@@ -32461,6 +32463,44 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(19);
+
+var _post_form = __webpack_require__(310);
+
+var _post_form2 = _interopRequireDefault(_post_form);
+
+var _post_actions = __webpack_require__(108);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    // currentUser: state.session.currentUser,
+    // searchResults: state.entities.searchResults
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createPost: function createPost(post) {
+      return dispatch((0, _post_actions.createPost)(post));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_post_form2.default);
 
 /***/ })
 /******/ ]);

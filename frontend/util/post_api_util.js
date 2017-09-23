@@ -12,7 +12,7 @@ export const getPosts = () => {
   });
 };
 
-export const postPosts = (post) => {
+export const postPost = (post) => {
   return $.ajax({
     method: 'POST',
     url: `api/posts`,
