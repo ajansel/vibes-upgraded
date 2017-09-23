@@ -32945,31 +32945,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import Modal from 'react-modal';
-// import PostFormContainer from '../post/post_form_container';
-//
-// const customStyles = {
-//   content : {
-//     top                   : '56%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)',
-//     width                 : '500px',
-//     height                : '500px',
-//     // overflow              : 'hidden'
-//   },
-//   overlay : {
-//     position          : 'fixed',
-//     top               : 0,
-//     left              : 0,
-//     right             : 0,
-//     bottom            : 0,
-//     backgroundColor   : 'rgba(255, 255, 255, 0.75)',
-//   }
-// };
-
 var UserSearchIndexItem = function (_React$Component) {
   _inherits(UserSearchIndexItem, _React$Component);
 
@@ -32983,23 +32958,8 @@ var UserSearchIndexItem = function (_React$Component) {
     _this.state = { following: _this.user.followed_by_current_user };
     _this.followUser = props.followUser;
     _this.unfollowUser = props.unfollowUser;
-    // this.openModal = this.openModal.bind(this);
-    // this.afterModal = this.afterOpenModal.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
     return _this;
   }
-
-  // openModal() {
-  //   this.setState({modalIsOpen: true});
-  // }
-  //
-  // closeModal() {
-  //   this.setState({modalIsOpen: false});
-  // }
-  //
-  // afterOpenModal() {
-  //
-  // }
 
   _createClass(UserSearchIndexItem, [{
     key: "handleClick",
@@ -33024,23 +32984,6 @@ var UserSearchIndexItem = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // let li;
-      // if (this.user.type === 'artist') {
-      //   li = <li onClick={this.openModal}>{this.user.name}</li>;
-      // } else {
-      //   li = <li onClick={this.openModal}>{this.user.title}</li>;
-      // }
-
-      // let form;
-      // if (this.user.type === 'song') {
-      //   form = <PostFormContainer currentUser={this.props.currentUser}
-      //                     song={this.props.user} closeModal={this.closeModal}/>;
-      //                 } else if (this.user.type === 'artist') {
-      //   form = <p>Change this to artist modal</p>;
-      // } else if (this.user.type === 'album') {
-      //   form = <p>Change this to album modal</p>;
-      // }
-
       var followButton = void 0;
       if (this.state.following) {
         // Unfollow button
