@@ -11985,11 +11985,14 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.searchDatabase = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
+exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
 
 var _user_api_util = __webpack_require__(257);
 
+var _follow_api_util = __webpack_require__(319);
+
 var RECEIVE_USER_SEARCH_RESULTS = exports.RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
+var RECEIVE_USER = exports.RECEIVE_USER = "RECEIVE_USER";
 // export const RECEIVE_USER_SEARCH_RESULTS_ERRORS =
 //               "RECEIVE_USER_SEARCH_RESULTS_ERRORS";
 
@@ -12000,10 +12003,33 @@ var receiveUserSearchResults = function receiveUserSearchResults(users) {
   };
 };
 
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
 var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
   return function (dispatch) {
     return (0, _user_api_util.searchUserDatabase)(query).then(function (users) {
       return dispatch(receiveUserSearchResults(users));
+    });
+  };
+};
+
+var followUser = exports.followUser = function followUser(id) {
+  return function (dispatch) {
+    return (0, _follow_api_util.postFollow)(id).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+var unfollowUser = exports.unfollowUser = function unfollowUser(id) {
+  return function (dispatch) {
+    return (0, _follow_api_util.deleteFollow)(id).then(function (user) {
+      return dispatch(receiveUser(user));
     });
   };
 };
@@ -32631,6 +32657,31 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
+
+/***/ }),
+/* 319 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var postFollow = exports.postFollow = function postFollow(followeeId) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/followers',
+    data: { id: followeeId }
+  });
+};
+
+var deleteFollow = exports.deleteFollow = function deleteFollow(followId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: 'api/followers/' + followId
+  });
+};
 
 /***/ })
 /******/ ]);

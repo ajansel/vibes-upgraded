@@ -1,8 +1,8 @@
-export const postFollow = (follow) => {
+export const postFollow = (followeeId) => {
   return $.ajax({
     method: 'POST',
     url: `api/followers`,
-    data: { follow }
+    data: { id: followeeId }
   });
 };
 
