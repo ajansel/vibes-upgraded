@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
   def index
     # Returns all of the posts from users you are following
-    @posts = []
+    @posts = current_user.posts
     follows = current_user.followees
     follows.each do |follow|
       more_posts = Post.find_by(author_id: follow.followee_id)
@@ -13,6 +13,7 @@ class Api::PostsController < ApplicationController
         end
       end
     end
+    @posts.sort_by { |post| post.created_at }
     render :index
   end
 
