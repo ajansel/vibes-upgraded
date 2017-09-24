@@ -32856,7 +32856,16 @@ var PostFeedDashboard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var posts = Object.values(this.props.posts).map(function (post, idx) {
+      var posts = Object.values(this.props.posts).sort(function (a, b) {
+        if (a.created_at < b.created_at) {
+          return 1;
+        }
+        if (a.created_at < b.created_at) {
+          return -1;
+        }
+
+        return 0;
+      }).map(function (post, idx) {
         return _react2.default.createElement(_post_feed_dashboard_item2.default, { post: post, key: idx });
       });
 
