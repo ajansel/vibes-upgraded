@@ -1,4 +1,4 @@
-import {searchUserDatabase} from '../util/user_api_util';
+import {searchUserDatabase, getUser} from '../util/user_api_util';
 import {postFollow, deleteFollow } from '../util/follow_api_util';
 
 export const RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
@@ -15,6 +15,12 @@ const receiveUser = (user) => ({
   type: RECEIVE_USER,
   user
 });
+
+export const fetchUser = (id) => (dispatch) => (
+  getUser(id).then(
+    (user) => dispatch(receiveUser(user))
+  )
+);
 
 export const searchDatabase = (query) => (dispatch) => (
   searchUserDatabase(query).then(

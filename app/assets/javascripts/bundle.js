@@ -5380,7 +5380,7 @@ var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
+exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.fetchUser = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
 
 var _user_api_util = __webpack_require__(257);
 
@@ -5402,6 +5402,14 @@ var receiveUser = function receiveUser(user) {
   return {
     type: RECEIVE_USER,
     user: user
+  };
+};
+
+var fetchUser = exports.fetchUser = function fetchUser(id) {
+  return function (dispatch) {
+    return (0, _user_api_util.getUser)(id).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
   };
 };
 
@@ -26550,6 +26558,13 @@ exports.default = UserSearchReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var getUser = exports.getUser = function getUser(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users/' + id
+  });
+};
+
 var searchUserDatabase = exports.searchUserDatabase = function searchUserDatabase(query) {
   return $.ajax({
     method: 'GET',
