@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MusicSearchContainer from '../music_search/music_search_container';
 import UserSearchContainer from '../user_search/user_search_container';
+import PostFeedDashboardContainer from '../post/post_feed_dashboard_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class Dashboard extends React.Component {
           </div>
           <div className="Feed">
             <p>Test Feed</p>
+            <PostFeedDashboardContainer />
           </div>
         </div>
         <div className="BonusWidget">

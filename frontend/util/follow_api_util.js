@@ -6,9 +6,10 @@ export const postFollow = (followeeId) => {
   });
 };
 
-export const deleteFollow = (followId) => {
+export const deleteFollow = (followeeId) => {
   return $.ajax({
     method: 'DELETE',
-    url: `api/followers/${followId}`
+    url: `api/followers`,
+    data: { id: followeeId}
   });
 };

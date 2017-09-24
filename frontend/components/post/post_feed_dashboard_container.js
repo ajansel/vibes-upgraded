@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import PostFeedDashboard from './post_form';
+import PostFeedDashboard from './post_feed_dashboard';
 import {fetchPostsFromFollowers} from '../../actions/post_actions';
 
 const mapStateToProps = (state) => ({

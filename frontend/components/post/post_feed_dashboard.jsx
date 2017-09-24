@@ -12,8 +12,8 @@ class PostFeedDashboard extends React.Component {
   }
 
   render(){
-    const posts = this.props.posts.map(
-      (post) => <PostFeedDashboardItem post={post}/>
+    const posts = Object.values(this.props.posts).map(
+      (post, idx) => <PostFeedDashboardItem post={post} key={idx}/>
     );
 
     return (
