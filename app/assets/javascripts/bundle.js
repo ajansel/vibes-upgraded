@@ -32871,7 +32871,6 @@ var PostFeedDashboard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log("About to sort", this.props.posts);
       var posts = Object.values(this.props.posts).sort(function (a, b) {
         if (a.created_at < b.created_at) {
           return 1;
@@ -32883,7 +32882,6 @@ var PostFeedDashboard = function (_React$Component) {
       }).map(function (post, idx) {
         return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: post.id, post: post });
       });
-      console.log('RENDERING', posts);
       return _react2.default.createElement(
         'div',
         { className: 'PostFeedDashboard' },
