@@ -12,21 +12,22 @@ class PostFeedDashboard extends React.Component {
   }
 
   render(){
+    console.log("About to sort", this.props.posts);
     const posts = Object.values(this.props.posts).sort(
       function(a,b) {
         if (a.created_at < b.created_at) {
           return 1;
-        }
-        if (a.created_at < b.created_at) {
+        } else if (a.created_at < b.created_at) {
           return -1;
+        } else {
+          return 0;
         }
 
-        return 0;
       }
     ).map(
-      (post, idx) => <PostFeedDashboardItem post={post} key={idx}/>
+      (post, idx) => <PostFeedDashboardItem key={post.id} post={post} />
     );
-
+    console.log('RENDERING', posts);
     return (
       <div className="PostFeedDashboard">
         {posts}

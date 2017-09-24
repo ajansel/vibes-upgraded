@@ -15,6 +15,13 @@ class PostFeedDashboardItem extends React.Component {
   render() {
     return(
       <div onClick={this.handleClick}>
+        <div className="UserInfo">
+          <img src={this.post.author.img_url}/>
+          <div className="UserNames">
+            <p>{this.post.author.name}</p>
+            <p>{"@" + this.post.author.username}</p>
+          </div>
+        </div>
         {this.post.body}
       </div>
     );

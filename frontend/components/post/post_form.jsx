@@ -18,8 +18,8 @@ class PostForm extends React.Component {
       author_id: this.props.currentUser.id
     };
 
-    this.props.createPost(post);
-    this.props.closeModal();
+    this.props.createPost(post).then(this.props.closeModal());
+    // this.props.closeModal();
   }
 
   handleHighlight() {
