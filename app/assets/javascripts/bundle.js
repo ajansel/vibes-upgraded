@@ -30353,7 +30353,7 @@ var App = function App(props) {
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
-        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/profile', component: _profile_container2.default }),
+        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/profile/:userId', component: _profile_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/', component: _homepage_container2.default })
       )
     )
@@ -33039,6 +33039,14 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(15);
 
+var _user_search_container = __webpack_require__(318);
+
+var _user_search_container2 = _interopRequireDefault(_user_search_container);
+
+var _post_feed_dashboard_container = __webpack_require__(322);
+
+var _post_feed_dashboard_container2 = _interopRequireDefault(_post_feed_dashboard_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33143,12 +33151,18 @@ var Profile = function (_React$Component) {
           { className: 'SearchAndFeed' },
           _react2.default.createElement(
             'div',
+            { className: 'MusicSearch' },
+            _react2.default.createElement(_user_search_container2.default, null)
+          ),
+          _react2.default.createElement(
+            'div',
             { className: 'Feed' },
             _react2.default.createElement(
               'p',
               null,
               'Test Feed'
-            )
+            ),
+            _react2.default.createElement(_post_feed_dashboard_container2.default, null)
           )
         ),
         _react2.default.createElement(

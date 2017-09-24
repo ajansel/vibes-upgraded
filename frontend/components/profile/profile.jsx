@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserSearchContainer from '../user_search/user_search_container';
+import PostFeedDashboardContainer from '../post/post_feed_dashboard_container';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -42,8 +44,12 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="SearchAndFeed">
+          <div className="MusicSearch">
+            <UserSearchContainer />
+          </div>
           <div className="Feed">
             <p>Test Feed</p>
+            <PostFeedDashboardContainer />
           </div>
         </div>
         <div className="BonusWidget">
