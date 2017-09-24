@@ -32943,27 +32943,32 @@ var PostFeedDashboardItem = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        { onClick: this.handleClick },
+        { onClick: this.handleClick, className: "FeedItem" },
         _react2.default.createElement(
           "div",
-          { className: "UserInfo" },
-          _react2.default.createElement("img", { src: this.post.author.img_url }),
+          { className: "UserPic" },
+          _react2.default.createElement("img", { src: this.post.author.img_url })
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "UserInfoAndPostBody" },
           _react2.default.createElement(
             "div",
-            { className: "UserNames" },
+            { className: "UsernameAndName" },
             _react2.default.createElement(
               "p",
               null,
-              this.post.author.name
-            ),
-            _react2.default.createElement(
-              "p",
-              null,
+              this.post.author.name,
+              " ",
               "@" + this.post.author.username
             )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "PostBody" },
+            this.post.body
           )
-        ),
-        this.post.body
+        )
       );
     }
   }]);
