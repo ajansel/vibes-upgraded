@@ -73,9 +73,14 @@
 }
 
 .HeaderLogo {
+  width: 220px;
   padding-left: 10px;
   color: #333333;
   font-size: 48px;
   font-weight: bold;
   text-decoration: none;
+  box-sizing: border-box;
+}
+
+.NavBarContent > div.UserSearch {
 }

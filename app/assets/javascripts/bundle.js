@@ -30559,6 +30559,10 @@ var _profile_container = __webpack_require__(330);
 
 var _profile_container2 = _interopRequireDefault(_profile_container);
 
+var _user_search_container = __webpack_require__(128);
+
+var _user_search_container2 = _interopRequireDefault(_user_search_container);
+
 var _route_util = __webpack_require__(332);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -30578,6 +30582,7 @@ var App = function App(props) {
           { className: 'HeaderLogo', to: '/' },
           'Vibes'
         ),
+        _react2.default.createElement(_user_search_container2.default, null),
         _react2.default.createElement(_session_buttons_container2.default, null)
       )
     ),

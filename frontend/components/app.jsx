@@ -5,6 +5,7 @@ import SessionFormContainer from './session/session_form_container';
 import HomepageContainer from './homepage/homepage_container';
 import DashboardContainer from './dashboard/dashboard_container';
 import ProfileContainer from './profile/profile_container';
+import UserSearchContainer from './user_search/user_search_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ const App = (props) => {
       <header className="NavBar">
         <div className="NavBarContent">
           <Link className="HeaderLogo" to="/">Vibes</Link>
+          <UserSearchContainer />
           <SessionButtonsContainer />
         </div>
       </header>
