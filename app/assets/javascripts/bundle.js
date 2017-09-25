@@ -30913,11 +30913,12 @@ var _music_actions = __webpack_require__(43);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
     allAlbums: state.entities.albums,
-    artist: state.entities.artists
+    artist: state.entities.artists,
+    params: ownProps.match.params
   };
 };
 
@@ -31081,7 +31082,8 @@ var Dashboard = function (_React$Component) {
               null,
               'Test Feed'
             ),
-            _react2.default.createElement(_post_feed_dashboard_container2.default, null)
+            _react2.default.createElement(_post_feed_dashboard_container2.default, { params: this.props.params,
+              feedType: "dashboard" })
           )
         ),
         _react2.default.createElement(
@@ -32822,7 +32824,7 @@ var _post_actions = __webpack_require__(42);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
     posts: state.entities.posts
@@ -32833,6 +32835,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPostsFromFollowers: function fetchPostsFromFollowers() {
       return dispatch((0, _post_actions.fetchPostsFromFollowers)());
+    },
+    fetchProfilePosts: function fetchProfilePosts(id) {
+      return dispatch((0, _post_actions.fetchProfilePosts)(id));
     }
   };
 };
@@ -32876,13 +32881,32 @@ var PostFeedDashboard = function (_React$Component) {
   function PostFeedDashboard(props) {
     _classCallCheck(this, PostFeedDashboard);
 
-    return _possibleConstructorReturn(this, (PostFeedDashboard.__proto__ || Object.getPrototypeOf(PostFeedDashboard)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (PostFeedDashboard.__proto__ || Object.getPrototypeOf(PostFeedDashboard)).call(this, props));
+
+    _this.state = { userId: props.userId };
+    return _this;
   }
 
   _createClass(PostFeedDashboard, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.props.fetchPostsFromFollowers();
+
+      if (this.props.feedType === 'dashboard') {
+        this.props.fetchPostsFromFollowers();
+      } else if (this.props.feedType === 'profile') {
+        this.props.fetchProfilePosts(this.props.userId);
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      if (this.state.userId !== newProps.userId) {
+        if (this.props.feedType === 'dashboard') {
+          this.props.fetchPostsFromFollowers().then(this.setState({ userId: newProps.userId }));
+        } else if (this.props.feedType === 'profile') {
+          this.props.fetchProfilePosts(newProps.userId).then(this.setState({ userId: newProps.userId }));
+        }
+      }
     }
   }, {
     key: 'render',
@@ -33013,13 +33037,17 @@ var _profile2 = _interopRequireDefault(_profile);
 
 var _music_actions = __webpack_require__(43);
 
+var _user_actions = __webpack_require__(44);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
     allAlbums: state.entities.albums,
-    artist: state.entities.artists
+    artist: state.entities.artists,
+    userId: ownProps.match.params.userId,
+    user: state.entities.users[ownProps.match.params.userId]
   };
 };
 
@@ -33030,6 +33058,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchArtist: function fetchArtist(id) {
       return dispatch((0, _music_actions.fetchArtist)(id));
+    },
+    fetchUser: function fetchUser(id) {
+      return dispatch((0, _user_actions.fetchUser)(id));
     }
   };
 };
@@ -33079,7 +33110,7 @@ var Profile = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 
-    _this.state = { albumOfTheDay: {}, artist: "" };
+    _this.state = { albumOfTheDay: {}, artist: "", user: _this.props.user };
     return _this;
   }
 
@@ -33098,6 +33129,26 @@ var Profile = function (_React$Component) {
       });
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      var _this3 = this;
+
+      if (this.props.match.params.userId !== newProps.match.params.userId) {
+        this.props.fetchUser(newProps.match.params.userId).then(function (res) {
+          _this3.setState({ user: res.user });
+        });
+      }
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this4 = this;
+
+      this.props.fetchUser(this.props.userId).then(function (res) {
+        return _this4.setState({ user: res.user });
+      });
+    }
+  }, {
     key: 'getRandomAlbum',
     value: function getRandomAlbum() {
       var albumsArr = Object.values(this.props.allAlbums);
@@ -33106,22 +33157,23 @@ var Profile = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      if (!this.state.user) return null;
       return _react2.default.createElement(
         'div',
         { className: 'Dashboard' },
         _react2.default.createElement(
           'div',
           { className: 'UserWidget' },
-          _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url }),
+          _react2.default.createElement('img', { className: 'DashboardPic', src: this.state.user.img_url }),
           _react2.default.createElement(
             'p',
             { className: 'Name' },
-            this.props.currentUser.name
+            this.state.user.name
           ),
           _react2.default.createElement(
             'p',
             { className: 'Name' },
-            "@" + this.props.currentUser.username
+            "@" + this.state.user.username
           ),
           _react2.default.createElement(
             'div',
@@ -33178,7 +33230,8 @@ var Profile = function (_React$Component) {
               null,
               'Test Feed'
             ),
-            _react2.default.createElement(_post_feed_dashboard_container2.default, null)
+            _react2.default.createElement(_post_feed_dashboard_container2.default, { userId: this.state.user.id,
+              feedType: "profile" })
           )
         ),
         _react2.default.createElement(

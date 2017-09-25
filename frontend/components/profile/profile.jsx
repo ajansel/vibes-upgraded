@@ -6,7 +6,7 @@ import PostFeedDashboardContainer from '../post/post_feed_dashboard_container';
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {albumOfTheDay: {}, artist: ""};
+    this.state = {albumOfTheDay: {}, artist: "", user: this.props.user};
   }
 
   componentDidMount() {
@@ -20,18 +20,33 @@ class Profile extends React.Component {
       });
   }
 
+  componentWillReceiveProps(newProps){
+    if(this.props.match.params.userId !== newProps.match.params.userId){
+      this.props.fetchUser(newProps.match.params.userId).then(
+      (res) => {
+        this.setState({user: res.user});
+      });
+    }
+  }
+
+  componentWillMount(){
+    this.props.fetchUser(this.props.userId).then(
+    (res) => this.setState({user: res.user}));
+  }
+
   getRandomAlbum() {
     const albumsArr = Object.values(this.props.allAlbums);
     return albumsArr[Math.floor(Math.random() * albumsArr.length)];
   }
 
   render(){
+    if (!this.state.user) return null;
     return (
       <div className="Dashboard">
         <div className="UserWidget">
-          <img className="DashboardPic" src={this.props.currentUser.img_url}/>
-          <p className="Name">{this.props.currentUser.name}</p>
-          <p className="Name">{"@" + this.props.currentUser.username}</p>
+          <img className="DashboardPic" src={this.state.user.img_url}/>
+          <p className="Name">{this.state.user.name}</p>
+          <p className="Name">{"@" + this.state.user.username}</p>
           <div className="StatHeaders">
             <p>Posts</p>
             <p>Followers</p>
@@ -49,7 +64,8 @@ class Profile extends React.Component {
           </div>
           <div className="Feed">
             <p>Test Feed</p>
-            <PostFeedDashboardContainer />
+            <PostFeedDashboardContainer userId={this.state.user.id}
+              feedType={"profile"}/>
           </div>
         </div>
         <div className="BonusWidget">

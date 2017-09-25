@@ -51,7 +51,8 @@ class Dashboard extends React.Component {
           </div>
           <div className="Feed">
             <p>Test Feed</p>
-            <PostFeedDashboardContainer />
+            <PostFeedDashboardContainer params={this.props.params}
+              feedType={"dashboard"} />
           </div>
         </div>
         <div className="BonusWidget">

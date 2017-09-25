@@ -5,10 +5,28 @@ import PostFeedDashboardItem from './post_feed_dashboard_item';
 class PostFeedDashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {userId: props.userId};
   }
 
   componentWillMount() {
-    this.props.fetchPostsFromFollowers();
+    
+    if (this.props.feedType === 'dashboard'){
+      this.props.fetchPostsFromFollowers();
+    } else if (this.props.feedType === 'profile'){
+      this.props.fetchProfilePosts(this.props.userId);
+    }
+  }
+
+  componentWillReceiveProps(newProps){
+    if(this.state.userId !== newProps.userId){
+      if (this.props.feedType === 'dashboard'){
+        this.props.fetchPostsFromFollowers().then(
+        this.setState({userId: newProps.userId}));
+      } else if (this.props.feedType === 'profile'){
+        this.props.fetchProfilePosts(newProps.userId).then(
+        this.setState({userId: newProps.userId}));
+      }
+    }
   }
 
   render(){
