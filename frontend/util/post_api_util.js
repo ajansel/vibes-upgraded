@@ -35,3 +35,10 @@ export const patchPost = (post) => {
     data: { post }
   });
 };
+
+export const destroyPost = (postId) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `api/posts/${postId}`
+  });
+};

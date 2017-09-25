@@ -14,6 +14,7 @@ class PostForm extends React.Component {
     this.postId = this.props.postId;
     this.state = {body: this.props.initVal};
     this.handleClick = this.handleClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   handleClick(e) {
@@ -33,6 +34,12 @@ class PostForm extends React.Component {
     }
   }
 
+  handleDeleteClick(e) {
+    e.preventDefault();
+
+    this.props.deletePost(this.postId).then(this.props.closeSongModal());
+  }
+
   handleHighlight() {
     if (window.getSelection().toString() !== "") {
       const body = window.getSelection().toString();
@@ -46,6 +53,13 @@ class PostForm extends React.Component {
           lyricsArr.map(
             (line, idx) => <div key={idx}>{line}<br /></div>
         );
+
+    let deleteButton;
+    if (this.postId) {
+      deleteButton = <button className="DeletePost" onClick={this.handleDeleteClick}>Delete</button>
+
+    }
+
     return (
       <div className="PostForm">
         <div className="UserInfo">
@@ -64,7 +78,7 @@ class PostForm extends React.Component {
           <br />
         </label>
         <button className="PostPost" onClick={this.handleClick}>Post</button>
-
+        {deleteButton}
         <p>{this.props.song.title}</p>
         <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
           {lyrics}

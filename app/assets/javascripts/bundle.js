@@ -5235,7 +5235,7 @@ module.exports = ReactBrowserEventEmitter;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unlikePost = exports.likePost = exports.updatePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+exports.unlikePost = exports.likePost = exports.deletePost = exports.updatePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
 
 var _post_api_util = __webpack_require__(254);
 
@@ -5305,6 +5305,16 @@ var createPost = exports.createPost = function createPost(formPost) {
 var updatePost = exports.updatePost = function updatePost(formPost) {
   return function (dispatch) {
     return (0, _post_api_util.patchPost)(formPost).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (err) {
+      return dispatch(receivePostErrors(err.responseJSON));
+    });
+  };
+};
+
+var deletePost = exports.deletePost = function deletePost(postId) {
+  return function (dispatch) {
+    return (0, _post_api_util.destroyPost)(postId).then(function (post) {
       return dispatch(receivePost(post));
     }, function (err) {
       return dispatch(receivePostErrors(err.responseJSON));
@@ -13337,6 +13347,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updatePost: function updatePost(post) {
       return dispatch((0, _post_actions.updatePost)(post));
+    },
+    deletePost: function deletePost(postId) {
+      return dispatch((0, _post_actions.deletePost)(postId));
     }
   };
 };
@@ -26480,6 +26493,13 @@ var patchPost = exports.patchPost = function patchPost(post) {
   });
 };
 
+var destroyPost = exports.destroyPost = function destroyPost(postId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: 'api/posts/' + postId
+  });
+};
+
 /***/ }),
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -32643,6 +32663,7 @@ var PostForm = function (_React$Component) {
     _this.postId = _this.props.postId;
     _this.state = { body: _this.props.initVal };
     _this.handleClick = _this.handleClick.bind(_this);
+    _this.handleDeleteClick = _this.handleDeleteClick.bind(_this);
     return _this;
   }
 
@@ -32663,6 +32684,13 @@ var PostForm = function (_React$Component) {
       } else {
         this.props.createPost(post).then(this.props.closeSongModal());
       }
+    }
+  }, {
+    key: 'handleDeleteClick',
+    value: function handleDeleteClick(e) {
+      e.preventDefault();
+
+      this.props.deletePost(this.postId).then(this.props.closeSongModal());
     }
   }, {
     key: 'handleHighlight',
@@ -32686,6 +32714,16 @@ var PostForm = function (_React$Component) {
           _react2.default.createElement('br', null)
         );
       });
+
+      var deleteButton = void 0;
+      if (this.postId) {
+        deleteButton = _react2.default.createElement(
+          'button',
+          { className: 'DeletePost', onClick: this.handleDeleteClick },
+          'Delete'
+        );
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'PostForm' },
@@ -32730,6 +32768,7 @@ var PostForm = function (_React$Component) {
           { className: 'PostPost', onClick: this.handleClick },
           'Post'
         ),
+        deleteButton,
         _react2.default.createElement(
           'p',
           null,
@@ -33240,7 +33279,7 @@ var PostFeedDashboardItem = function (_React$Component) {
         form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser, initVal: this.post.body,
           song: this.post.song, closeSongModal: this.closeModal,
           postId: this.post.id });
-      } else if (this.item.type === 'album') {
+      } else {
         form = _react2.default.createElement(_post_show2.default, { song: this.post.song, closeModal: this.closeModal,
           user: this.post.author });
       }

@@ -86,7 +86,7 @@ class PostFeedDashboardItem extends React.Component {
       form = <PostFormContainer currentUser={this.props.currentUser} initVal={this.post.body}
                         song={this.post.song} closeSongModal={this.closeModal}
                         postId={this.post.id}/>;
-    } else if (this.item.type === 'album') {
+    } else {
       form = <PostShow song={this.post.song} closeModal={this.closeModal}
                        user={this.post.author}/>;
     }
