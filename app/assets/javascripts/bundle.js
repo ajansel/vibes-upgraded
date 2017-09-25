@@ -26610,8 +26610,7 @@ var postFollow = exports.postFollow = function postFollow(followeeId) {
 var deleteFollow = exports.deleteFollow = function deleteFollow(followeeId) {
   return $.ajax({
     method: 'DELETE',
-    url: 'api/followers',
-    data: { id: followeeId }
+    url: 'api/followers/' + followeeId
   });
 };
 
