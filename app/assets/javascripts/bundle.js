@@ -32981,9 +32981,11 @@ var PostFeedDashboardItem = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var likes = void 0;
+      if (this.post.likes > 0) likes = this.post.likes;
       return _react2.default.createElement(
         "div",
-        { onClick: this.handleClick, className: "FeedItem" },
+        { className: "FeedItem" },
         _react2.default.createElement(
           "div",
           { className: "UserPic" },
@@ -33005,8 +33007,18 @@ var PostFeedDashboardItem = function (_React$Component) {
           ),
           _react2.default.createElement(
             "div",
-            { className: "PostBody" },
+            { className: "PostBody", onClick: this.handleClick },
             this.post.body
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "LikeContent" },
+            _react2.default.createElement(
+              "button",
+              { className: "LikeButton" },
+              "Like"
+            ),
+            likes
           )
         )
       );

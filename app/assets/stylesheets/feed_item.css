@@ -28,4 +28,23 @@
 .PostBody {
   text-align: left;
   font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.LikeButton {
+  margin-right: 5px;
+  padding: 1px;
+  color: white;
+  background-color: #3396ff;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #3396ff;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.LikeContent {
+  text-align: left;
+  font-size: 14px;
 }
