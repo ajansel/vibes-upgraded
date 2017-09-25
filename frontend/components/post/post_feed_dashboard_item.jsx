@@ -73,12 +73,21 @@ class PostFeedDashboardItem extends React.Component {
     if (this.state.likes > 0) likes = this.state.likes;
 
     let likeButton;
+    let heartColor;
     if (this.state.liked) {
       // Unfollow button
-      likeButton = <button className="LikeButton" onClick={this.handleClick("unlike")}>Liked</button>;
+      heartColor = 'red';
+      likeButton =
+      <button className="LikeButton" onClick={this.handleClick("unlike")}>
+        <i className={`fa fa-heart fa-lg ${heartColor}`} aria-hidden="true"></i>
+      </button>;
     } else {
       // follow button
-      likeButton = <button className="LikeButton" onClick={this.handleClick("like")}>Like</button>;
+      heartColor = 'border';
+      likeButton =
+      <button className="LikeButton" onClick={this.handleClick("like")}>
+        <i className={`fa fa-heart-o fa-lg ${heartColor}`} aria-hidden="true"></i>
+      </button>;
     }
 
     let form;
