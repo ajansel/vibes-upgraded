@@ -32952,6 +32952,18 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactModal = __webpack_require__(309);
+
+var _reactModal2 = _interopRequireDefault(_reactModal);
+
+var _post_form_container = __webpack_require__(316);
+
+var _post_form_container2 = _interopRequireDefault(_post_form_container);
+
+var _post_show = __webpack_require__(328);
+
+var _post_show2 = _interopRequireDefault(_post_show);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32959,6 +32971,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var customStyles = {
+  content: {
+    top: '56%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '500px',
+    height: '500px'
+    // overflow              : 'hidden'
+  },
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  }
+};
 
 var PostFeedDashboardItem = function (_React$Component) {
   _inherits(PostFeedDashboardItem, _React$Component);
@@ -32969,57 +33003,80 @@ var PostFeedDashboardItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (PostFeedDashboardItem.__proto__ || Object.getPrototypeOf(PostFeedDashboardItem)).call(this, props));
 
     _this.post = props.post;
-    _this.handleClick = _this.handleClick.bind(_this);
+    _this.state = { modalIsOpen: false };
+    _this.openModal = _this.openModal.bind(_this);
+    _this.afterModal = _this.afterOpenModal.bind(_this);
+    _this.closeModal = _this.closeModal.bind(_this);
     return _this;
   }
 
   _createClass(PostFeedDashboardItem, [{
-    key: "handleClick",
-    value: function handleClick(action) {
-      console.log("hello there");
+    key: 'openModal',
+    value: function openModal() {
+      this.setState({ modalIsOpen: true });
     }
   }, {
-    key: "render",
+    key: 'closeModal',
+    value: function closeModal() {
+      this.setState({ modalIsOpen: false });
+    }
+  }, {
+    key: 'afterOpenModal',
+    value: function afterOpenModal() {}
+  }, {
+    key: 'render',
     value: function render() {
       var likes = void 0;
       if (this.post.likes > 0) likes = this.post.likes;
       return _react2.default.createElement(
-        "div",
-        { className: "FeedItem" },
+        'div',
+        { className: 'FeedItem' },
         _react2.default.createElement(
-          "div",
-          { className: "UserPic" },
-          _react2.default.createElement("img", { src: this.post.author.img_url })
+          'div',
+          { className: 'UserPic' },
+          _react2.default.createElement('img', { src: this.post.author.img_url })
         ),
         _react2.default.createElement(
-          "div",
-          { className: "UserInfoAndPostBody" },
+          'div',
+          { className: 'UserInfoAndPostBody' },
           _react2.default.createElement(
-            "div",
-            { className: "UsernameAndName" },
+            'div',
+            { className: 'UsernameAndName' },
             _react2.default.createElement(
-              "p",
+              'p',
               null,
               this.post.author.name,
-              " ",
+              ' ',
               "@" + this.post.author.username
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "PostBody", onClick: this.handleClick },
+            'div',
+            { className: 'PostBody', onClick: this.openModal },
             this.post.body
           ),
           _react2.default.createElement(
-            "div",
-            { className: "LikeContent" },
+            'div',
+            { className: 'LikeContent' },
             _react2.default.createElement(
-              "button",
-              { className: "LikeButton" },
-              "Like"
+              'button',
+              { className: 'LikeButton' },
+              'Like'
             ),
             likes
           )
+        ),
+        _react2.default.createElement(
+          _reactModal2.default,
+          {
+            isOpen: this.state.modalIsOpen,
+            onAfterOpen: this.afterOpenModal,
+            onRequestClose: this.closeModal,
+            contentLabel: 'Example Modal',
+            style: customStyles
+          },
+          _react2.default.createElement(_post_show2.default, { song: this.post.song, closeModal: this.closeModal,
+            user: this.post.author })
         )
       );
     }
@@ -33325,6 +33382,99 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PostShow = function (_React$Component) {
+  _inherits(PostShow, _React$Component);
+
+  function PostShow(props) {
+    _classCallCheck(this, PostShow);
+
+    return _possibleConstructorReturn(this, (PostShow.__proto__ || Object.getPrototypeOf(PostShow)).call(this, props));
+  }
+
+  _createClass(PostShow, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var lyricsArr = this.props.song.lyrics.split('\n');
+      var lyrics = lyricsArr.map(function (line, idx) {
+        return _react2.default.createElement(
+          'div',
+          { key: idx },
+          line,
+          _react2.default.createElement('br', null)
+        );
+      });
+      return _react2.default.createElement(
+        'div',
+        { className: 'PostShow' },
+        _react2.default.createElement(
+          'div',
+          { className: 'UserInfo' },
+          _react2.default.createElement('img', { src: this.props.user.img_url }),
+          _react2.default.createElement(
+            'div',
+            { className: 'UserNames' },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.user.name
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              "@" + this.props.user.username
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          this.props.song.title
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'Lyrics', onMouseUp: function onMouseUp() {
+              return _this2.handleHighlight();
+            } },
+          lyrics
+        )
+      );
+    }
+  }]);
+
+  return PostShow;
+}(_react2.default.Component);
+
+exports.default = PostShow;
 
 /***/ })
 /******/ ]);

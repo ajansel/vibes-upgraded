@@ -1,15 +1,51 @@
 import React from 'react';
+import Modal from 'react-modal';
+import PostFormContainer from '../post/post_form_container';
+import PostShow from '../post/post_show';
+
+const customStyles = {
+  content : {
+    top                   : '56%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width                 : '500px',
+    height                : '500px',
+    // overflow              : 'hidden'
+  },
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+  }
+};
 
 class PostFeedDashboardItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.post = props.post;
-    this.handleClick = this.handleClick.bind(this);
+    this.state = { modalIsOpen: false };
+    this.openModal = this.openModal.bind(this);
+    this.afterModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  handleClick(action) {
-    console.log("hello there");
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  afterOpenModal() {
+
   }
 
   render() {
@@ -24,7 +60,7 @@ class PostFeedDashboardItem extends React.Component {
           <div className="UsernameAndName">
             <p>{this.post.author.name} {"@" + this.post.author.username}</p>
           </div>
-          <div className="PostBody" onClick={this.handleClick}>
+          <div className="PostBody" onClick={this.openModal}>
             {this.post.body}
           </div>
           <div className="LikeContent">
@@ -32,6 +68,18 @@ class PostFeedDashboardItem extends React.Component {
             {likes}
           </div>
         </div>
+
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          contentLabel="Example Modal"
+          style={customStyles}
+          >
+          <PostShow song={this.post.song} closeModal={this.closeModal}
+                    user={this.post.author}/>
+        </Modal>
       </div>
     );
   }
