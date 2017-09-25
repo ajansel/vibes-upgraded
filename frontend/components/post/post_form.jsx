@@ -56,7 +56,7 @@ class PostForm extends React.Component {
 
     let deleteButton;
     if (this.postId) {
-      deleteButton = <button className="DeletePost" onClick={this.handleDeleteClick}>Delete</button>
+      deleteButton = <button className="DeletePost" onClick={this.handleDeleteClick}>Delete</button>;
 
     }
 

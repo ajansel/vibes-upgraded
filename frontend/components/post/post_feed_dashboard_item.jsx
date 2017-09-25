@@ -91,6 +91,12 @@ class PostFeedDashboardItem extends React.Component {
                        user={this.post.author}/>;
     }
 
+    const bodyArr = this.post.body.split('\n');
+    const body =
+          bodyArr.map(
+            (line, idx) => <div key={idx}>{line}<br /></div>
+        );
+
     return(
       <div className="FeedItem">
         <div className="UserPic">
@@ -101,7 +107,7 @@ class PostFeedDashboardItem extends React.Component {
             <Link to={`/profile/${this.post.author.id}`}><p>{this.post.author.name} {"@" + this.post.author.username}</p></Link>
           </div>
           <div className="PostBody" onClick={this.openModal}>
-            {this.post.body}
+            {body}
           </div>
           <div className="LikeContent">
             {likeButton}

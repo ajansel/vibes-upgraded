@@ -21,7 +21,7 @@ class ArtistForm extends React.Component {
 
   render(){
     const songs = Object.values(this.props.songs).map(
-      (song) => <div key={song.id} onClick={this.handleClick(song)}>{song.title}<br /></div>
+      (song) => <li key={song.id} onClick={this.handleClick(song)}>{song.title}<br /></li>
     );
 
     return (
@@ -33,10 +33,11 @@ class ArtistForm extends React.Component {
             <p>{"@" + this.props.currentUser.username}</p></Link>
           </div>
         </div>
-        <p>{this.props.artist.name}</p>
-        <div className="Songs" >
+        <h3>Artist: {this.props.artist.name}</h3>
+        <p>Select a song to start creating a post</p>
+        <ul className="Songs" >
           {songs}
-        </div>
+        </ul>
       </div>
     );
   }

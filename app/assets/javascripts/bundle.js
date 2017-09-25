@@ -33284,6 +33284,16 @@ var PostFeedDashboardItem = function (_React$Component) {
           user: this.post.author });
       }
 
+      var bodyArr = this.post.body.split('\n');
+      var body = bodyArr.map(function (line, idx) {
+        return _react2.default.createElement(
+          'div',
+          { key: idx },
+          line,
+          _react2.default.createElement('br', null)
+        );
+      });
+
       return _react2.default.createElement(
         'div',
         { className: 'FeedItem' },
@@ -33317,7 +33327,7 @@ var PostFeedDashboardItem = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'PostBody', onClick: this.openModal },
-            this.post.body
+            body
           ),
           _react2.default.createElement(
             'div',
@@ -33891,7 +33901,7 @@ var ArtistForm = function (_React$Component) {
 
       var songs = Object.values(this.props.songs).map(function (song) {
         return _react2.default.createElement(
-          'div',
+          'li',
           { key: song.id, onClick: _this3.handleClick(song) },
           song.title,
           _react2.default.createElement('br', null)
@@ -33929,12 +33939,18 @@ var ArtistForm = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'p',
+          'h3',
           null,
+          'Artist: ',
           this.props.artist.name
         ),
         _react2.default.createElement(
-          'div',
+          'p',
+          null,
+          'Select a song to start creating a post'
+        ),
+        _react2.default.createElement(
+          'ul',
           { className: 'Songs' },
           songs
         )
@@ -34046,7 +34062,7 @@ var AlbumForm = function (_React$Component) {
 
       var songs = Object.values(this.props.songs).map(function (song) {
         return _react2.default.createElement(
-          'div',
+          'li',
           { key: song.id, onClick: _this3.handleClick(song) },
           song.title,
           _react2.default.createElement('br', null)
@@ -34084,12 +34100,18 @@ var AlbumForm = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'p',
+          'h3',
           null,
+          'Album: ',
           this.props.album.title
         ),
         _react2.default.createElement(
-          'div',
+          'p',
+          null,
+          'Select a song to start creating a post'
+        ),
+        _react2.default.createElement(
+          'ul',
           { className: 'Songs' },
           songs
         )
