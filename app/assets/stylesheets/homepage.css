@@ -24,7 +24,7 @@
 }
 
 .SignupButtons {
-  width: 222px;
+  width: 242px;
   display: flex;
   justify-content: space-between;
   margin-left: 139px;
@@ -34,7 +34,7 @@
   padding: 6px 16px;
   color: white;
   background-color: #3396ff;
-  width: 70px;
+  width: 80px;
   text-align: center;
   text-decoration: none;
   border: 2px solid #3396ff;

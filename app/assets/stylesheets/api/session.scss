@@ -4,7 +4,7 @@
 
 .SessionButtons {
   display: flex;
-  width: 190px;
+  width: 210px;
   justify-content: space-between;
   align-items: center;
   padding-right: 10px;
@@ -21,7 +21,7 @@
 .SessionButtons > a {
   padding: 6px 16px;
   color: white;
-  width: 54px;
+  width: 64px;
   text-align: center;
   text-decoration: none;
   border: 2px solid white;
@@ -52,6 +52,7 @@
   color: white;
   width: 350px;
   text-align: center;
+  margin-top: 100px;
 }
 
 .WelcomeMessage > p {
@@ -60,6 +61,7 @@
 
 .SessionForm {
   width: 350px;
+  margin-top: 100px;
 }
 
 .SessionForm > label > input {
