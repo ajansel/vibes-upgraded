@@ -4,6 +4,11 @@ class Api::PostsController < ApplicationController
     render :index
   end
 
+  def profile_index
+    @posts = User.find(params[:id]).posts
+    render :index
+  end
+
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id

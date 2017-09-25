@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :artists, only: [:index, :show]
     resources :albums, only: [:index, :show]
     resources :songs, only: [:index, :show]
-    resources :posts, only: [:index, :show, :create]
+    resources :posts, only: [:index, :show, :create] do
+      get "profile_index", on: :collection
+    end
     resources :likes, only: [:destroy, :create]
     resources :followers, only: [:destroy, :create]
     resources :music_searches, only: [:index]
