@@ -31333,7 +31333,7 @@ var Dashboard = function (_React$Component) {
           _react2.default.createElement(
             'p',
             { className: 'SuggestedAlbumArtist' },
-            'By: ',
+            'Artist: ',
             this.state.artist.name
           )
         )
@@ -34065,7 +34065,7 @@ var Profile = function (_React$Component) {
           _react2.default.createElement(
             'p',
             { className: 'SuggestedAlbumArtist' },
-            'By: ',
+            'Artist: ',
             this.state.artist.name
           )
         )

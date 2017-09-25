@@ -108,7 +108,7 @@ class Profile extends React.Component {
           <p className="SuggestedAlbum">Suggested Album</p>
           <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
           <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
-          <p className="SuggestedAlbumArtist">By: {this.state.artist.name}</p>
+          <p className="SuggestedAlbumArtist">Artist: {this.state.artist.name}</p>
         </div>
       </div>
     );
