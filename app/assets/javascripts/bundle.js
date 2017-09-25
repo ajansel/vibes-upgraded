@@ -5328,7 +5328,7 @@ var unlikePost = exports.unlikePost = function unlikePost(id) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSongsByArtist = exports.searchDatabase = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
+exports.fetchSongsByAlbum = exports.fetchSongsByArtist = exports.searchDatabase = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
 
 var _music_api_util = __webpack_require__(258);
 
@@ -5448,6 +5448,14 @@ var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
 var fetchSongsByArtist = exports.fetchSongsByArtist = function fetchSongsByArtist(id) {
   return function (dispatch) {
     return (0, _music_api_util.getSongsByArtist)(id).then(function (songs) {
+      return dispatch(receiveSongs(songs));
+    });
+  };
+};
+
+var fetchSongsByAlbum = exports.fetchSongsByAlbum = function fetchSongsByAlbum(id) {
+  return function (dispatch) {
+    return (0, _music_api_util.getSongsByAlbum)(id).then(function (songs) {
       return dispatch(receiveSongs(songs));
     });
   };
