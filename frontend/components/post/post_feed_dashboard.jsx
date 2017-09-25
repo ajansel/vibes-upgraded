@@ -9,7 +9,7 @@ class PostFeedDashboard extends React.Component {
   }
 
   componentWillMount() {
-    
+
     if (this.props.feedType === 'dashboard'){
       this.props.fetchPostsFromFollowers();
     } else if (this.props.feedType === 'profile'){
@@ -41,7 +41,10 @@ class PostFeedDashboard extends React.Component {
         }
       }
     ).map(
-      (post, idx) => <PostFeedDashboardItem key={post.id} post={post} />
+      (post, idx) => <PostFeedDashboardItem key={post.id} post={post}
+                        likePost={this.props.likePost}
+                        unlikePost={this.props.unlikePost}
+                        currentUser={this.props.currentUser}/>
     );
     return (
       <div className="PostFeedDashboard">

@@ -5168,7 +5168,7 @@ module.exports = ReactBrowserEventEmitter;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePost = exports.likePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+exports.unlikePost = exports.likePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
 
 var _post_api_util = __webpack_require__(250);
 
@@ -5243,7 +5243,7 @@ var likePost = exports.likePost = function likePost(id) {
   };
 };
 
-var deletePost = exports.deletePost = function deletePost(id) {
+var unlikePost = exports.unlikePost = function unlikePost(id) {
   return function (dispatch) {
     return (0, _like_api_util.deleteLike)(id).then(function (post) {
       return dispatch(receivePost(post));
@@ -32838,6 +32838,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchProfilePosts: function fetchProfilePosts(id) {
       return dispatch((0, _post_actions.fetchProfilePosts)(id));
+    },
+    likePost: function likePost(postId) {
+      return dispatch((0, _post_actions.likePost)(postId));
+    },
+    unlikePost: function unlikePost(postId) {
+      return dispatch((0, _post_actions.unlikePost)(postId));
     }
   };
 };
@@ -32911,6 +32917,8 @@ var PostFeedDashboard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var posts = Object.values(this.props.posts).sort(function (a, b) {
         if (a.created_at < b.created_at) {
           return 1;
@@ -32920,7 +32928,10 @@ var PostFeedDashboard = function (_React$Component) {
           return 0;
         }
       }).map(function (post, idx) {
-        return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: post.id, post: post });
+        return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: post.id, post: post,
+          likePost: _this2.props.likePost,
+          unlikePost: _this2.props.unlikePost,
+          currentUser: _this2.props.currentUser });
       });
       return _react2.default.createElement(
         'div',
@@ -33003,7 +33014,9 @@ var PostFeedDashboardItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (PostFeedDashboardItem.__proto__ || Object.getPrototypeOf(PostFeedDashboardItem)).call(this, props));
 
     _this.post = props.post;
-    _this.state = { modalIsOpen: false };
+    _this.likePost = props.likePost;
+    _this.unlikePost = props.unlikePost;
+    _this.state = { modalIsOpen: false, liked: _this.post.liked_by_current_user, likes: _this.post.likes };
     _this.openModal = _this.openModal.bind(_this);
     _this.afterModal = _this.afterOpenModal.bind(_this);
     _this.closeModal = _this.closeModal.bind(_this);
@@ -33024,10 +33037,47 @@ var PostFeedDashboardItem = function (_React$Component) {
     key: 'afterOpenModal',
     value: function afterOpenModal() {}
   }, {
+    key: 'handleClick',
+    value: function handleClick(action) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (action === "like") {
+          var oppositeCurrentLiked = !_this2.state.liked;
+          _this2.setState({ liked: oppositeCurrentLiked, likes: _this2.state.likes + 1 }, function () {
+            _this2.likePost(_this2.post.id);
+          });
+        } else {
+          var _oppositeCurrentLiked = !_this2.state.liked;
+          _this2.setState({ liked: _oppositeCurrentLiked, likes: _this2.state.likes - 1 }, function () {
+            _this2.unlikePost(_this2.post.id);
+          });
+        }
+      };
+    }
+  }, {
     key: 'render',
     value: function render() {
       var likes = void 0;
-      if (this.post.likes > 0) likes = this.post.likes;
+      if (this.state.likes > 0) likes = this.state.likes;
+
+      var likeButton = void 0;
+      if (this.state.liked) {
+        // Unfollow button
+        likeButton = _react2.default.createElement(
+          'button',
+          { className: 'LikeButton', onClick: this.handleClick("unlike") },
+          'Liked'
+        );
+      } else {
+        // follow button
+        likeButton = _react2.default.createElement(
+          'button',
+          { className: 'LikeButton', onClick: this.handleClick("like") },
+          'Like'
+        );
+      }
       return _react2.default.createElement(
         'div',
         { className: 'FeedItem' },
@@ -33058,11 +33108,7 @@ var PostFeedDashboardItem = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'LikeContent' },
-            _react2.default.createElement(
-              'button',
-              { className: 'LikeButton' },
-              'Like'
-            ),
+            likeButton,
             likes
           )
         ),

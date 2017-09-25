@@ -30,7 +30,9 @@ class PostFeedDashboardItem extends React.Component {
     super(props);
 
     this.post = props.post;
-    this.state = { modalIsOpen: false };
+    this.likePost = props.likePost;
+    this.unlikePost = props.unlikePost;
+    this.state = { modalIsOpen: false, liked: this.post.liked_by_current_user, likes: this.post.likes };
     this.openModal = this.openModal.bind(this);
     this.afterModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -48,9 +50,35 @@ class PostFeedDashboardItem extends React.Component {
 
   }
 
+  handleClick(action) {
+    return (e) => {
+      e.preventDefault();
+      if (action === "like") {
+        let oppositeCurrentLiked = !this.state.liked;
+        this.setState({ liked: oppositeCurrentLiked, likes: this.state.likes + 1}, () => {
+          this.likePost(this.post.id);
+        });
+      } else {
+        let oppositeCurrentLiked = !this.state.liked;
+        this.setState({ liked: oppositeCurrentLiked, likes: this.state.likes - 1}, () => {
+          this.unlikePost(this.post.id);
+        });
+      }
+    };
+  }
+
   render() {
     let likes;
-    if (this.post.likes > 0) likes = this.post.likes;
+    if (this.state.likes > 0) likes = this.state.likes;
+
+    let likeButton;
+    if (this.state.liked) {
+      // Unfollow button
+      likeButton = <button className="LikeButton" onClick={this.handleClick("unlike")}>Liked</button>;
+    } else {
+      // follow button
+      likeButton = <button className="LikeButton" onClick={this.handleClick("like")}>Like</button>;
+    }
     return(
       <div className="FeedItem">
         <div className="UserPic">
@@ -64,7 +92,7 @@ class PostFeedDashboardItem extends React.Component {
             {this.post.body}
           </div>
           <div className="LikeContent">
-            <button className="LikeButton">Like</button>
+            {likeButton}
             {likes}
           </div>
         </div>

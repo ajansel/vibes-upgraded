@@ -52,7 +52,7 @@ export const likePost = (id) => (dispatch) => (
   )
 );
 
-export const deletePost = (id) => (dispatch) => (
+export const unlikePost = (id) => (dispatch) => (
   deleteLike(id).then(
     post => dispatch(receivePost(post))
   )
