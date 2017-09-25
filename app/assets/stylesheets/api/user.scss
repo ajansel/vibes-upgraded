@@ -33,3 +33,20 @@
 .UserSearchIndex > ul > *:nth-child(2n+1) {
   background-color: rgb(200, 200, 200);
 }
+
+.UserSearchIndex > ul > div > li > button {
+  margin-left: 5px;
+  padding: 2px 4px 2px 4px;
+  color: white;
+  background-color: #3396ff;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #3396ff;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.UserSearchIndex > ul > div > li > a {
+  text-decoration: none;
+  color: black;
+}
