@@ -5,7 +5,14 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {body: ""};
+    let initVal;
+    if (this.props.initVal) {
+      initVal = this.props.initVal;
+    } else {
+      initVal = "";
+    }
+
+    this.state = {body: this.props.initVal};
     this.handleClick = this.handleClick.bind(this);
   }
 

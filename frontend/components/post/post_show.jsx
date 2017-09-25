@@ -23,7 +23,7 @@ class PostShow extends React.Component {
           </div>
         </div>
         <p>{this.props.song.title}</p>
-        <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
+        <div className="Lyrics" >
           {lyrics}
         </div>
       </div>

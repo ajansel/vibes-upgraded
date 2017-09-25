@@ -32613,7 +32613,14 @@ var PostForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
 
-    _this.state = { body: "" };
+    var initVal = void 0;
+    if (_this.props.initVal) {
+      initVal = _this.props.initVal;
+    } else {
+      initVal = "";
+    }
+
+    _this.state = { body: _this.props.initVal };
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
@@ -33303,8 +33310,6 @@ var PostShow = function (_React$Component) {
   _createClass(PostShow, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var lyricsArr = this.props.song.lyrics.split('\n');
       var lyrics = lyricsArr.map(function (line, idx) {
         return _react2.default.createElement(
@@ -33351,9 +33356,7 @@ var PostShow = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'Lyrics', onMouseUp: function onMouseUp() {
-              return _this2.handleHighlight();
-            } },
+          { className: 'Lyrics' },
           lyrics
         )
       );
