@@ -5168,7 +5168,7 @@ module.exports = ReactBrowserEventEmitter;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePost = exports.likePost = exports.createPost = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+exports.deletePost = exports.likePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
 
 var _post_api_util = __webpack_require__(250);
 
@@ -5212,6 +5212,14 @@ var fetchPost = exports.fetchPost = function fetchPost(id) {
 var fetchPostsFromFollowers = exports.fetchPostsFromFollowers = function fetchPostsFromFollowers() {
   return function (dispatch) {
     return (0, _post_api_util.getPosts)().then(function (posts) {
+      return dispatch(receivePosts(posts));
+    });
+  };
+};
+
+var fetchProfilePosts = exports.fetchProfilePosts = function fetchProfilePosts(id) {
+  return function (dispatch) {
+    return (0, _post_api_util.getProfilePosts)(id).then(function (posts) {
       return dispatch(receivePosts(posts));
     });
   };
@@ -26267,6 +26275,14 @@ var getPosts = exports.getPosts = function getPosts() {
   return $.ajax({
     method: 'GET',
     url: 'api/posts'
+  });
+};
+
+var getProfilePosts = exports.getProfilePosts = function getProfilePosts(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/posts/profile_index',
+    data: { id: id }
   });
 };
 

@@ -1,4 +1,4 @@
-import {getPost, getPosts, postPost} from '../util/post_api_util';
+import {getPost, getPosts, postPost, getProfilePosts} from '../util/post_api_util';
 import {postLike, deleteLike } from '../util/like_api_util';
 
 export const RECEIVE_POST = "RECEIVE_POST";
@@ -29,6 +29,12 @@ export const fetchPost = (id) => (dispatch) => (
 
 export const fetchPostsFromFollowers = () => (dispatch) => (
   getPosts().then(
+    (posts) => dispatch(receivePosts(posts))
+  )
+);
+
+export const fetchProfilePosts = (id) => (dispatch) => (
+  getProfilePosts(id).then(
     (posts) => dispatch(receivePosts(posts))
   )
 );

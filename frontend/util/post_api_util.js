@@ -12,6 +12,14 @@ export const getPosts = () => {
   });
 };
 
+export const getProfilePosts = (id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/posts/profile_index`,
+    data: { id }
+  });
+};
+
 export const postPost = (post) => {
   return $.ajax({
     method: 'POST',
