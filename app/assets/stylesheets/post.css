@@ -9,7 +9,7 @@
   height: 75px;
 }
 
-.UserInfo > img {
+.UserInfo > a > img {
   width: 55px;
   height: 55px;
   border-radius: 50%;
@@ -22,7 +22,7 @@
   margin-bottom: 10px;
 }
 
-.UserNames > p {
+.UserNames > a > p {
   margin: 0;
 }
 

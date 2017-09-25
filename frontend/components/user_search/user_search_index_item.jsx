@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class UserSearchIndexItem extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class UserSearchIndexItem extends React.Component {
     return(
       <div>
         <li>
-          {this.user.username}
+          <Link to={`/profile/${this.user.id}`}>{this.user.username}</Link>
           {followButton}
         </li>
       </div>

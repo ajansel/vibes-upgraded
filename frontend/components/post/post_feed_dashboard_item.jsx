@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import PostFormContainer from '../post/post_form_container';
 import PostShow from '../post/post_show';
+import { Link } from 'react-router-dom';
 
 const customStyles = {
   content : {
@@ -82,11 +83,11 @@ class PostFeedDashboardItem extends React.Component {
     return(
       <div className="FeedItem">
         <div className="UserPic">
-          <img src={this.post.author.img_url}/>
+          <Link to={`/profile/${this.post.author.id}`}><img src={this.post.author.img_url}/></Link>
         </div>
         <div className="UserInfoAndPostBody">
           <div className="UsernameAndName">
-            <p>{this.post.author.name} {"@" + this.post.author.username}</p>
+            <Link to={`/profile/${this.post.author.id}`}><p>{this.post.author.name} {"@" + this.post.author.username}</p></Link>
           </div>
           <div className="PostBody" onClick={this.openModal}>
             {this.post.body}

@@ -16,10 +16,10 @@ class PostShow extends React.Component {
     return (
       <div className="PostShow">
         <div className="UserInfo">
-          <img src={this.props.user.img_url}/>
+          <Link to={`/profile/${this.props.user.id}`}><img src={this.props.user.img_url}/></Link>
           <div className="UserNames">
-            <p>{this.props.user.name}</p>
-            <p>{"@" + this.props.user.username}</p>
+            <Link to={`/profile/${this.props.user.id}`}><p>{this.props.user.name}</p>
+            <p>{"@" + this.props.user.username}</p></Link>
           </div>
         </div>
         <p>{this.props.song.title}</p>

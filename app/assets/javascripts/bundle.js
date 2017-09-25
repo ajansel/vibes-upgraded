@@ -32461,19 +32461,27 @@ var PostForm = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'UserInfo' },
-          _react2.default.createElement('img', { src: this.props.currentUser.img_url }),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.props.currentUser.id },
+            _react2.default.createElement('img', { src: this.props.currentUser.img_url })
+          ),
           _react2.default.createElement(
             'div',
             { className: 'UserNames' },
             _react2.default.createElement(
-              'p',
-              null,
-              this.props.currentUser.name
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              "@" + this.props.currentUser.username
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.props.currentUser.id },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.currentUser.name
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                "@" + this.props.currentUser.username
+              )
             )
           )
         ),
@@ -32721,6 +32729,8 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32746,7 +32756,7 @@ var UserSearchIndexItem = function (_React$Component) {
   }
 
   _createClass(UserSearchIndexItem, [{
-    key: "handleClick",
+    key: 'handleClick',
     value: function handleClick(action) {
       var _this2 = this;
 
@@ -32766,32 +32776,36 @@ var UserSearchIndexItem = function (_React$Component) {
       };
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var followButton = void 0;
       if (this.state.following) {
         // Unfollow button
         followButton = _react2.default.createElement(
-          "button",
+          'button',
           { onClick: this.handleClick("unfollow") },
-          "Following"
+          'Following'
         );
       } else {
         // follow button
         followButton = _react2.default.createElement(
-          "button",
+          'button',
           { onClick: this.handleClick("follow") },
-          "Follow"
+          'Follow'
         );
       }
 
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "li",
+          'li',
           null,
-          this.user.username,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.user.id },
+            this.user.username
+          ),
           followButton
         )
       );
@@ -32975,6 +32989,8 @@ var _post_show = __webpack_require__(328);
 
 var _post_show2 = _interopRequireDefault(_post_show);
 
+var _reactRouterDom = __webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33084,7 +33100,11 @@ var PostFeedDashboardItem = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'UserPic' },
-          _react2.default.createElement('img', { src: this.post.author.img_url })
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.post.author.id },
+            _react2.default.createElement('img', { src: this.post.author.img_url })
+          )
         ),
         _react2.default.createElement(
           'div',
@@ -33093,11 +33113,15 @@ var PostFeedDashboardItem = function (_React$Component) {
             'div',
             { className: 'UsernameAndName' },
             _react2.default.createElement(
-              'p',
-              null,
-              this.post.author.name,
-              ' ',
-              "@" + this.post.author.username
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.post.author.id },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.post.author.name,
+                ' ',
+                "@" + this.post.author.username
+              )
             )
           ),
           _react2.default.createElement(
@@ -33485,19 +33509,27 @@ var PostShow = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'UserInfo' },
-          _react2.default.createElement('img', { src: this.props.user.img_url }),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.props.user.id },
+            _react2.default.createElement('img', { src: this.props.user.img_url })
+          ),
           _react2.default.createElement(
             'div',
             { className: 'UserNames' },
             _react2.default.createElement(
-              'p',
-              null,
-              this.props.user.name
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              "@" + this.props.user.username
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.props.user.id },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.user.name
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                "@" + this.props.user.username
+              )
             )
           )
         ),

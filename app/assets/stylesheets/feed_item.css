@@ -11,14 +11,14 @@
   margin-left: 5px;
 }
 
-.UserPic > img {
+.UserPic > a > img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-bottom: 0px;
 }
 
-.UsernameAndName > p{
+.UsernameAndName > a > p{
   margin: 0;
   text-align: left;
   font-size: 14px;

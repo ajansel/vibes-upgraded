@@ -38,10 +38,10 @@ class PostForm extends React.Component {
     return (
       <div className="PostForm">
         <div className="UserInfo">
-          <img src={this.props.currentUser.img_url}/>
+          <Link to={`/profile/${this.props.currentUser.id}`}><img src={this.props.currentUser.img_url}/></Link>
           <div className="UserNames">
-            <p>{this.props.currentUser.name}</p>
-            <p>{"@" + this.props.currentUser.username}</p>
+            <Link to={`/profile/${this.props.currentUser.id}`}><p>{this.props.currentUser.name}</p>
+            <p>{"@" + this.props.currentUser.username}</p></Link>
           </div>
         </div>
 
