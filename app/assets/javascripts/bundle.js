@@ -31014,16 +31014,24 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'UserWidget' },
-          _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url }),
           _react2.default.createElement(
-            'p',
-            { className: 'Name' },
-            this.props.currentUser.name
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.props.currentUser.id },
+            _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url })
           ),
           _react2.default.createElement(
-            'p',
-            { className: 'Name' },
-            "@" + this.props.currentUser.username
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.props.currentUser.id },
+            _react2.default.createElement(
+              'p',
+              { className: 'Name' },
+              this.props.currentUser.name
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'Name' },
+              "@" + this.props.currentUser.username
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -33328,7 +33336,9 @@ var Profile = function (_React$Component) {
       if (!this.state.user) return null;
 
       var followButton = void 0;
-      if (this.state.following) {
+      if (this.state.user.id === this.currentUser.id) {
+        followButton = undefined;
+      } else if (this.state.following) {
         // Unfollow button
         followButton = _react2.default.createElement(
           'button',

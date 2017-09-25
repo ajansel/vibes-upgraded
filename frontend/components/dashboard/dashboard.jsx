@@ -30,9 +30,9 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard">
         <div className="UserWidget">
-          <img className="DashboardPic" src={this.props.currentUser.img_url}/>
-          <p className="Name">{this.props.currentUser.name}</p>
-          <p className="Name">{"@" + this.props.currentUser.username}</p>
+          <Link to={`/profile/${this.props.currentUser.id}`}><img className="DashboardPic" src={this.props.currentUser.img_url}/></Link>
+          <Link to={`/profile/${this.props.currentUser.id}`}><p className="Name">{this.props.currentUser.name}</p>
+          <p className="Name">{"@" + this.props.currentUser.username}</p></Link>
           <div className="StatHeaders">
             <p>Posts</p>
             <p>Followers</p>

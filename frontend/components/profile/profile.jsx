@@ -64,7 +64,9 @@ class Profile extends React.Component {
     if (!this.state.user) return null;
 
     let followButton;
-    if (this.state.following) {
+    if (this.state.user.id === this.currentUser.id) {
+      followButton = undefined;
+    } else if (this.state.following) {
       // Unfollow button
       followButton = <button className="FollowButton"
               onClick={this.handleClick("unfollow")}>Following</button>;
