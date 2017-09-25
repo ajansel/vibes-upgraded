@@ -33200,6 +33200,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchUser: function fetchUser(id) {
       return dispatch((0, _user_actions.fetchUser)(id));
+    },
+    followUser: function followUser(followeeId) {
+      return dispatch((0, _user_actions.followUser)(followeeId));
+    },
+    unfollowUser: function unfollowUser(followeeId) {
+      return dispatch((0, _user_actions.unfollowUser)(followeeId));
     }
   };
 };
@@ -33250,6 +33256,10 @@ var Profile = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 
     _this.state = { albumOfTheDay: {}, artist: "", user: _this.props.user };
+    _this.currentUser = props.currentUser;
+    _this.user = props.user;
+    _this.followUser = props.followUser;
+    _this.unfollowUser = props.unfollowUser;
     return _this;
   }
 
@@ -33274,7 +33284,7 @@ var Profile = function (_React$Component) {
 
       if (this.props.match.params.userId !== newProps.match.params.userId) {
         this.props.fetchUser(newProps.match.params.userId).then(function (res) {
-          _this3.setState({ user: res.user });
+          _this3.setState({ user: res.user, following: res.user.followed_by_current_user });
         });
       }
     }
@@ -33284,7 +33294,7 @@ var Profile = function (_React$Component) {
       var _this4 = this;
 
       this.props.fetchUser(this.props.userId).then(function (res) {
-        return _this4.setState({ user: res.user });
+        return _this4.setState({ user: res.user, following: res.user.followed_by_current_user });
       });
     }
   }, {
@@ -33294,9 +33304,47 @@ var Profile = function (_React$Component) {
       return albumsArr[Math.floor(Math.random() * albumsArr.length)];
     }
   }, {
+    key: 'handleClick',
+    value: function handleClick(action) {
+      var _this5 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (action === "follow") {
+          var oppositeCurrentFollowing = !_this5.state.following;
+          _this5.setState({ following: oppositeCurrentFollowing }, function () {
+            _this5.followUser(_this5.state.user.id);
+          });
+        } else {
+          var _oppositeCurrentFollowing = !_this5.state.following;
+          _this5.setState({ following: _oppositeCurrentFollowing }, function () {
+            _this5.unfollowUser(_this5.state.user.id);
+          });
+        }
+      };
+    }
+  }, {
     key: 'render',
     value: function render() {
       if (!this.state.user) return null;
+
+      var followButton = void 0;
+      if (this.state.following) {
+        // Unfollow button
+        followButton = _react2.default.createElement(
+          'button',
+          { onClick: this.handleClick("unfollow") },
+          'Following'
+        );
+      } else {
+        // follow button
+        followButton = _react2.default.createElement(
+          'button',
+          { onClick: this.handleClick("follow") },
+          'Follow'
+        );
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'Dashboard' },
@@ -33351,7 +33399,8 @@ var Profile = function (_React$Component) {
               null,
               '384'
             )
-          )
+          ),
+          followButton
         ),
         _react2.default.createElement(
           'div',

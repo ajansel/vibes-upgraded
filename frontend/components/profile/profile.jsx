@@ -7,6 +7,10 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {albumOfTheDay: {}, artist: "", user: this.props.user};
+    this.currentUser = props.currentUser;
+    this.user = props.user;
+    this.followUser = props.followUser;
+    this.unfollowUser = props.unfollowUser;
   }
 
   componentDidMount() {
@@ -24,14 +28,14 @@ class Profile extends React.Component {
     if(this.props.match.params.userId !== newProps.match.params.userId){
       this.props.fetchUser(newProps.match.params.userId).then(
       (res) => {
-        this.setState({user: res.user});
+        this.setState({user: res.user, following: res.user.followed_by_current_user});
       });
     }
   }
 
   componentWillMount(){
     this.props.fetchUser(this.props.userId).then(
-    (res) => this.setState({user: res.user}));
+    (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
   }
 
   getRandomAlbum() {
@@ -39,8 +43,35 @@ class Profile extends React.Component {
     return albumsArr[Math.floor(Math.random() * albumsArr.length)];
   }
 
+  handleClick(action) {
+    return (e) => {
+      e.preventDefault();
+      if (action === "follow") {
+        let oppositeCurrentFollowing = !this.state.following;
+        this.setState({ following: oppositeCurrentFollowing}, () => {
+          this.followUser(this.state.user.id);
+        });
+      } else {
+        let oppositeCurrentFollowing = !this.state.following;
+        this.setState({ following: oppositeCurrentFollowing}, () => {
+          this.unfollowUser(this.state.user.id);
+        });
+      }
+    };
+  }
+
   render(){
     if (!this.state.user) return null;
+
+    let followButton;
+    if (this.state.following) {
+      // Unfollow button
+      followButton = <button onClick={this.handleClick("unfollow")}>Following</button>;
+    } else {
+      // follow button
+      followButton = <button onClick={this.handleClick("follow")}>Follow</button>;
+    }
+
     return (
       <div className="Dashboard">
         <div className="UserWidget">
@@ -57,6 +88,7 @@ class Profile extends React.Component {
             <p>406</p>
             <p>384</p>
           </div>
+          {followButton}
         </div>
         <div className="SearchAndFeed">
           <div className="MusicSearch">
