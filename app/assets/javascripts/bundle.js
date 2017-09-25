@@ -33332,14 +33332,16 @@ var Profile = function (_React$Component) {
         // Unfollow button
         followButton = _react2.default.createElement(
           'button',
-          { onClick: this.handleClick("unfollow") },
+          { className: 'FollowButton',
+            onClick: this.handleClick("unfollow") },
           'Following'
         );
       } else {
         // follow button
         followButton = _react2.default.createElement(
           'button',
-          { onClick: this.handleClick("follow") },
+          { className: 'FollowButton',
+            onClick: this.handleClick("follow") },
           'Follow'
         );
       }
