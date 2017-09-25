@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class PostForm extends React.Component {
+class ArtistForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,7 @@ class PostForm extends React.Component {
     );
 
     return (
-      <div className="PostForm">
+      <div className="ArtistForm">
         <div className="UserInfo">
           <Link to={`/profile/${this.props.currentUser.id}`}><img src={this.props.currentUser.img_url}/></Link>
           <div className="UserNames">
@@ -42,4 +42,4 @@ class PostForm extends React.Component {
   }
 }
 
-export default PostForm;
+export default ArtistForm;

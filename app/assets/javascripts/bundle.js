@@ -33748,19 +33748,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PostForm = function (_React$Component) {
-  _inherits(PostForm, _React$Component);
+var ArtistForm = function (_React$Component) {
+  _inherits(ArtistForm, _React$Component);
 
-  function PostForm(props) {
-    _classCallCheck(this, PostForm);
+  function ArtistForm(props) {
+    _classCallCheck(this, ArtistForm);
 
-    var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ArtistForm.__proto__ || Object.getPrototypeOf(ArtistForm)).call(this, props));
 
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
-  _createClass(PostForm, [{
+  _createClass(ArtistForm, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
       this.props.fetchSongsByArtist(this.props.artist.id);
@@ -33791,7 +33791,7 @@ var PostForm = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'PostForm' },
+        { className: 'ArtistForm' },
         _react2.default.createElement(
           'div',
           { className: 'UserInfo' },
@@ -33833,10 +33833,10 @@ var PostForm = function (_React$Component) {
     }
   }]);
 
-  return PostForm;
+  return ArtistForm;
 }(_react2.default.Component);
 
-exports.default = PostForm;
+exports.default = ArtistForm;
 
 /***/ })
 /******/ ]);
