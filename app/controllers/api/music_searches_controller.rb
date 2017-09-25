@@ -6,9 +6,14 @@ class Api::MusicSearchesController < ApplicationController
     render :index
   end
 
+  def songs_by_artist
+    @songs = Song.where(artist_id: search_params[:artist_id])
+    render :songs_by_artist
+  end
+
   private
 
   def search_params
-    params.require(:search).permit(:query)
+    params.require(:search).permit(:query, :artist_id)
   end
 end

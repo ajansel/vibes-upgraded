@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
     resources :likes, only: [:destroy, :create]
     resources :followers, only: [:destroy, :create]
-    resources :music_searches, only: [:index]
+    resources :music_searches, only: [:index] do
+      get "songs_by_artist", on: :collection
+    end
   end
 end

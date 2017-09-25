@@ -47,3 +47,11 @@ export const searchMusicDatabase = (query) => {
     data: {search: { query } }
   });
 };
+
+export const getSongsByArtist = (id) => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches/songs_by_artist',
+    data: { search: {artist_id: id} }
+  });
+};
