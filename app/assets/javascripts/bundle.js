@@ -5235,7 +5235,7 @@ module.exports = ReactBrowserEventEmitter;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unlikePost = exports.likePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
+exports.unlikePost = exports.likePost = exports.updatePost = exports.createPost = exports.fetchProfilePosts = exports.fetchPostsFromFollowers = exports.fetchPost = exports.receivePostErrors = exports.receivePosts = exports.RECEIVE_POST_ERRORS = exports.RECEIVE_POSTS = exports.RECEIVE_POST = undefined;
 
 var _post_api_util = __webpack_require__(254);
 
@@ -5295,6 +5295,16 @@ var fetchProfilePosts = exports.fetchProfilePosts = function fetchProfilePosts(i
 var createPost = exports.createPost = function createPost(formPost) {
   return function (dispatch) {
     return (0, _post_api_util.postPost)(formPost).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (err) {
+      return dispatch(receivePostErrors(err.responseJSON));
+    });
+  };
+};
+
+var updatePost = exports.updatePost = function updatePost(formPost) {
+  return function (dispatch) {
+    return (0, _post_api_util.patchPost)(formPost).then(function (post) {
       return dispatch(receivePost(post));
     }, function (err) {
       return dispatch(receivePostErrors(err.responseJSON));
@@ -13324,6 +13334,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createPost: function createPost(post) {
       return dispatch((0, _post_actions.createPost)(post));
+    },
+    updatePost: function updatePost(post) {
+      return dispatch((0, _post_actions.updatePost)(post));
     }
   };
 };
@@ -26459,6 +26472,14 @@ var postPost = exports.postPost = function postPost(post) {
   });
 };
 
+var patchPost = exports.patchPost = function patchPost(post) {
+  return $.ajax({
+    method: 'PATCH',
+    url: 'api/posts/' + post.id,
+    data: { post: post }
+  });
+};
+
 /***/ }),
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -32619,7 +32640,7 @@ var PostForm = function (_React$Component) {
     } else {
       initVal = "";
     }
-
+    _this.postId = _this.props.postId;
     _this.state = { body: _this.props.initVal };
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
@@ -32631,12 +32652,17 @@ var PostForm = function (_React$Component) {
       e.preventDefault();
 
       var post = {
+        id: this.postId,
         body: this.state.body,
         song_id: this.props.song.id,
         author_id: this.props.currentUser.id
       };
 
-      this.props.createPost(post).then(this.props.closeSongModal());
+      if (this.postId) {
+        this.props.updatePost(post).then(this.props.closeSongModal());
+      } else {
+        this.props.createPost(post).then(this.props.closeSongModal());
+      }
     }
   }, {
     key: 'handleHighlight',
@@ -33208,6 +33234,17 @@ var PostFeedDashboardItem = function (_React$Component) {
           'Like'
         );
       }
+
+      var form = void 0;
+      if (this.props.currentUser.id === this.post.author.id) {
+        form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser, initVal: this.post.body,
+          song: this.post.song, closeSongModal: this.closeModal,
+          postId: this.post.id });
+      } else if (this.item.type === 'album') {
+        form = _react2.default.createElement(_post_show2.default, { song: this.post.song, closeModal: this.closeModal,
+          user: this.post.author });
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'FeedItem' },
@@ -33259,8 +33296,7 @@ var PostFeedDashboardItem = function (_React$Component) {
             contentLabel: 'Example Modal',
             style: customStyles
           },
-          _react2.default.createElement(_post_show2.default, { song: this.post.song, closeModal: this.closeModal,
-            user: this.post.author })
+          form
         )
       );
     }

@@ -11,7 +11,7 @@ class PostForm extends React.Component {
     } else {
       initVal = "";
     }
-
+    this.postId = this.props.postId;
     this.state = {body: this.props.initVal};
     this.handleClick = this.handleClick.bind(this);
   }
@@ -20,12 +20,17 @@ class PostForm extends React.Component {
     e.preventDefault();
 
     const post = {
+      id: this.postId,
       body: this.state.body,
       song_id: this.props.song.id,
       author_id: this.props.currentUser.id
     };
 
-    this.props.createPost(post).then(this.props.closeSongModal());
+    if (this.postId) {
+      this.props.updatePost(post).then(this.props.closeSongModal());
+    } else {
+      this.props.createPost(post).then(this.props.closeSongModal());
+    }
   }
 
   handleHighlight() {

@@ -27,3 +27,11 @@ export const postPost = (post) => {
     data: { post }
   });
 };
+
+export const patchPost = (post) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `api/posts/${post.id}`,
+    data: { post }
+  });
+};

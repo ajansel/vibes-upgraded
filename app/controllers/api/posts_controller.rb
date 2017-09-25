@@ -20,6 +20,16 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = current_user.posts.find(params[:id])
+
+    if @post && @post.update_attributes(post_params)
+      render :show
+    else
+      render json: @post.errors.full_messages, status: 422
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
     render :show

@@ -80,6 +80,17 @@ class PostFeedDashboardItem extends React.Component {
       // follow button
       likeButton = <button className="LikeButton" onClick={this.handleClick("like")}>Like</button>;
     }
+
+    let form;
+    if (this.props.currentUser.id === this.post.author.id) {
+      form = <PostFormContainer currentUser={this.props.currentUser} initVal={this.post.body}
+                        song={this.post.song} closeSongModal={this.closeModal}
+                        postId={this.post.id}/>;
+    } else if (this.item.type === 'album') {
+      form = <PostShow song={this.post.song} closeModal={this.closeModal}
+                       user={this.post.author}/>;
+    }
+
     return(
       <div className="FeedItem">
         <div className="UserPic">
@@ -106,8 +117,7 @@ class PostFeedDashboardItem extends React.Component {
           contentLabel="Example Modal"
           style={customStyles}
           >
-          <PostShow song={this.post.song} closeModal={this.closeModal}
-                    user={this.post.author}/>
+          {form}
         </Modal>
       </div>
     );
