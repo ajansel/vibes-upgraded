@@ -31587,6 +31587,10 @@ var _artist_form_container = __webpack_require__(329);
 
 var _artist_form_container2 = _interopRequireDefault(_artist_form_container);
 
+var _album_form_container = __webpack_require__(331);
+
+var _album_form_container2 = _interopRequireDefault(_album_form_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31626,12 +31630,14 @@ var SearchIndexItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SearchIndexItem.__proto__ || Object.getPrototypeOf(SearchIndexItem)).call(this, props));
 
     _this.currentUser = props.currentUser;
-    _this.state = { songModalIsOpen: false, artistModalIsOpen: false };
+    _this.state = { songModalIsOpen: false, artistModalIsOpen: false, albumModalIsOpen: false };
     _this.item = props.item;
     _this.openSongModal = _this.openSongModal.bind(_this);
     _this.closeSongModal = _this.closeSongModal.bind(_this);
     _this.openArtistModal = _this.openArtistModal.bind(_this);
     _this.closeArtistModal = _this.closeArtistModal.bind(_this);
+    _this.openAlbumModal = _this.openAlbumModal.bind(_this);
+    _this.closeAlbumModal = _this.closeAlbumModal.bind(_this);
     return _this;
   }
 
@@ -31669,6 +31675,23 @@ var SearchIndexItem = function (_React$Component) {
       });
     }
   }, {
+    key: 'openAlbumModal',
+    value: function openAlbumModal() {
+      this.setState({ albumModalIsOpen: true });
+    }
+  }, {
+    key: 'closeAlbumModal',
+    value: function closeAlbumModal(fromForm, song) {
+      var _this4 = this;
+
+      this.setState({ albumModalIsOpen: false }, function () {
+        if (fromForm === "album") {
+          _this4.item = song;
+          _this4.setState({ songModalIsOpen: true });
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var li = void 0;
@@ -31687,7 +31710,7 @@ var SearchIndexItem = function (_React$Component) {
       } else if (this.item.type === 'album') {
         li = _react2.default.createElement(
           'li',
-          { onClick: this.openArtistModal },
+          { onClick: this.openAlbumModal },
           this.item.title
         );
       }
@@ -31701,11 +31724,9 @@ var SearchIndexItem = function (_React$Component) {
           artist: this.props.item, closeArtistModal: this.closeArtistModal,
           openSongModal: this.openSongModal });
       } else if (this.item.type === 'album') {
-        form = _react2.default.createElement(
-          'p',
-          null,
-          'Change this to album modal'
-        );
+        form = _react2.default.createElement(_album_form_container2.default, { currentUser: this.props.currentUser,
+          album: this.props.item, closeAlbumModal: this.closeAlbumModal,
+          openSongModal: this.openSongModal });
       }
 
       return _react2.default.createElement(
@@ -31727,6 +31748,16 @@ var SearchIndexItem = function (_React$Component) {
           {
             isOpen: this.state.artistModalIsOpen,
             onRequestClose: this.closeArtistModal,
+            contentLabel: 'Example Modal',
+            style: customStyles
+          },
+          form
+        ),
+        _react2.default.createElement(
+          _reactModal2.default,
+          {
+            isOpen: this.state.albumModalIsOpen,
+            onRequestClose: this.closeAlbumModal,
             contentLabel: 'Example Modal',
             style: customStyles
           },
@@ -33837,6 +33868,161 @@ var ArtistForm = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ArtistForm;
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(15);
+
+var _album_form = __webpack_require__(332);
+
+var _album_form2 = _interopRequireDefault(_album_form);
+
+var _music_actions = __webpack_require__(44);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    // currentUser: state.session.currentUser,
+    songs: state.entities.songs
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchSongsByAlbum: function fetchSongsByAlbum(id) {
+      return dispatch((0, _music_actions.fetchSongsByAlbum)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_album_form2.default);
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AlbumForm = function (_React$Component) {
+  _inherits(AlbumForm, _React$Component);
+
+  function AlbumForm(props) {
+    _classCallCheck(this, AlbumForm);
+
+    var _this = _possibleConstructorReturn(this, (AlbumForm.__proto__ || Object.getPrototypeOf(AlbumForm)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(AlbumForm, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.fetchSongsByAlbum(this.props.album.id);
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(song) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        _this2.props.closeAlbumModal("album", song);
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var songs = Object.values(this.props.songs).map(function (song) {
+        return _react2.default.createElement(
+          'div',
+          { key: song.id, onClick: _this3.handleClick(song) },
+          song.title,
+          _react2.default.createElement('br', null)
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'AlbumForm' },
+        _react2.default.createElement(
+          'div',
+          { className: 'UserInfo' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/profile/' + this.props.currentUser.id },
+            _react2.default.createElement('img', { src: this.props.currentUser.img_url })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'UserNames' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.props.currentUser.id },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.currentUser.name
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                "@" + this.props.currentUser.username
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          this.props.album.title
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'Songs' },
+          songs
+        )
+      );
+    }
+  }]);
+
+  return AlbumForm;
+}(_react2.default.Component);
+
+exports.default = AlbumForm;
 
 /***/ })
 /******/ ]);

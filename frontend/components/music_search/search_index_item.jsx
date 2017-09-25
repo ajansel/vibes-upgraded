@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import PostFormContainer from '../post/post_form_container';
 import ArtistFormContainer from './artist_form_container';
+import AlbumFormContainer from './album_form_container';
 
 const customStyles = {
   content : {
@@ -30,12 +31,14 @@ class SearchIndexItem extends React.Component {
     super(props);
 
     this.currentUser = props.currentUser;
-    this.state = { songModalIsOpen: false, artistModalIsOpen: false };
+    this.state = { songModalIsOpen: false, artistModalIsOpen: false, albumModalIsOpen: false };
     this.item = props.item;
     this.openSongModal = this.openSongModal.bind(this);
     this.closeSongModal = this.closeSongModal.bind(this);
     this.openArtistModal = this.openArtistModal.bind(this);
     this.closeArtistModal = this.closeArtistModal.bind(this);
+    this.openAlbumModal = this.openAlbumModal.bind(this);
+    this.closeAlbumModal = this.closeAlbumModal.bind(this);
   }
 
   openSongModal(fromForm, song) {
@@ -63,6 +66,19 @@ class SearchIndexItem extends React.Component {
     });
   }
 
+  openAlbumModal() {
+    this.setState({albumModalIsOpen: true});
+  }
+
+  closeAlbumModal(fromForm, song) {
+    this.setState({albumModalIsOpen: false}, () => {
+      if(fromForm === "album") {
+        this.item = song;
+        this.setState({songModalIsOpen: true});
+      }
+    });
+  }
+
   render() {
     let li;
     if (this.item.type === 'song') {
@@ -70,7 +86,7 @@ class SearchIndexItem extends React.Component {
     } else if (this.item.type === 'artist') {
       li = <li onClick={this.openArtistModal}>{this.item.name}</li>;
     } else if (this.item.type === 'album'){
-      li = <li onClick={this.openArtistModal}>{this.item.title}</li>;
+      li = <li onClick={this.openAlbumModal}>{this.item.title}</li>;
     }
 
     let form;
@@ -82,7 +98,9 @@ class SearchIndexItem extends React.Component {
                         artist={this.props.item} closeArtistModal={this.closeArtistModal}
                         openSongModal={this.openSongModal}/>;
     } else if (this.item.type === 'album') {
-      form = <p>Change this to album modal</p>;
+      form = <AlbumFormContainer currentUser={this.props.currentUser}
+                        album={this.props.item} closeAlbumModal={this.closeAlbumModal}
+                        openSongModal={this.openSongModal}/>;
     }
 
     return(
@@ -100,6 +118,15 @@ class SearchIndexItem extends React.Component {
         <Modal
           isOpen={this.state.artistModalIsOpen}
           onRequestClose={this.closeArtistModal}
+          contentLabel="Example Modal"
+          style={customStyles}
+          >
+          {form}
+        </Modal>
+
+        <Modal
+          isOpen={this.state.albumModalIsOpen}
+          onRequestClose={this.closeAlbumModal}
           contentLabel="Example Modal"
           style={customStyles}
           >

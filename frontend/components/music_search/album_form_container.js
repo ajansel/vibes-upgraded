@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import AlbumForm from './artist_form';
+import AlbumForm from './album_form';
 import {fetchSongsByAlbum} from '../../actions/music_actions';
 
 const mapStateToProps = (state) => ({
