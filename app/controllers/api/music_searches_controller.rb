@@ -19,6 +19,6 @@ class Api::MusicSearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(:query, :artist_id)
+    params.require(:search).permit(:query, :artist_id, :album_id)
   end
 end

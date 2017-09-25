@@ -26666,6 +26666,14 @@ var getSongsByArtist = exports.getSongsByArtist = function getSongsByArtist(id) 
   });
 };
 
+var getSongsByAlbum = exports.getSongsByAlbum = function getSongsByAlbum(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches/songs_by_album',
+    data: { search: { album_id: id } }
+  });
+};
+
 /***/ }),
 /* 259 */
 /***/ (function(module, exports, __webpack_require__) {
