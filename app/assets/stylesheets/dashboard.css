@@ -6,7 +6,7 @@
 
 .UserWidget, .BonusWidget {
   width: 200px;
-  height: 250px;
+  height: 255px;
 }
 
 .SearchAndFeed {
@@ -73,7 +73,7 @@
 .FollowButton {
   margin-top: 10px;
   margin-right: 5px;
-  padding: 3px 6px 3px 6px;
+  padding: 6px 16px;
   color: white;
   background-color: #3396ff;
   text-align: center;
@@ -81,4 +81,9 @@
   border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.FollowButton:hover {
+  background-color: #0258B1;
+  border-color: #0258B1
 }

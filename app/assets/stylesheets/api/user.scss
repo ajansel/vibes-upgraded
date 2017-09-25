@@ -36,7 +36,7 @@
 
 .UserSearchIndex > ul > div > li > button {
   margin-left: 5px;
-  padding: 2px 4px 2px 4px;
+  padding: 3px 8px;
   color: white;
   background-color: #3396ff;
   text-align: center;
@@ -44,6 +44,11 @@
   border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.UserSearchIndex > ul > div > li > button:hover {
+  background-color: #0258B1;
+  border-color: #0258B1
 }
 
 .UserSearchIndex > ul > div > li > a {

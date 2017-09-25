@@ -24,14 +24,14 @@
 }
 
 .SignupButtons {
-  width: 170px;
+  width: 222px;
   display: flex;
   justify-content: space-between;
-  margin-left: 165px;
+  margin-left: 139px;
 }
 
 .SignupButtons > a {
-  padding: 3px;
+  padding: 6px 16px;
   color: white;
   background-color: #3396ff;
   width: 70px;
@@ -40,4 +40,9 @@
   border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.SignupButtons > a:hover {
+  background-color: #0258B1;
+  border-color: #0258B1;
 }

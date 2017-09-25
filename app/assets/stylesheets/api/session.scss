@@ -4,7 +4,7 @@
 
 .SessionButtons {
   display: flex;
-  width: 160px;
+  width: 190px;
   justify-content: space-between;
   align-items: center;
   padding-right: 10px;
@@ -19,14 +19,18 @@
 }
 
 .SessionButtons > a {
-  padding: 3px;
+  padding: 6px 16px;
   color: white;
-  width: 65px;
+  width: 54px;
   text-align: center;
   text-decoration: none;
   border: 2px solid white;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.SessionButtons > a:hover {
+  background-color: #0258B1;
 }
 
 .SessionFormDiv {
@@ -76,10 +80,17 @@
   color: white;
   font-size: 18px;
   font-family: sans-serif;
-  padding: 12px;
+  padding: 6px 16px;
   border-radius: 5px;
   border: 0px;
   cursor: pointer;
+  background-color: #3396ff;
+
+}
+
+.SessionFormSubmit:hover {
+  background-color: #0258B1;
+  border-color: #0258B1;
 }
 
 .ErrorsList > li {
