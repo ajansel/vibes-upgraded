@@ -32715,6 +32715,8 @@ var PostForm = function (_React$Component) {
   _createClass(PostForm, [{
     key: 'handleClick',
     value: function handleClick(e) {
+      var _this2 = this;
+
       e.preventDefault();
 
       var post = {
@@ -32725,17 +32727,37 @@ var PostForm = function (_React$Component) {
       };
 
       if (this.postId) {
-        this.props.updatePost(post).then(this.props.closeSongModal());
+        this.props.updatePost(post).then(this.props.closeSongModal()).then(function () {
+          if (_this2.props.feedType === 'dashboard') {
+            _this2.props.fetchPostsFromFollowers();
+          } else if (_this2.props.feedType === 'profile') {
+            _this2.props.fetchProfilePosts(_this2.props.userId);
+          }
+        });
       } else {
-        this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal());
+        this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal()).then(function () {
+          if (_this2.props.feedType === 'dashboard') {
+            _this2.props.fetchPostsFromFollowers();
+          } else if (_this2.props.feedType === 'profile') {
+            _this2.props.fetchProfilePosts(_this2.props.userId);
+          }
+        });
       }
     }
   }, {
     key: 'handleDeleteClick',
     value: function handleDeleteClick(e) {
+      var _this3 = this;
+
       e.preventDefault();
 
-      this.props.deletePost(this.postId, this.props.currentUser.id).then(this.props.closeSongModal());
+      this.props.deletePost(this.postId, this.props.currentUser.id).then(this.props.closeSongModal()).then(function () {
+        if (_this3.props.feedType === 'dashboard') {
+          _this3.props.fetchPostsFromFollowers();
+        } else if (_this3.props.feedType === 'profile') {
+          _this3.props.fetchProfilePosts(_this3.props.userId);
+        }
+      });
     }
   }, {
     key: 'handleHighlight',
@@ -32748,7 +32770,7 @@ var PostForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var lyricsArr = this.props.song.lyrics.split('\n');
       var lyrics = lyricsArr.map(function (line, idx) {
@@ -32822,7 +32844,7 @@ var PostForm = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'Lyrics', onMouseUp: function onMouseUp() {
-              return _this2.handleHighlight();
+              return _this4.handleHighlight();
             } },
           lyrics
         )
@@ -33493,7 +33515,10 @@ var PostFeedDashboard = function (_React$Component) {
         return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: post.id, post: post,
           likePost: _this2.props.likePost,
           unlikePost: _this2.props.unlikePost,
-          currentUser: _this2.props.currentUser });
+          currentUser: _this2.props.currentUser,
+          feedType: _this2.props.feedType,
+          fetchProfilePosts: _this2.props.fetchProfilePosts,
+          fetchPostsFromFollowers: _this2.props.fetchPostsFromFollowers });
       });
       return _react2.default.createElement(
         'div',
@@ -33650,7 +33675,9 @@ var PostFeedDashboardItem = function (_React$Component) {
       if (this.props.currentUser && this.props.currentUser.id === this.post.author.id) {
         form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser, initVal: this.post.body,
           song: this.post.song, closeSongModal: this.closeModal,
-          postId: this.post.id });
+          postId: this.post.id, feedType: this.props.feedType,
+          fetchProfilePosts: this.props.fetchProfilePosts,
+          fetchPostsFromFollowers: this.props.fetchPostsFromFollowers });
       } else {
         form = _react2.default.createElement(_post_show2.default, { song: this.post.song, closeModal: this.closeModal,
           user: this.post.author });

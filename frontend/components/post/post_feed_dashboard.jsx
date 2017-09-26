@@ -44,7 +44,10 @@ class PostFeedDashboard extends React.Component {
       (post, idx) => <PostFeedDashboardItem key={post.id} post={post}
                         likePost={this.props.likePost}
                         unlikePost={this.props.unlikePost}
-                        currentUser={this.props.currentUser}/>
+                        currentUser={this.props.currentUser}
+                        feedType={this.props.feedType}
+                        fetchProfilePosts={this.props.fetchProfilePosts}
+                        fetchPostsFromFollowers={this.props.fetchPostsFromFollowers}/>
     );
     return (
       <div className="PostFeedDashboard">

@@ -28,16 +28,43 @@ class PostForm extends React.Component {
     };
 
     if (this.postId) {
-      this.props.updatePost(post).then(this.props.closeSongModal());
+      this.props.updatePost(post)
+                .then(this.props.closeSongModal()).then(
+                  () => {
+                    if (this.props.feedType === 'dashboard'){
+                      this.props.fetchPostsFromFollowers();
+                    } else if (this.props.feedType === 'profile'){
+                      this.props.fetchProfilePosts(this.props.userId);
+                    }
+                  }
+                );
     } else {
-      this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal());
+      this.props.createPost(post, this.props.currentUser.id)
+                .then(this.props.closeSongModal()).then(
+                  () => {
+                    if (this.props.feedType === 'dashboard'){
+                      this.props.fetchPostsFromFollowers();
+                    } else if (this.props.feedType === 'profile'){
+                      this.props.fetchProfilePosts(this.props.userId);
+                    }
+                  }
+                );
     }
   }
 
   handleDeleteClick(e) {
     e.preventDefault();
 
-    this.props.deletePost(this.postId, this.props.currentUser.id).then(this.props.closeSongModal());
+    this.props.deletePost(this.postId, this.props.currentUser.id)
+              .then(this.props.closeSongModal()).then(
+                () => {
+                  if (this.props.feedType === 'dashboard'){
+                    this.props.fetchPostsFromFollowers();
+                  } else if (this.props.feedType === 'profile'){
+                    this.props.fetchProfilePosts(this.props.userId);
+                  }
+                }
+              );
   }
 
   handleHighlight() {

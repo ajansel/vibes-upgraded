@@ -94,7 +94,9 @@ class PostFeedDashboardItem extends React.Component {
     if (this.props.currentUser && this.props.currentUser.id === this.post.author.id) {
       form = <PostFormContainer currentUser={this.props.currentUser} initVal={this.post.body}
                         song={this.post.song} closeSongModal={this.closeModal}
-                        postId={this.post.id}/>;
+                        postId={this.post.id} feedType={this.props.feedType}
+                        fetchProfilePosts={this.props.fetchProfilePosts}
+                        fetchPostsFromFollowers={this.props.fetchPostsFromFollowers}/>;
     } else {
       form = <PostShow song={this.post.song} closeModal={this.closeModal}
                        user={this.post.author}/>;
