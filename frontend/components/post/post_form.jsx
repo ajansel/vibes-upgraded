@@ -48,6 +48,8 @@ class PostForm extends React.Component {
                       this.props.fetchProfilePosts(this.props.userId);
                     }
                   }
+                ).then(
+                  this.props.clearState()
                 );
     }
   }

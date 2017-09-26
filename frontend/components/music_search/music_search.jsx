@@ -7,6 +7,7 @@ class MusicSearch extends React.Component {
 
     this.state = { searchVal: '', firstTime: true };
     this.handleChange = this.handleChange.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
 
   handleChange(e) {
@@ -18,6 +19,10 @@ class MusicSearch extends React.Component {
     });
   }
 
+  clearState() {
+    this.setState({ searchVal: '', firstTime: false });
+  }
+
   render(){
     return (
       <div className="MusicSearch">
@@ -27,7 +32,8 @@ class MusicSearch extends React.Component {
         <SearchIndex firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.searchResults)}
           searchVal={this.state.searchVal}
-          currentUser={this.props.currentUser} />
+          currentUser={this.props.currentUser}
+          clearState={this.clearState} />
       </div>
     );
   }

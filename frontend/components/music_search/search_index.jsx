@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchIndexItem from './search_index_item';
 
-export default ({searchItems, firstTime, searchVal, currentUser}) => {
+export default ({searchItems, firstTime, searchVal, currentUser, clearState}) => {
   if (searchVal === "") return null;
   let songs = [];
   let artists = [];
@@ -33,7 +33,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
       <li className="Header">Song Results:</li>
       {songs.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
-          item={item} key={item.id}/>)
+          item={item} key={item.id} clearState={clearState}/>)
       )}
     </ul>;
   } else if (firstTime === false){
@@ -51,7 +51,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
       <li className="Header">Artist Results:</li>
       {artists.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
-          item={item} key={item.id}/>)
+          item={item} key={item.id} clearState={clearState}/>)
       )}
     </ul>;
   } else if (firstTime === false){
@@ -69,7 +69,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
       <li className="Header">Album Results:</li>
       {albums.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
-          item={item} key={item.id}/>)
+          item={item} key={item.id} clearState={clearState}/>)
       )}
     </ul>;
   } else if (firstTime === false){

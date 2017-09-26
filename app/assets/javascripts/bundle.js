@@ -31441,6 +31441,7 @@ var MusicSearch = function (_React$Component) {
 
     _this.state = { searchVal: '', firstTime: true };
     _this.handleChange = _this.handleChange.bind(_this);
+    _this.clearState = _this.clearState.bind(_this);
     return _this;
   }
 
@@ -31457,6 +31458,11 @@ var MusicSearch = function (_React$Component) {
       });
     }
   }, {
+    key: 'clearState',
+    value: function clearState() {
+      this.setState({ searchVal: '', firstTime: false });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -31468,7 +31474,8 @@ var MusicSearch = function (_React$Component) {
         _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.searchResults),
           searchVal: this.state.searchVal,
-          currentUser: this.props.currentUser })
+          currentUser: this.props.currentUser,
+          clearState: this.clearState })
       );
     }
   }]);
@@ -31503,7 +31510,8 @@ exports.default = function (_ref) {
   var searchItems = _ref.searchItems,
       firstTime = _ref.firstTime,
       searchVal = _ref.searchVal,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      clearState = _ref.clearState;
 
   if (searchVal === "") return null;
   var songs = [];
@@ -31543,7 +31551,7 @@ exports.default = function (_ref) {
       ),
       songs.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
-          item: item, key: item.id });
+          item: item, key: item.id, clearState: clearState });
       })
     );
   } else if (firstTime === false) {
@@ -31579,7 +31587,7 @@ exports.default = function (_ref) {
       ),
       artists.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
-          item: item, key: item.id });
+          item: item, key: item.id, clearState: clearState });
       })
     );
   } else if (firstTime === false) {
@@ -31615,7 +31623,7 @@ exports.default = function (_ref) {
       ),
       albums.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
-          item: item, key: item.id });
+          item: item, key: item.id, clearState: clearState });
       })
     );
   } else if (firstTime === false) {
@@ -31804,7 +31812,8 @@ var SearchIndexItem = function (_React$Component) {
       var form = void 0;
       if (this.item.type === 'song') {
         form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser,
-          song: this.item, closeSongModal: this.closeSongModal });
+          song: this.item, closeSongModal: this.closeSongModal,
+          clearState: this.props.clearState });
       } else if (this.item.type === 'artist') {
         form = _react2.default.createElement(_artist_form_container2.default, { currentUser: this.props.currentUser,
           artist: this.props.item, closeArtistModal: this.closeArtistModal,
@@ -32741,7 +32750,7 @@ var PostForm = function (_React$Component) {
           } else if (_this2.props.feedType === 'profile') {
             _this2.props.fetchProfilePosts(_this2.props.userId);
           }
-        });
+        }).then(this.props.clearState());
       }
     }
   }, {
