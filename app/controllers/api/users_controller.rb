@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def index
-    @users = User.top_fifteen_results(search_params[:query], current_user)
+    @users = User.top_ten_results(search_params[:query], current_user)
     render :index
   end
 

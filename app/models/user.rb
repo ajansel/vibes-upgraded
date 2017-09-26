@@ -59,11 +59,11 @@ class User < ApplicationRecord
     end
   end
 
-  def self.top_fifteen_results(query_param, curr_user)
+  def self.top_ten_results(query_param, curr_user)
     curr_user_id = curr_user.id if curr_user
     param = '%' + query_param.downcase + '%'
     User.where.not(id: curr_user_id).
-        where('lower(name) LIKE ? or lower(username) LIKE ?', param, param).limit(15)
+        where('lower(name) LIKE ? or lower(username) LIKE ?', param, param).limit(10)
   end
 
   def ensure_session_token
