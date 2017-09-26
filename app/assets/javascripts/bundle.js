@@ -30815,8 +30815,7 @@ var SessionForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SessionForm.__proto__ || Object.getPrototypeOf(SessionForm)).call(this, props));
 
     _this.state = { username: '', password: '',
-      name: '', email: '',
-      img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
+      name: '', email: ''
     };
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);

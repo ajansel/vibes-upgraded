@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :name, :username, :email, :img_url, :password_digest, presence: true
   validates :username, :email, uniqueness: { case_sensative: false }
   validates :password, length: { minimum: 6 }, allow_nil: true
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_img_url
 
   attr_reader :password
 
@@ -64,6 +64,14 @@ class User < ApplicationRecord
     param = '%' + query_param.downcase + '%'
     User.where.not(id: curr_user_id).
         where('lower(name) LIKE ? or lower(username) LIKE ?', param, param).limit(10)
+  end
+
+  def ensure_img_url
+    rand_color = [3,4].sample
+    rand_theme = ['bythepool', 'frogideas', 'sugarsweets', 'heatwave',
+                  'daisygarden', 'seascape', 'summerwarmth', 'duskfalling',
+                  'berrypie'].sample
+    self.img_url ||= "http://www.tinygraphs.com/labs/isogrids/hexa/#{self.username}?theme=#{rand_theme}&numcolors=#{rand_color}&size=220&fmt=svg"
   end
 
   def ensure_session_token
