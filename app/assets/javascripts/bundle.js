@@ -33896,11 +33896,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: function fetchUser(id) {
       return dispatch((0, _user_actions.fetchUser)(id));
     },
-    followUser: function followUser(followeeId) {
-      return dispatch((0, _user_actions.followUser)(followeeId));
+    followUser: function followUser(followeeId, currentUserId) {
+      return dispatch((0, _user_actions.followUser)(followeeId, currentUserId));
     },
-    unfollowUser: function unfollowUser(followeeId) {
-      return dispatch((0, _user_actions.unfollowUser)(followeeId));
+    unfollowUser: function unfollowUser(followeeId, currentUserId) {
+      return dispatch((0, _user_actions.unfollowUser)(followeeId, currentUserId));
     }
   };
 };
@@ -34008,12 +34008,20 @@ var Profile = function (_React$Component) {
         if (_this5.currentUser && action === "follow") {
           var oppositeCurrentFollowing = !_this5.state.following;
           _this5.setState({ following: oppositeCurrentFollowing }, function () {
-            _this5.followUser(_this5.state.user.id);
+            _this5.followUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
+              return _this5.props.fetchUser(_this5.props.userId);
+            }).then(function (res) {
+              return _this5.setState({ user: res.user, following: res.user.followed_by_current_user });
+            });
           });
         } else if (_this5.currentUser) {
           var _oppositeCurrentFollowing = !_this5.state.following;
           _this5.setState({ following: _oppositeCurrentFollowing }, function () {
-            _this5.unfollowUser(_this5.state.user.id);
+            _this5.unfollowUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
+              return _this5.props.fetchUser(_this5.props.userId);
+            }).then(function (res) {
+              return _this5.setState({ user: res.user, following: res.user.followed_by_current_user });
+            });
           });
         }
       };

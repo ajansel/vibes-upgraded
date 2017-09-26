@@ -49,12 +49,16 @@ class Profile extends React.Component {
       if (this.currentUser && action === "follow") {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.followUser(this.state.user.id);
+          this.followUser(this.state.user.id, this.currentUser.id).then(
+            () => this.props.fetchUser(this.props.userId)).then(
+            (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
         });
       } else if (this.currentUser) {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.unfollowUser(this.state.user.id);
+          this.unfollowUser(this.state.user.id, this.currentUser.id).then(
+            () => this.props.fetchUser(this.props.userId)).then(
+            (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
         });
       }
     };
