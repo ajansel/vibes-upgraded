@@ -5,8 +5,9 @@
   border-radius: 5px;
   border-style: solid;
   border-color: #C0C0C0;
-  width: 400px;
+  width: 500px;
   height: 75px;
+  box-sizing: border-box;
 }
 
 .UserInfo > a > img {
@@ -35,8 +36,8 @@
 .UserNames {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-left: 20px;
+  justify-content: flex-start;
+  margin-left: 10px;
 }
 
 .PostPost, .DeletePost {
