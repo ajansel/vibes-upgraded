@@ -22,6 +22,12 @@
   margin-bottom: 10px;
 }
 
+.UserNames > a {
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+}
+
 .UserNames > a > p {
   margin: 0;
 }
