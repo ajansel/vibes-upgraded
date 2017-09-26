@@ -2,7 +2,7 @@ import React from 'react';
 import SearchIndexItem from './search_index_item';
 
 export default ({searchItems, firstTime, searchVal, currentUser}) => {
-  if (searchVal === "") return (<ul></ul>);
+  if (searchVal === "") return null;
   let songs = [];
   let artists = [];
   let albums = [];
@@ -30,6 +30,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   if (songs.length !== 0) {
     songsUl =
     <ul>
+      <li className="Header">Song Results:</li>
       {songs.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id}/>)
@@ -38,6 +39,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   } else if (firstTime === false){
     songsUl =
     <ul>
+      <li className="Header">Song Results:</li>
       <li>No matchings songs</li>
     </ul>;
   }
@@ -46,6 +48,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   if (artists.length !== 0) {
     artistsUl =
     <ul>
+      <li className="Header">Artist Results:</li>
       {artists.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id}/>)
@@ -54,6 +57,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   } else if (firstTime === false){
     artistsUl =
     <ul>
+      <li className="Header">Artist Results:</li>
       <li>No matchings artists</li>
     </ul>;
   }
@@ -62,6 +66,7 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   if (albums.length !== 0) {
     albumsUl =
     <ul>
+      <li className="Header">Album Results:</li>
       {albums.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id}/>)
@@ -70,17 +75,15 @@ export default ({searchItems, firstTime, searchVal, currentUser}) => {
   } else if (firstTime === false){
     albumsUl =
     <ul>
+      <li className="Header">Album Results:</li>
       <li>No matchings albums</li>
     </ul>;
   }
 
   return(
     <div className="SearchIndex">
-      {songsHeader}
       {songsUl}
-      {artistsHeader}
       {artistsUl}
-      {albumsHeader}
       {albumsUl}
     </div>
   );

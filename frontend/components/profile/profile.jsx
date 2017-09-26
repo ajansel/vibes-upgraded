@@ -95,11 +95,7 @@ class Profile extends React.Component {
           {followButton}
         </div>
         <div className="SearchAndFeed">
-          <div className="MusicSearch">
-            <UserSearchContainer />
-          </div>
           <div className="Feed">
-            <p>Test Feed</p>
             <PostFeedDashboardContainer userId={this.state.user.id}
               feedType={"profile"}/>
           </div>

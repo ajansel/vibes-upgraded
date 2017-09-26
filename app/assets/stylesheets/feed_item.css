@@ -1,14 +1,19 @@
 .FeedItem {
   display: flex;
   justify-content: flex-start;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  background-color: white;
   margin-bottom: 5px;
   box-sizing: border-box;
   padding: 5px;
 }
 
 .UserInfoAndPostBody {
-  margin-left: 5px;
+  margin-left: 20px;
+}
+
+.PostBody > div {
+  margin-bottom: 1px;
 }
 
 .UserPic > a > img {
@@ -22,13 +27,13 @@
   margin: 0;
   text-align: left;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .PostBody {
   text-align: left;
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 

@@ -4,7 +4,6 @@
 
 .UserSearch {
   align-items: center;
-  margin-top: 13px;
 }
 
 .UserSearch > input {
@@ -14,30 +13,36 @@
   border-radius: 5px;
   border-style: solid;
   border-color: #C0C0C0;
-  width: 225px;
+  width: 400px;
   text-align: center;
+  box-sizing: border-box;
 }
 
-.UserSearchIndex > ul > * {
+.UserSearchIndex > li {
   list-style-type: none;
   text-align: center;
   box-sizing: border-box;
   padding: 5px;
-  width: 250px;
-
-  display: inline-block;
+  width: 400px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0;
 }
 
-.UserSearchIndex > ul > *:nth-child(2n) {
-  background-color: rgb(175, 175, 175);
-}
+// .UserSearchIndex > *:nth-child(2n) {
+//   background-color: rgb(175, 175, 175);
+// }
+//
+// .UserSearchIndex > *:nth-child(2n+1) {
+//   background-color: rgb(200, 200, 200);
+// }
 
-.UserSearchIndex > ul > *:nth-child(2n+1) {
-  background-color: rgb(200, 200, 200);
-}
-
-.UserSearchIndex > ul > div > li > button {
-  margin-left: 5px;
+.UserSearchIndex > li > button {
+  margin-left: 10px;
   padding: 3px 8px;
   color: white;
   background-color: #3396ff;
@@ -48,12 +53,24 @@
   cursor: pointer;
 }
 
-.UserSearchIndex > ul > div > li > button:hover {
+.UserSearchIndex > li > button:hover {
   background-color: #0258B1;
   border-color: #0258B1
 }
 
-.UserSearchIndex > ul > div > li > a {
+.UserSearchIndex > li > a {
   text-decoration: none;
   color: black;
+  margin-left: 10px;
+}
+
+.UserSearchIndex {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+.UserSearchIndex > li > a > img {
+  height: 40px;
+  width: 40px;
 }

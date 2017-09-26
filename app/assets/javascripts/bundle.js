@@ -31304,18 +31304,12 @@ var Dashboard = function (_React$Component) {
           { className: 'SearchAndFeed' },
           _react2.default.createElement(
             'div',
-            { className: 'MusicSearch' },
-            _react2.default.createElement(_music_search_container2.default, null),
-            _react2.default.createElement(_user_search_container2.default, null)
+            { className: 'MusicSearchDiv' },
+            _react2.default.createElement(_music_search_container2.default, null)
           ),
           _react2.default.createElement(
             'div',
             { className: 'Feed' },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Test Feed'
-            ),
             _react2.default.createElement(_post_feed_dashboard_container2.default, { params: this.props.params,
               feedType: "dashboard" })
           )
@@ -31492,7 +31486,7 @@ exports.default = function (_ref) {
       searchVal = _ref.searchVal,
       currentUser = _ref.currentUser;
 
-  if (searchVal === "") return _react2.default.createElement('ul', null);
+  if (searchVal === "") return null;
   var songs = [];
   var artists = [];
   var albums = [];
@@ -31523,6 +31517,11 @@ exports.default = function (_ref) {
     songsUl = _react2.default.createElement(
       'ul',
       null,
+      _react2.default.createElement(
+        'li',
+        { className: 'Header' },
+        'Song Results:'
+      ),
       songs.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
           item: item, key: item.id });
@@ -31532,6 +31531,11 @@ exports.default = function (_ref) {
     songsUl = _react2.default.createElement(
       'ul',
       null,
+      _react2.default.createElement(
+        'li',
+        { className: 'Header' },
+        'Song Results:'
+      ),
       _react2.default.createElement(
         'li',
         null,
@@ -31549,6 +31553,11 @@ exports.default = function (_ref) {
     artistsUl = _react2.default.createElement(
       'ul',
       null,
+      _react2.default.createElement(
+        'li',
+        { className: 'Header' },
+        'Artist Results:'
+      ),
       artists.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
           item: item, key: item.id });
@@ -31558,6 +31567,11 @@ exports.default = function (_ref) {
     artistsUl = _react2.default.createElement(
       'ul',
       null,
+      _react2.default.createElement(
+        'li',
+        { className: 'Header' },
+        'Artist Results:'
+      ),
       _react2.default.createElement(
         'li',
         null,
@@ -31575,6 +31589,11 @@ exports.default = function (_ref) {
     albumsUl = _react2.default.createElement(
       'ul',
       null,
+      _react2.default.createElement(
+        'li',
+        { className: 'Header' },
+        'Album Results:'
+      ),
       albums.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
           item: item, key: item.id });
@@ -31586,6 +31605,11 @@ exports.default = function (_ref) {
       null,
       _react2.default.createElement(
         'li',
+        { className: 'Header' },
+        'Album Results:'
+      ),
+      _react2.default.createElement(
+        'li',
         null,
         'No matchings albums'
       )
@@ -31595,11 +31619,8 @@ exports.default = function (_ref) {
   return _react2.default.createElement(
     'div',
     { className: 'SearchIndex' },
-    songsHeader,
     songsUl,
-    artistsHeader,
     artistsUl,
-    albumsHeader,
     albumsUl
   );
 };
@@ -33341,6 +33362,11 @@ var UserSearchIndexItem = function (_React$Component) {
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/profile/' + this.user.id },
+          _react2.default.createElement('img', { src: this.user.img_url })
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/profile/' + this.user.id },
           this.user.username
         ),
         followButton
@@ -34020,17 +34046,7 @@ var Profile = function (_React$Component) {
           { className: 'SearchAndFeed' },
           _react2.default.createElement(
             'div',
-            { className: 'MusicSearch' },
-            _react2.default.createElement(_user_search_container2.default, null)
-          ),
-          _react2.default.createElement(
-            'div',
             { className: 'Feed' },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Test Feed'
-            ),
             _react2.default.createElement(_post_feed_dashboard_container2.default, { userId: this.state.user.id,
               feedType: "profile" })
           )

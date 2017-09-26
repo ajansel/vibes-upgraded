@@ -45,12 +45,10 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="SearchAndFeed">
-          <div className="MusicSearch">
+          <div className="MusicSearchDiv">
             <MusicSearchContainer />
-            <UserSearchContainer />
           </div>
           <div className="Feed">
-            <p>Test Feed</p>
             <PostFeedDashboardContainer params={this.props.params}
               feedType={"dashboard"} />
           </div>
