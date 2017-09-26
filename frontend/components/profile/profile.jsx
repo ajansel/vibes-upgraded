@@ -46,12 +46,12 @@ class Profile extends React.Component {
   handleClick(action) {
     return (e) => {
       e.preventDefault();
-      if (action === "follow") {
+      if (this.currentUser && action === "follow") {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
           this.followUser(this.state.user.id);
         });
-      } else {
+      } else if (this.currentUser) {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
           this.unfollowUser(this.state.user.id);
@@ -64,7 +64,7 @@ class Profile extends React.Component {
     if (!this.state.user) return null;
 
     let followButton;
-    if (this.state.user.id === this.currentUser.id) {
+    if (this.currentUser && this.state.user.id === this.currentUser.id) {
       followButton = undefined;
     } else if (this.state.following) {
       // Unfollow button

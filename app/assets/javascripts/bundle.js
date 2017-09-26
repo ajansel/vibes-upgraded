@@ -30595,7 +30595,7 @@ var App = function App(props) {
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
-        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/profile/:userId', component: _profile_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/profile/:userId', component: _profile_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/', component: _homepage_container2.default })
       )
     )
@@ -33583,12 +33583,12 @@ var PostFeedDashboardItem = function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
-        if (action === "like") {
+        if (_this2.props.currentUser && action === "like") {
           var oppositeCurrentLiked = !_this2.state.liked;
           _this2.setState({ liked: oppositeCurrentLiked, likes: _this2.state.likes + 1 }, function () {
             _this2.likePost(_this2.post.id);
           });
-        } else {
+        } else if (_this2.props.currentUser) {
           var _oppositeCurrentLiked = !_this2.state.liked;
           _this2.setState({ liked: _oppositeCurrentLiked, likes: _this2.state.likes - 1 }, function () {
             _this2.unlikePost(_this2.post.id);
@@ -33623,7 +33623,7 @@ var PostFeedDashboardItem = function (_React$Component) {
       }
 
       var form = void 0;
-      if (this.props.currentUser.id === this.post.author.id) {
+      if (this.props.currentUser && this.props.currentUser.id === this.post.author.id) {
         form = _react2.default.createElement(_post_form_container2.default, { currentUser: this.props.currentUser, initVal: this.post.body,
           song: this.post.song, closeSongModal: this.closeModal,
           postId: this.post.id });
@@ -33954,12 +33954,12 @@ var Profile = function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
-        if (action === "follow") {
+        if (_this5.currentUser && action === "follow") {
           var oppositeCurrentFollowing = !_this5.state.following;
           _this5.setState({ following: oppositeCurrentFollowing }, function () {
             _this5.followUser(_this5.state.user.id);
           });
-        } else {
+        } else if (_this5.currentUser) {
           var _oppositeCurrentFollowing = !_this5.state.following;
           _this5.setState({ following: _oppositeCurrentFollowing }, function () {
             _this5.unfollowUser(_this5.state.user.id);
@@ -33973,7 +33973,7 @@ var Profile = function (_React$Component) {
       if (!this.state.user) return null;
 
       var followButton = void 0;
-      if (this.state.user.id === this.currentUser.id) {
+      if (this.currentUser && this.state.user.id === this.currentUser.id) {
         followButton = undefined;
       } else if (this.state.following) {
         // Unfollow button

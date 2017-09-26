@@ -54,12 +54,12 @@ class PostFeedDashboardItem extends React.Component {
   handleClick(action) {
     return (e) => {
       e.preventDefault();
-      if (action === "like") {
+      if (this.props.currentUser && action === "like") {
         let oppositeCurrentLiked = !this.state.liked;
         this.setState({ liked: oppositeCurrentLiked, likes: this.state.likes + 1}, () => {
           this.likePost(this.post.id);
         });
-      } else {
+      } else if (this.props.currentUser) {
         let oppositeCurrentLiked = !this.state.liked;
         this.setState({ liked: oppositeCurrentLiked, likes: this.state.likes - 1}, () => {
           this.unlikePost(this.post.id);
@@ -91,7 +91,7 @@ class PostFeedDashboardItem extends React.Component {
     }
 
     let form;
-    if (this.props.currentUser.id === this.post.author.id) {
+    if (this.props.currentUser && this.props.currentUser.id === this.post.author.id) {
       form = <PostFormContainer currentUser={this.props.currentUser} initVal={this.post.body}
                         song={this.post.song} closeSongModal={this.closeModal}
                         postId={this.post.id}/>;
