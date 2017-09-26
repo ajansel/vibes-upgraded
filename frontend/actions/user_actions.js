@@ -33,7 +33,7 @@ export const followUser = (id, currentUserId) => (dispatch) => (
   postFollow(id).then(
     user => dispatch(receiveUser(user))
   ).then(
-    () => dispatch(fetchCurrentUser(currentUserId))
+    () => dispatch(updateCurrentUser(currentUserId))
   )
 );
 
@@ -41,11 +41,11 @@ export const unfollowUser = (id, currentUserId) => (dispatch) => (
   deleteFollow(id).then(
     user => dispatch(receiveUser(user))
   ).then(
-    () => dispatch(fetchCurrentUser(currentUserId))
+    () => dispatch(updateCurrentUser(currentUserId))
   )
 );
 
-export const fetchCurrentUser = (currentUserId) => (dispatch) => (
+export const updateCurrentUser = (currentUserId) => (dispatch) => (
   getUser(currentUserId).then(
     (user) => dispatch(receiveCurrentUser(user))
   )

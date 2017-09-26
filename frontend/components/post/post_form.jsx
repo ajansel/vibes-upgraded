@@ -30,14 +30,14 @@ class PostForm extends React.Component {
     if (this.postId) {
       this.props.updatePost(post).then(this.props.closeSongModal());
     } else {
-      this.props.createPost(post).then(this.props.closeSongModal());
+      this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal());
     }
   }
 
   handleDeleteClick(e) {
     e.preventDefault();
 
-    this.props.deletePost(this.postId).then(this.props.closeSongModal());
+    this.props.deletePost(this.postId, this.props.currentUser.id).then(this.props.closeSongModal());
   }
 
   handleHighlight() {

@@ -3986,7 +3986,7 @@ var logout = exports.logout = function logout() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchCurrentUser = exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.fetchUser = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
+exports.updateCurrentUser = exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.fetchUser = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
 
 var _user_api_util = __webpack_require__(261);
 
@@ -4034,7 +4034,7 @@ var followUser = exports.followUser = function followUser(id, currentUserId) {
     return (0, _follow_api_util.postFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
     }).then(function () {
-      return dispatch(fetchCurrentUser(currentUserId));
+      return dispatch(updateCurrentUser(currentUserId));
     });
   };
 };
@@ -4044,12 +4044,12 @@ var unfollowUser = exports.unfollowUser = function unfollowUser(id, currentUserI
     return (0, _follow_api_util.deleteFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
     }).then(function () {
-      return dispatch(fetchCurrentUser(currentUserId));
+      return dispatch(updateCurrentUser(currentUserId));
     });
   };
 };
 
-var fetchCurrentUser = exports.fetchCurrentUser = function fetchCurrentUser(currentUserId) {
+var updateCurrentUser = exports.updateCurrentUser = function updateCurrentUser(currentUserId) {
   return function (dispatch) {
     return (0, _user_api_util.getUser)(currentUserId).then(function (user) {
       return dispatch((0, _session_actions.receiveCurrentUser)(user));
@@ -5398,6 +5398,8 @@ var _post_api_util = __webpack_require__(254);
 
 var _like_api_util = __webpack_require__(255);
 
+var _user_actions = __webpack_require__(33);
+
 var RECEIVE_POST = exports.RECEIVE_POST = "RECEIVE_POST";
 var RECEIVE_POSTS = exports.RECEIVE_POSTS = "RECEIVE_POSTS";
 var RECEIVE_POST_ERRORS = exports.RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
@@ -5449,12 +5451,14 @@ var fetchProfilePosts = exports.fetchProfilePosts = function fetchProfilePosts(i
   };
 };
 
-var createPost = exports.createPost = function createPost(formPost) {
+var createPost = exports.createPost = function createPost(formPost, currentUserId) {
   return function (dispatch) {
     return (0, _post_api_util.postPost)(formPost).then(function (post) {
       return dispatch(receivePost(post));
     }, function (err) {
       return dispatch(receivePostErrors(err.responseJSON));
+    }).then(function () {
+      return dispatch((0, _user_actions.updateCurrentUser)(currentUserId));
     });
   };
 };
@@ -5469,12 +5473,14 @@ var updatePost = exports.updatePost = function updatePost(formPost) {
   };
 };
 
-var deletePost = exports.deletePost = function deletePost(postId) {
+var deletePost = exports.deletePost = function deletePost(postId, currentUserId) {
   return function (dispatch) {
     return (0, _post_api_util.destroyPost)(postId).then(function (post) {
       return dispatch(receivePost(post));
     }, function (err) {
       return dispatch(receivePostErrors(err.responseJSON));
+    }).then(function () {
+      return dispatch((0, _user_actions.updateCurrentUser)(currentUserId));
     });
   };
 };
@@ -13356,14 +13362,14 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createPost: function createPost(post) {
-      return dispatch((0, _post_actions.createPost)(post));
+    createPost: function createPost(post, currentUserId) {
+      return dispatch((0, _post_actions.createPost)(post, currentUserId));
     },
     updatePost: function updatePost(post) {
       return dispatch((0, _post_actions.updatePost)(post));
     },
-    deletePost: function deletePost(postId) {
-      return dispatch((0, _post_actions.deletePost)(postId));
+    deletePost: function deletePost(postId, currentUserId) {
+      return dispatch((0, _post_actions.deletePost)(postId, currentUserId));
     }
   };
 };
@@ -32721,7 +32727,7 @@ var PostForm = function (_React$Component) {
       if (this.postId) {
         this.props.updatePost(post).then(this.props.closeSongModal());
       } else {
-        this.props.createPost(post).then(this.props.closeSongModal());
+        this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal());
       }
     }
   }, {
@@ -32729,7 +32735,7 @@ var PostForm = function (_React$Component) {
     value: function handleDeleteClick(e) {
       e.preventDefault();
 
-      this.props.deletePost(this.postId).then(this.props.closeSongModal());
+      this.props.deletePost(this.postId, this.props.currentUser.id).then(this.props.closeSongModal());
     }
   }, {
     key: 'handleHighlight',

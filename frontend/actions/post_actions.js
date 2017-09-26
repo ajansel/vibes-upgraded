@@ -1,5 +1,6 @@
 import {getPost, getPosts, postPost, getProfilePosts, patchPost, destroyPost} from '../util/post_api_util';
 import {postLike, deleteLike } from '../util/like_api_util';
+import {updateCurrentUser} from './user_actions';
 
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
@@ -39,10 +40,12 @@ export const fetchProfilePosts = (id) => (dispatch) => (
   )
 );
 
-export const createPost = (formPost) => (dispatch) => (
+export const createPost = (formPost, currentUserId) => (dispatch) => (
   postPost(formPost).then(
     (post) => dispatch(receivePost(post)),
     (err) => dispatch(receivePostErrors(err.responseJSON))
+  ).then(
+    () => dispatch(updateCurrentUser(currentUserId))
   )
 );
 
@@ -53,10 +56,12 @@ export const updatePost = (formPost) => (dispatch) => (
   )
 );
 
-export const deletePost = (postId) => (dispatch) => (
+export const deletePost = (postId, currentUserId) => (dispatch) => (
   destroyPost(postId).then(
     (post) => dispatch(receivePost(post)),
     (err) => dispatch(receivePostErrors(err.responseJSON))
+  ).then(
+    () => dispatch(updateCurrentUser(currentUserId))
   )
 );
 

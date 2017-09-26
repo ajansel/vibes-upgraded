@@ -8,9 +8,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createPost: (post) => dispatch(createPost(post)),
+  createPost: (post, currentUserId) => dispatch(createPost(post, currentUserId)),
   updatePost: (post) => dispatch(updatePost(post)),
-  deletePost: (postId) => dispatch(deletePost(postId))
+  deletePost: (postId, currentUserId) => dispatch(deletePost(postId, currentUserId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
