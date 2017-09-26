@@ -30,18 +30,23 @@ class PostFeedDashboard extends React.Component {
   }
 
   render(){
-    const posts = Object.values(this.props.posts).sort(
+
+    let posts = Object.values(this.props.posts);
+
+    posts = posts.sort(
       function(a,b) {
         if (a.created_at < b.created_at) {
           return 1;
-        } else if (a.created_at < b.created_at) {
+        } else if (a.created_at > b.created_at) {
           return -1;
         } else {
           return 0;
         }
       }
-    ).map(
-      (post, idx) => <PostFeedDashboardItem key={post.id} post={post}
+    );
+
+    posts = posts.map(
+      (post) => <PostFeedDashboardItem key={new Date() + post.id} post={post}
                         likePost={this.props.likePost}
                         unlikePost={this.props.unlikePost}
                         currentUser={this.props.currentUser}
@@ -49,6 +54,8 @@ class PostFeedDashboard extends React.Component {
                         fetchProfilePosts={this.props.fetchProfilePosts}
                         fetchPostsFromFollowers={this.props.fetchPostsFromFollowers}/>
     );
+
+
     return (
       <div className="PostFeedDashboard">
         {posts}

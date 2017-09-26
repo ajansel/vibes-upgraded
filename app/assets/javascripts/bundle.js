@@ -33503,16 +33503,20 @@ var PostFeedDashboard = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var posts = Object.values(this.props.posts).sort(function (a, b) {
+      var posts = Object.values(this.props.posts);
+
+      posts = posts.sort(function (a, b) {
         if (a.created_at < b.created_at) {
           return 1;
-        } else if (a.created_at < b.created_at) {
+        } else if (a.created_at > b.created_at) {
           return -1;
         } else {
           return 0;
         }
-      }).map(function (post, idx) {
-        return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: post.id, post: post,
+      });
+
+      posts = posts.map(function (post) {
+        return _react2.default.createElement(_post_feed_dashboard_item2.default, { key: new Date() + post.id, post: post,
           likePost: _this2.props.likePost,
           unlikePost: _this2.props.unlikePost,
           currentUser: _this2.props.currentUser,
@@ -33520,6 +33524,7 @@ var PostFeedDashboard = function (_React$Component) {
           fetchProfilePosts: _this2.props.fetchProfilePosts,
           fetchPostsFromFollowers: _this2.props.fetchPostsFromFollowers });
       });
+
       return _react2.default.createElement(
         'div',
         { className: 'PostFeedDashboard' },
@@ -33865,6 +33870,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(12);
 
+var _reactRouterDom = __webpack_require__(9);
+
 var _profile = __webpack_require__(331);
 
 var _profile2 = _interopRequireDefault(_profile);
@@ -33876,12 +33883,14 @@ var _user_actions = __webpack_require__(33);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var user = state.entities.users[ownProps.match.params.userId];
   return {
     currentUser: state.session.currentUser,
     allAlbums: state.entities.albums,
     artist: state.entities.artists,
     userId: ownProps.match.params.userId,
-    user: state.entities.users[ownProps.match.params.userId]
+    user: state.entities.users[ownProps.match.params.userId],
+    following: user ? user.followed_by_current_user : false
   };
 };
 
@@ -33905,7 +33914,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_profile2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_profile2.default));
 
 /***/ }),
 /* 331 */
@@ -34006,22 +34015,22 @@ var Profile = function (_React$Component) {
       return function (e) {
         e.preventDefault();
         if (_this5.currentUser && action === "follow") {
-          var oppositeCurrentFollowing = !_this5.state.following;
+          var oppositeCurrentFollowing = !_this5.props.following;
           _this5.setState({ following: oppositeCurrentFollowing }, function () {
             _this5.followUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
               return _this5.props.fetchUser(_this5.props.userId);
-            }).then(function (res) {
-              return _this5.setState({ user: res.user, following: res.user.followed_by_current_user });
             });
+            // .then(
+            // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
           });
         } else if (_this5.currentUser) {
-          var _oppositeCurrentFollowing = !_this5.state.following;
+          var _oppositeCurrentFollowing = !_this5.props.following;
           _this5.setState({ following: _oppositeCurrentFollowing }, function () {
             _this5.unfollowUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
               return _this5.props.fetchUser(_this5.props.userId);
-            }).then(function (res) {
-              return _this5.setState({ user: res.user, following: res.user.followed_by_current_user });
             });
+            // .then(
+            // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
           });
         }
       };
@@ -34034,7 +34043,7 @@ var Profile = function (_React$Component) {
       var followButton = void 0;
       if (this.currentUser && this.state.user.id === this.currentUser.id) {
         followButton = undefined;
-      } else if (this.state.following) {
+      } else if (this.props.following) {
         // Unfollow button
         followButton = _react2.default.createElement(
           'button',
@@ -34094,17 +34103,17 @@ var Profile = function (_React$Component) {
             _react2.default.createElement(
               'p',
               null,
-              this.state.user.posts
+              this.props.user.posts
             ),
             _react2.default.createElement(
               'p',
               null,
-              this.state.user.followers
+              this.props.user.followers
             ),
             _react2.default.createElement(
               'p',
               null,
-              this.state.user.followees
+              this.props.user.followees
             )
           ),
           followButton

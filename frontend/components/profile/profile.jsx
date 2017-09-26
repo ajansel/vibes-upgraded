@@ -47,18 +47,20 @@ class Profile extends React.Component {
     return (e) => {
       e.preventDefault();
       if (this.currentUser && action === "follow") {
-        let oppositeCurrentFollowing = !this.state.following;
+        let oppositeCurrentFollowing = !this.props.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
           this.followUser(this.state.user.id, this.currentUser.id).then(
-            () => this.props.fetchUser(this.props.userId)).then(
-            (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
+            () => this.props.fetchUser(this.props.userId));
+            // .then(
+            // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
         });
       } else if (this.currentUser) {
-        let oppositeCurrentFollowing = !this.state.following;
+        let oppositeCurrentFollowing = !this.props.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
           this.unfollowUser(this.state.user.id, this.currentUser.id).then(
-            () => this.props.fetchUser(this.props.userId)).then(
-            (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
+            () => this.props.fetchUser(this.props.userId));
+            // .then(
+            // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
         });
       }
     };
@@ -70,7 +72,7 @@ class Profile extends React.Component {
     let followButton;
     if (this.currentUser && this.state.user.id === this.currentUser.id) {
       followButton = undefined;
-    } else if (this.state.following) {
+    } else if (this.props.following) {
       // Unfollow button
       followButton = <button className="UnfollowButton-DB"
               onClick={this.handleClick("unfollow")}>Following</button>;
@@ -92,9 +94,9 @@ class Profile extends React.Component {
             <p>Following</p>
           </div>
           <div className="Stats">
-            <p>{this.state.user.posts}</p>
-            <p>{this.state.user.followers}</p>
-            <p>{this.state.user.followees}</p>
+            <p>{this.props.user.posts}</p>
+            <p>{this.props.user.followers}</p>
+            <p>{this.props.user.followees}</p>
           </div>
           {followButton}
         </div>
