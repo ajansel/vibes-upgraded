@@ -34038,7 +34038,7 @@ var Profile = function (_React$Component) {
         // Unfollow button
         followButton = _react2.default.createElement(
           'button',
-          { className: 'FollowButton',
+          { className: 'UnfollowButton-DB',
             onClick: this.handleClick("unfollow") },
           'Following'
         );
@@ -34046,7 +34046,7 @@ var Profile = function (_React$Component) {
         // follow button
         followButton = _react2.default.createElement(
           'button',
-          { className: 'FollowButton',
+          { className: 'FollowButton-DB',
             onClick: this.handleClick("follow") },
           'Follow'
         );

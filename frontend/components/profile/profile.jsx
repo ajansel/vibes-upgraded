@@ -72,11 +72,11 @@ class Profile extends React.Component {
       followButton = undefined;
     } else if (this.state.following) {
       // Unfollow button
-      followButton = <button className="FollowButton"
+      followButton = <button className="UnfollowButton-DB"
               onClick={this.handleClick("unfollow")}>Following</button>;
     } else {
       // follow button
-      followButton = <button className="FollowButton"
+      followButton = <button className="FollowButton-DB"
               onClick={this.handleClick("follow")}>Follow</button>;
     }
 

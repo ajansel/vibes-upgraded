@@ -90,7 +90,7 @@
   font-size: 18px;
 }
 
-.FollowButton {
+.FollowButton-DB {
   margin-top: 10px;
   margin-right: 5px;
   padding: 6px 16px;
@@ -101,13 +101,28 @@
   border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
+  width: 86px;
 }
 
-.FollowButton:hover {
+.UnfollowButton-DB {
+  margin-top: 10px;
+  margin-right: 5px;
+  padding: 6px 16px;
+  color: #3396ff;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #3396ff;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 86px;
+}
+
+.FollowButton-DB:hover, .UnfollowButton-DB:hover {
   background-color: #0258B1;
   border-color: #0258B1
 }
 
-.FollowButton:focus {
+.FollowButton-DB:focus, .UnfollowButton-DB:hover {
   outline: 0;
 }
