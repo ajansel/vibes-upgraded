@@ -33390,14 +33390,14 @@ var UserSearchIndexItem = function (_React$Component) {
         // Unfollow button
         followButton = _react2.default.createElement(
           'button',
-          { onClick: this.handleClick("unfollow") },
+          { className: 'UnfollowButton-US', onClick: this.handleClick("unfollow") },
           'Following'
         );
       } else {
         // follow button
         followButton = _react2.default.createElement(
           'button',
-          { onClick: this.handleClick("follow") },
+          { className: 'FollowButton-US', onClick: this.handleClick("follow") },
           'Follow'
         );
       }

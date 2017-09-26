@@ -55,6 +55,10 @@
   cursor: pointer;
 }
 
+.LikeButton:focus {
+  outline: 0;
+}
+
 .LikeContent {
   text-align: left;
   font-size: 14px;

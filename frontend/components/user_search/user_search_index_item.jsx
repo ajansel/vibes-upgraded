@@ -38,10 +38,10 @@ class UserSearchIndexItem extends React.Component {
     let followButton;
     if (this.state.following) {
       // Unfollow button
-      followButton = <button onClick={this.handleClick("unfollow")}>Following</button>;
+      followButton = <button className="UnfollowButton-US" onClick={this.handleClick("unfollow")}>Following</button>;
     } else {
       // follow button
-      followButton = <button onClick={this.handleClick("follow")}>Follow</button>;
+      followButton = <button className="FollowButton-US" onClick={this.handleClick("follow")}>Follow</button>;
     }
 
     return(

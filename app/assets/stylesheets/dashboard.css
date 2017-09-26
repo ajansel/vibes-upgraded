@@ -107,3 +107,7 @@
   background-color: #0258B1;
   border-color: #0258B1
 }
+
+.FollowButton:focus {
+  outline: 0;
+}
