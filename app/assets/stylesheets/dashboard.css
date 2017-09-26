@@ -13,6 +13,16 @@
   width: 600px;
 }
 
+.UserWidget > a {
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+}
+
+.UserWidget > p {
+  text-transform: capitalize;
+}
+
 .Dashboard > .UserWidget, .Dashboard > .BonusWidget {
   /*border: 1px solid black;*/
   background-color: white;

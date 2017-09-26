@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .UserSearch {
-  align-items: center;
+  text-align: center;
 }
 
 .UserSearch > input {
@@ -31,6 +31,11 @@
   background-color: white;
   border-radius: 5px;
   border: 1px solid #C0C0C0;
+}
+
+.UserSearchImgAnchor {
+  align-items: center;
+  height: 40px;
 }
 
 // .UserSearchIndex > *:nth-child(2n) {
@@ -61,8 +66,22 @@
 .UserSearchIndex > li > a {
   text-decoration: none;
   color: black;
+  text-transform: capitalize;
   margin-left: 10px;
+  align-content: center;
 }
+
+.UserSearchIndex > li > a > p {
+  margin: 0;
+}
+
+.UserSearchIndex > li > a > p:first-child {
+  margin: 0 0 5px 0;
+}
+
+// .UserSearchIndex > li > * {
+//   align-content: center;
+// }
 
 .UserSearchIndex {
   position: fixed;
@@ -73,4 +92,5 @@
 .UserSearchIndex > li > a > img {
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }

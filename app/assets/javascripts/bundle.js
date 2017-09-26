@@ -33361,13 +33361,22 @@ var UserSearchIndexItem = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/profile/' + this.user.id },
+          { className: 'UserSearchImgAnchor', to: '/profile/' + this.user.id },
           _react2.default.createElement('img', { src: this.user.img_url })
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/profile/' + this.user.id },
-          this.user.username
+          _react2.default.createElement(
+            'p',
+            null,
+            this.user.name
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            "@" + this.user.username
+          )
         ),
         followButton
       );
