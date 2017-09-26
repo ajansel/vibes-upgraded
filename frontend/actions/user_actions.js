@@ -1,5 +1,6 @@
 import {searchUserDatabase, getUser} from '../util/user_api_util';
 import {postFollow, deleteFollow } from '../util/follow_api_util';
+import {receiveCurrentUser} from './session_actions';
 
 export const RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -28,14 +29,24 @@ export const searchDatabase = (query) => (dispatch) => (
   )
 );
 
-export const followUser = (id) => (dispatch) => (
+export const followUser = (id, currentUserId) => (dispatch) => (
   postFollow(id).then(
     user => dispatch(receiveUser(user))
+  ).then(
+    () => dispatch(fetchCurrentUser(currentUserId))
   )
 );
 
-export const unfollowUser = (id) => (dispatch) => (
+export const unfollowUser = (id, currentUserId) => (dispatch) => (
   deleteFollow(id).then(
     user => dispatch(receiveUser(user))
+  ).then(
+    () => dispatch(fetchCurrentUser(currentUserId))
+  )
+);
+
+export const fetchCurrentUser = (currentUserId) => (dispatch) => (
+  getUser(currentUserId).then(
+    (user) => dispatch(receiveCurrentUser(user))
   )
 );

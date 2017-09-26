@@ -10,6 +10,7 @@ class UserSearchIndexItem extends React.Component {
     this.state = { following: this.user.followed_by_current_user };
     this.followUser = props.followUser;
     this.unfollowUser = props.unfollowUser;
+    this.updateCurrentUser = props.updateCurrentUser;
   }
 
   handleClick(action) {
@@ -18,12 +19,16 @@ class UserSearchIndexItem extends React.Component {
       if (action === "follow") {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.followUser(this.user.id);
+          this.followUser(this.user.id, this.currentUser.id);
+          // this.currentUser.followees += 1;
+          // this.updateCurrentUser(this.currentUser);
         });
       } else {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.unfollowUser(this.user.id);
+          this.unfollowUser(this.user.id, this.currentUser.id);
+          // this.currentUser.followees -= 1;
+          // this.updateCurrentUser(this.currentUser);
         });
       }
     };

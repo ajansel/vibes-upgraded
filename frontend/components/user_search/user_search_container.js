@@ -10,8 +10,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   searchDatabase: (query) => dispatch(searchDatabase(query)),
-  followUser: (followeeId) => dispatch(followUser(followeeId)),
-  unfollowUser: (followeeId) => dispatch(unfollowUser(followeeId))
+  followUser: (followeeId, currentUserId) => dispatch(followUser(followeeId, currentUserId)),
+  unfollowUser: (followeeId, currentUserId) => dispatch(unfollowUser(followeeId, currentUserId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSearch);

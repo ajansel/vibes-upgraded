@@ -3925,14 +3925,14 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logout = exports.login = exports.signup = exports.receiveSessionErrors = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
+exports.logout = exports.login = exports.signup = exports.receiveSessionErrors = exports.receiveCurrentUser = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
 
 var _session_api_util = __webpack_require__(250);
 
 var RECEIVE_CURRENT_USER = exports.RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = exports.RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
-var receiveCurrentUser = function receiveCurrentUser(currentUser) {
+var receiveCurrentUser = exports.receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
     type: RECEIVE_CURRENT_USER,
     currentUser: currentUser
@@ -3986,11 +3986,13 @@ var logout = exports.logout = function logout() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.fetchUser = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
+exports.fetchCurrentUser = exports.unfollowUser = exports.followUser = exports.searchDatabase = exports.fetchUser = exports.RECEIVE_USER = exports.RECEIVE_USER_SEARCH_RESULTS = undefined;
 
 var _user_api_util = __webpack_require__(261);
 
 var _follow_api_util = __webpack_require__(262);
+
+var _session_actions = __webpack_require__(32);
 
 var RECEIVE_USER_SEARCH_RESULTS = exports.RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 var RECEIVE_USER = exports.RECEIVE_USER = "RECEIVE_USER";
@@ -4027,18 +4029,30 @@ var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
   };
 };
 
-var followUser = exports.followUser = function followUser(id) {
+var followUser = exports.followUser = function followUser(id, currentUserId) {
   return function (dispatch) {
     return (0, _follow_api_util.postFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
+    }).then(function () {
+      return dispatch(fetchCurrentUser(currentUserId));
     });
   };
 };
 
-var unfollowUser = exports.unfollowUser = function unfollowUser(id) {
+var unfollowUser = exports.unfollowUser = function unfollowUser(id, currentUserId) {
   return function (dispatch) {
     return (0, _follow_api_util.deleteFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
+    }).then(function () {
+      return dispatch(fetchCurrentUser(currentUserId));
+    });
+  };
+};
+
+var fetchCurrentUser = exports.fetchCurrentUser = function fetchCurrentUser(currentUserId) {
+  return function (dispatch) {
+    return (0, _user_api_util.getUser)(currentUserId).then(function (user) {
+      return dispatch((0, _session_actions.receiveCurrentUser)(user));
     });
   };
 };
@@ -13389,11 +13403,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     searchDatabase: function searchDatabase(query) {
       return dispatch((0, _user_actions.searchDatabase)(query));
     },
-    followUser: function followUser(followeeId) {
-      return dispatch((0, _user_actions.followUser)(followeeId));
+    followUser: function followUser(followeeId, currentUserId) {
+      return dispatch((0, _user_actions.followUser)(followeeId, currentUserId));
     },
-    unfollowUser: function unfollowUser(followeeId) {
-      return dispatch((0, _user_actions.unfollowUser)(followeeId));
+    unfollowUser: function unfollowUser(followeeId, currentUserId) {
+      return dispatch((0, _user_actions.unfollowUser)(followeeId, currentUserId));
     }
   };
 };
@@ -33312,6 +33326,7 @@ var UserSearchIndexItem = function (_React$Component) {
     _this.state = { following: _this.user.followed_by_current_user };
     _this.followUser = props.followUser;
     _this.unfollowUser = props.unfollowUser;
+    _this.updateCurrentUser = props.updateCurrentUser;
     return _this;
   }
 
@@ -33325,12 +33340,16 @@ var UserSearchIndexItem = function (_React$Component) {
         if (action === "follow") {
           var oppositeCurrentFollowing = !_this2.state.following;
           _this2.setState({ following: oppositeCurrentFollowing }, function () {
-            _this2.followUser(_this2.user.id);
+            _this2.followUser(_this2.user.id, _this2.currentUser.id);
+            // this.currentUser.followees += 1;
+            // this.updateCurrentUser(this.currentUser);
           });
         } else {
           var _oppositeCurrentFollowing = !_this2.state.following;
           _this2.setState({ following: _oppositeCurrentFollowing }, function () {
-            _this2.unfollowUser(_this2.user.id);
+            _this2.unfollowUser(_this2.user.id, _this2.currentUser.id);
+            // this.currentUser.followees -= 1;
+            // this.updateCurrentUser(this.currentUser);
           });
         }
       };
