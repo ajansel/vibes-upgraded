@@ -5,15 +5,23 @@
   background-color: white;
   margin-bottom: 5px;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
 }
 
 .UserInfoAndPostBody {
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .PostBody > div {
   margin-bottom: 1px;
+}
+
+.UserPic {
+  /*display: flex;
+  flex-direction: column;
+  justify-content: center;*/
+  height: 40px;
+  /*margin-left: 10px;*/
 }
 
 .UserPic > a > img {
@@ -23,6 +31,8 @@
   margin-bottom: 0px;
 }
 
+.UsernameAndName {}
+
 .UsernameAndName > a > p{
   margin: 0;
   text-align: left;
@@ -30,6 +40,7 @@
   margin-bottom: 10px;
   color: black;
   text-transform: capitalize;
+  height: 20px;
 }
 
 .UsernameAndName > a {
