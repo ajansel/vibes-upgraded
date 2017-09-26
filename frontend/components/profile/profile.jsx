@@ -88,9 +88,9 @@ class Profile extends React.Component {
             <p>Following</p>
           </div>
           <div className="Stats">
-            <p>30</p>
-            <p>406</p>
-            <p>384</p>
+            <p>{this.state.user.posts}</p>
+            <p>{this.state.user.followers}</p>
+            <p>{this.state.user.followees}</p>
           </div>
           {followButton}
         </div>

@@ -39,9 +39,9 @@ class Dashboard extends React.Component {
             <p>Following</p>
           </div>
           <div className="Stats">
-            <p>30</p>
-            <p>406</p>
-            <p>384</p>
+            <p>{this.props.currentUser.posts}</p>
+            <p>{this.props.currentUser.followers}</p>
+            <p>{this.props.currentUser.followees}</p>
           </div>
         </div>
         <div className="SearchAndFeed">

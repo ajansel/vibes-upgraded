@@ -31285,17 +31285,17 @@ var Dashboard = function (_React$Component) {
             _react2.default.createElement(
               'p',
               null,
-              '30'
+              this.props.currentUser.posts
             ),
             _react2.default.createElement(
               'p',
               null,
-              '406'
+              this.props.currentUser.followers
             ),
             _react2.default.createElement(
               'p',
               null,
-              '384'
+              this.props.currentUser.followees
             )
           )
         ),
@@ -34035,17 +34035,17 @@ var Profile = function (_React$Component) {
             _react2.default.createElement(
               'p',
               null,
-              '30'
+              this.state.user.posts
             ),
             _react2.default.createElement(
               'p',
               null,
-              '406'
+              this.state.user.followers
             ),
             _react2.default.createElement(
               'p',
               null,
-              '384'
+              this.state.user.followees
             )
           ),
           followButton
