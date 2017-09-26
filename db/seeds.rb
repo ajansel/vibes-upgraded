@@ -11,11 +11,28 @@ Post.destroy_all
 Like.destroy_all
 Follower.destroy_all
 
+counter = 2 # Because I want Jon Snow's to be 1
+images = []
+11.times do
+  images += [
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=bythepool&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=frogideas&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=sugarsweets&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=heatwave&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=daisygarden&numcolors=4&size=220&fmt=sv",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=seascape&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=summerwarmth&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=duskfalling&numcolors=4&size=220&fmt=svg",
+    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=berrypie&numcolors=4&size=220&fmt=svg",
+  ]
+  counter += 1
+end
+
 User.create!(
   name: 'Jon Snow',
   username: 'jonsnow',
   email: 'jonsnow@gmail.com',
-  img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+  img_url: "http://www.tinygraphs.com/labs/isogrids/hexa/1?theme=bythepool&numcolors=4&size=220&fmt=svg",
   password: 'password'
 )
 
@@ -30,7 +47,7 @@ User.create!(
     name: name,
     username: username,
     email: email,
-    img_url: 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+    img_url: images.pop,
     password: 'password'
   )
 end
