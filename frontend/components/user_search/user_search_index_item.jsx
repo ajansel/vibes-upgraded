@@ -40,12 +40,10 @@ class UserSearchIndexItem extends React.Component {
     }
 
     return(
-      <div>
-        <li>
-          <Link to={`/profile/${this.user.id}`}>{this.user.username}</Link>
-          {followButton}
-        </li>
-      </div>
+      <li>
+        <Link to={`/profile/${this.user.id}`}>{this.user.username}</Link>
+        {followButton}
+      </li>
     );
   }
 }

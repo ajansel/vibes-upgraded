@@ -21,10 +21,10 @@ class UserSearch extends React.Component {
   render(){
     return (
       <div className="UserSearch">
-        <input onChange={this.handleChange} type="text"
+        <input id="UserSearchInput" onChange={this.handleChange} type="text"
           placeholder="Search for a user"
           value={this.state.searchVal}></input>
-        <UserSearchIndex firstTime={this.state.firstTime}
+        <UserSearchIndex id="UserSearchUL" firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.userSearchResults)}
           searchVal={this.state.searchVal}
           currentUser={this.props.currentUser}

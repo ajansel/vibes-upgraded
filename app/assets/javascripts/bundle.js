@@ -33177,10 +33177,10 @@ var UserSearch = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'UserSearch' },
-        _react2.default.createElement('input', { onChange: this.handleChange, type: 'text',
+        _react2.default.createElement('input', { id: 'UserSearchInput', onChange: this.handleChange, type: 'text',
           placeholder: 'Search for a user',
           value: this.state.searchVal }),
-        _react2.default.createElement(_user_search_index2.default, { firstTime: this.state.firstTime,
+        _react2.default.createElement(_user_search_index2.default, { id: 'UserSearchUL', firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.userSearchResults),
           searchVal: this.state.searchVal,
           currentUser: this.props.currentUser,
@@ -33224,44 +33224,31 @@ exports.default = function (_ref) {
       followUser = _ref.followUser,
       unfollowUser = _ref.unfollowUser;
 
-  if (searchVal === "") return _react2.default.createElement('ul', null);
+  if (searchVal === "") return _react2.default.createElement('ul', { className: 'UserSearchIndex' });
 
-  var usersUl = void 0;
-  var usersHeader = void 0;
+  var listItems = void 0;
+  // let usersHeader;
 
-  if (firstTime === false) usersHeader = _react2.default.createElement(
-    'h3',
-    null,
-    'Users'
-  );
+  // if (firstTime === false) usersHeader = <h3>Users</h3>;
   if (searchItems.length !== 0) {
-    usersUl = _react2.default.createElement(
-      'ul',
-      null,
-      searchItems.map(function (user) {
-        return _react2.default.createElement(_user_search_index_item2.default, { currentUser: currentUser,
-          user: user, key: user.id,
-          followUser: followUser,
-          unfollowUser: unfollowUser });
-      })
-    );
+    listItems = searchItems.map(function (user) {
+      return _react2.default.createElement(_user_search_index_item2.default, { currentUser: currentUser,
+        user: user, key: user.id,
+        followUser: followUser,
+        unfollowUser: unfollowUser });
+    });
   } else if (firstTime === false) {
-    usersUl = _react2.default.createElement(
-      'ul',
+    listItems = _react2.default.createElement(
+      'li',
       null,
-      _react2.default.createElement(
-        'li',
-        null,
-        'No matchings users'
-      )
+      'No matchings users'
     );
   }
 
   return _react2.default.createElement(
-    'div',
+    'ul',
     { className: 'UserSearchIndex' },
-    usersHeader,
-    usersUl
+    listItems
   );
 };
 
@@ -33349,18 +33336,14 @@ var UserSearchIndexItem = function (_React$Component) {
       }
 
       return _react2.default.createElement(
-        'div',
+        'li',
         null,
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/profile/' + this.user.id },
-            this.user.username
-          ),
-          followButton
-        )
+          _reactRouterDom.Link,
+          { to: '/profile/' + this.user.id },
+          this.user.username
+        ),
+        followButton
       );
     }
   }]);
