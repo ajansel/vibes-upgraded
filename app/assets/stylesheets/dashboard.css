@@ -123,6 +123,6 @@
   border-color: #0258B1
 }
 
-.FollowButton-DB:focus, .UnfollowButton-DB:hover {
+.FollowButton-DB:focus, .UnfollowButton-DB:focus {
   outline: 0;
 }
