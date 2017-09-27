@@ -67,7 +67,7 @@ class Profile extends React.Component {
   }
 
   render(){
-    if (!this.state.user) return null;
+    if (!this.state.user || !this.props.user) return null;
 
     let followButton;
     if (this.currentUser && this.state.user.id === this.currentUser.id) {

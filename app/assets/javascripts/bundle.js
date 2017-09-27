@@ -34047,7 +34047,7 @@ var Profile = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (!this.state.user) return null;
+      if (!this.state.user || !this.props.user) return null;
 
       var followButton = void 0;
       if (this.currentUser && this.state.user.id === this.currentUser.id) {
