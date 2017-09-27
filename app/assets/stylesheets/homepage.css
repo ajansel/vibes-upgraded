@@ -29,10 +29,10 @@
 }
 
 .SignupButtons {
-  width: 242px;
+  width: 252px;
   display: flex;
   justify-content: space-between;
-  margin-left: 139px;
+  margin-left: 124px;
 }
 
 .SignupButtons > a {
