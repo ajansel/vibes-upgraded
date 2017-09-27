@@ -35,6 +35,7 @@
   /*border: 1px solid black;*/
   box-sizing: border-box;
   padding: 5px;
+  padding-top: 0px;
   text-align: center;
   margin: 0px;
   display: flex;

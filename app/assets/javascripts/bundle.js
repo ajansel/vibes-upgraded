@@ -33227,6 +33227,7 @@ var UserSearch = function (_React$Component) {
 
     _this.state = { searchVal: '', firstTime: true };
     _this.handleChange = _this.handleChange.bind(_this);
+    _this.clearState = _this.clearState.bind(_this);
     return _this;
   }
 
@@ -33243,6 +33244,11 @@ var UserSearch = function (_React$Component) {
       });
     }
   }, {
+    key: 'clearState',
+    value: function clearState() {
+      this.setState({ searchVal: '', firstTime: false });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -33256,7 +33262,8 @@ var UserSearch = function (_React$Component) {
           searchVal: this.state.searchVal,
           currentUser: this.props.currentUser,
           followUser: this.props.followUser,
-          unfollowUser: this.props.unfollowUser })
+          unfollowUser: this.props.unfollowUser,
+          clearState: this.clearState })
       );
     }
   }]);
@@ -33293,7 +33300,8 @@ exports.default = function (_ref) {
       searchVal = _ref.searchVal,
       currentUser = _ref.currentUser,
       followUser = _ref.followUser,
-      unfollowUser = _ref.unfollowUser;
+      unfollowUser = _ref.unfollowUser,
+      clearState = _ref.clearState;
 
   if (searchVal === "") return _react2.default.createElement('ul', { className: 'UserSearchIndex' });
 
@@ -33306,7 +33314,8 @@ exports.default = function (_ref) {
       return _react2.default.createElement(_user_search_index_item2.default, { currentUser: currentUser,
         user: user, key: user.id,
         followUser: followUser,
-        unfollowUser: unfollowUser });
+        unfollowUser: unfollowUser,
+        clearState: clearState });
     });
   } else if (firstTime === false) {
     listItems = _react2.default.createElement(
@@ -33416,12 +33425,13 @@ var UserSearchIndexItem = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { className: 'UserSearchImgAnchor', to: '/profile/' + this.user.id },
+          { onClick: this.props.clearState, className: 'UserSearchImgAnchor',
+            to: '/profile/' + this.user.id },
           _react2.default.createElement('img', { src: this.user.img_url })
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/profile/' + this.user.id },
+          { onClick: this.props.clearState, to: '/profile/' + this.user.id },
           _react2.default.createElement(
             'p',
             null,

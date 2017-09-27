@@ -1,7 +1,8 @@
 import React from 'react';
 import UserSearchIndexItem from './user_search_index_item';
 
-export default ({searchItems, firstTime, searchVal, currentUser, followUser, unfollowUser}) => {
+export default ({searchItems, firstTime, searchVal, currentUser,
+                 followUser, unfollowUser, clearState}) => {
   if (searchVal === "") return (<ul className="UserSearchIndex"></ul>);
 
   let listItems;
@@ -14,7 +15,8 @@ export default ({searchItems, firstTime, searchVal, currentUser, followUser, unf
         (user) => (<UserSearchIndexItem currentUser={currentUser}
           user={user} key={user.id}
           followUser={followUser}
-          unfollowUser={unfollowUser}/>)
+          unfollowUser={unfollowUser}
+          clearState={clearState}/>)
       );
   } else if (firstTime === false){
     listItems =

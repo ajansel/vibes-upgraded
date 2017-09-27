@@ -7,6 +7,7 @@ class UserSearch extends React.Component {
 
     this.state = { searchVal: '', firstTime: true };
     this.handleChange = this.handleChange.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
 
   handleChange(e) {
@@ -16,6 +17,10 @@ class UserSearch extends React.Component {
     this.setState({ searchVal: newVal, firstTime: false }, () => {
       this.props.searchDatabase(this.state.searchVal);
     });
+  }
+
+  clearState() {
+    this.setState({ searchVal: '', firstTime: false });
   }
 
   render(){
@@ -29,7 +34,8 @@ class UserSearch extends React.Component {
           searchVal={this.state.searchVal}
           currentUser={this.props.currentUser}
           followUser={this.props.followUser}
-          unfollowUser={this.props.unfollowUser}/>
+          unfollowUser={this.props.unfollowUser}
+          clearState={this.clearState}/>
       </div>
     );
   }

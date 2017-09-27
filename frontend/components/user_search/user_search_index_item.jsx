@@ -46,8 +46,9 @@ class UserSearchIndexItem extends React.Component {
 
     return(
       <li>
-        <Link className="UserSearchImgAnchor" to={`/profile/${this.user.id}`}><img src={this.user.img_url}/></Link>
-        <Link to={`/profile/${this.user.id}`}><p>{this.user.name}</p>
+        <Link onClick={this.props.clearState} className="UserSearchImgAnchor"
+          to={`/profile/${this.user.id}`}><img src={this.user.img_url}/></Link>
+        <Link onClick={this.props.clearState} to={`/profile/${this.user.id}`}><p>{this.user.name}</p>
         <p>{"@" + this.user.username}</p></Link>
         {followButton}
       </li>
