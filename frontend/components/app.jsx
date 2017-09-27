@@ -14,12 +14,7 @@ const App = (props) => {
     <div className="EntirePageBody">
       <header className="NavBar">
         <div className="NavBarContent">
-          <Link className="HeaderLogo" to="/">
-            <div className="HeaderBackground">
-              <img className="HeaderLogoImg" src="https://github.com/ajansel/vibes/blob/master/my_non_rails_files/onlinelogomaker-092617-1930-0776.png?raw=true"></img>
-              <h1 className="HeaderLogoText">Vibes</h1>
-            </div>
-          </Link>
+          <Link className="HeaderLogo" to="/">Vibes</Link>
           <UserSearchContainer />
           <SessionButtonsContainer />
         </div>

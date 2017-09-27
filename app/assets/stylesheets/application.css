@@ -75,36 +75,12 @@
 .HeaderLogo {
   width: 220px;
   padding-left: 10px;
-  color: #333333;
-  /*font-size: 48px;*/
-  height: 55px;
+  color: white;
+  font-size: 48px;
   font-weight: bold;
   text-decoration: none;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-.HeaderLogoText {
-  font-size: 36px;
-  margin: 0;
-  padding-left: 5px;
-  color: white;
-  border: 0px;
-}
-
-.HeaderBackground {
-  display: flex;
-  align-items: center;
-  width: auto;
-  background-color: #3D93FC;
-  /*border-right: 1px solid white;*/
-  border-radius: 5px;
-  margin-right: 55px;
-  padding-left: 5px;
-}
-
-.HeaderLogoImg {
-  height: 35px;
+.NavBarContent > div.UserSearch {
 }

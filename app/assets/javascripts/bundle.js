@@ -30600,16 +30600,7 @@ var App = function App(props) {
         _react2.default.createElement(
           _reactRouterDom.Link,
           { className: 'HeaderLogo', to: '/' },
-          _react2.default.createElement(
-            'div',
-            { className: 'HeaderBackground' },
-            _react2.default.createElement('img', { className: 'HeaderLogoImg', src: 'https://github.com/ajansel/vibes/blob/master/my_non_rails_files/onlinelogomaker-092617-1930-0776.png?raw=true' }),
-            _react2.default.createElement(
-              'h1',
-              { className: 'HeaderLogoText' },
-              'Vibes'
-            )
-          )
+          'Vibes'
         ),
         _react2.default.createElement(_user_search_container2.default, null),
         _react2.default.createElement(_session_buttons_container2.default, null)
