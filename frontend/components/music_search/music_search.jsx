@@ -22,10 +22,26 @@ class MusicSearch extends React.Component {
   clearState() {
     this.setState({ searchVal: '', firstTime: false });
   }
-
+  //
+  // <i className={`fa fa-pencil`} aria-hidden="true"></i>
+  // <p>Find a song. Highlight your text. Click Post.</p>
   render(){
     return (
       <div className="MusicSearch">
+        <div className="MusicSearchArt">
+          <div>
+            <i className={"fa fa-music"} aria-hidden="true"></i>
+            <p>Find song.</p>
+          </div>
+          <div>
+            <i className={"fa fa-i-cursor"} aria-hidden="true"></i>
+            <p className="Highlight">Highlight text.</p>
+          </div>
+          <div>
+            <i className={"fa fa-hand-pointer-o"} aria-hidden="true"></i>
+            <p>Click Post.</p>
+          </div>
+        </div>
         <input onChange={this.handleChange} type="text"
           placeholder="Search for a song, artist, or album"
           value={this.state.searchVal}></input>

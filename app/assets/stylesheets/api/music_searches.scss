@@ -19,7 +19,7 @@
   border-style: solid;
   border-color: #C0C0C0;
   width: 400px;
-  margin: 10px 0px;
+  margin: 0px 0px 10px 0px;
   box-sizing: border-box;
 }
 
@@ -57,7 +57,8 @@
 
 .SearchIndex {
   position: absolute;
-  top: 138px;
+  // top: 138px;
+  top: 168px;
   margin: 0;
   padding: 0;
   width: 400px;
@@ -66,4 +67,33 @@
 
 .SearchIndex > ul:first-child {
   margin-top: 0px;
+}
+
+.MusicSearchArt {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0px 10px 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  width: 400px;
+  box-sizing: border-box;
+}
+
+.MusicSearchArt > div > p {
+  margin: 0px 0px 0px 5px;
+  font-size: 14px;
+}
+
+.MusicSearchArt > div {
+  display: flex;
+  align-items: center;
+}
+
+.fa-i-cursor {
+  font-size: 13px;
+}
+
+.Highlight {
+  background-color: rgb(184,214,251);
 }

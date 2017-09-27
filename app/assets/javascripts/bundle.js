@@ -31493,12 +31493,50 @@ var MusicSearch = function (_React$Component) {
     value: function clearState() {
       this.setState({ searchVal: '', firstTime: false });
     }
+    //
+    // <i className={`fa fa-pencil`} aria-hidden="true"></i>
+    // <p>Find a song. Highlight your text. Click Post.</p>
+
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'MusicSearch' },
+        _react2.default.createElement(
+          'div',
+          { className: 'MusicSearchArt' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', { className: "fa fa-music", 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Find song.'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', { className: "fa fa-i-cursor", 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'p',
+              { className: 'Highlight' },
+              'Highlight text.'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', { className: "fa fa-hand-pointer-o", 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Click Post.'
+            )
+          )
+        ),
         _react2.default.createElement('input', { onChange: this.handleChange, type: 'text',
           placeholder: 'Search for a song, artist, or album',
           value: this.state.searchVal }),
