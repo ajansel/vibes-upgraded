@@ -35,17 +35,26 @@
   margin-left: 124px;
 }
 
+.DemoButton-HP {
+  background-color: #4c4c4c;
+  border: 2px solid #4c4c4c;
+}
+
+.SignupButtons > a:first-child {
+  background-color: #3396ff;
+  border: 2px solid #3396ff;
+}
+
 .SignupButtons > a {
   padding: 6px 16px;
   color: white;
-  background-color: #3396ff;
   width: 80px;
   text-align: center;
   text-decoration: none;
-  border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
 }
+
 
 .SignupButtons > a:hover {
   background-color: #0258B1;

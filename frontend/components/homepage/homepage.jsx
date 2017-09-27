@@ -25,7 +25,7 @@ class Homepage extends React.Component {
               It's fast, easy, and free!</p>
             <div className="SignupButtons">
               <Link to="/signup">Sign Up</Link>
-              <a onClick={this.handleClick}>See Demo</a>
+              <a className="DemoButton-HP" onClick={this.handleClick}>See Demo</a>
             </div>
           </div>
         </div>

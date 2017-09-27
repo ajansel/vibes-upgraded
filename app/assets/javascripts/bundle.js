@@ -31148,7 +31148,7 @@ var Homepage = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'a',
-                { onClick: this.handleClick },
+                { className: 'DemoButton-HP', onClick: this.handleClick },
                 'See Demo'
               )
             )
