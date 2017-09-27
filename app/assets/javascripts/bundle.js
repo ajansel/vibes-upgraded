@@ -31633,7 +31633,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Song Results:'
+        'Songs'
       ),
       songs.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
@@ -31647,7 +31647,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Song Results:'
+        'Songs'
       ),
       _react2.default.createElement(
         'li',
@@ -31669,7 +31669,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Artist Results:'
+        'Artists'
       ),
       artists.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
@@ -31683,7 +31683,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Artist Results:'
+        'Artists'
       ),
       _react2.default.createElement(
         'li',
@@ -31705,7 +31705,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Album Results:'
+        'Albums'
       ),
       albums.map(function (item) {
         return _react2.default.createElement(_search_index_item2.default, { currentUser: currentUser,
@@ -31719,7 +31719,7 @@ exports.default = function (_ref) {
       _react2.default.createElement(
         'li',
         { className: 'Header' },
-        'Album Results:'
+        'Albums'
       ),
       _react2.default.createElement(
         'li',

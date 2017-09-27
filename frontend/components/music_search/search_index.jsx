@@ -30,7 +30,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   if (songs.length !== 0) {
     songsUl =
     <ul>
-      <li className="Header">Song Results:</li>
+      <li className="Header">Songs</li>
       {songs.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id} clearState={clearState}/>)
@@ -39,7 +39,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   } else if (firstTime === false){
     songsUl =
     <ul>
-      <li className="Header">Song Results:</li>
+      <li className="Header">Songs</li>
       <li>No matchings songs</li>
     </ul>;
   }
@@ -48,7 +48,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   if (artists.length !== 0) {
     artistsUl =
     <ul>
-      <li className="Header">Artist Results:</li>
+      <li className="Header">Artists</li>
       {artists.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id} clearState={clearState}/>)
@@ -57,7 +57,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   } else if (firstTime === false){
     artistsUl =
     <ul>
-      <li className="Header">Artist Results:</li>
+      <li className="Header">Artists</li>
       <li>No matchings artists</li>
     </ul>;
   }
@@ -66,7 +66,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   if (albums.length !== 0) {
     albumsUl =
     <ul>
-      <li className="Header">Album Results:</li>
+      <li className="Header">Albums</li>
       {albums.map(
         (item) => (<SearchIndexItem currentUser={currentUser}
           item={item} key={item.id} clearState={clearState}/>)
@@ -75,7 +75,7 @@ export default ({searchItems, firstTime, searchVal, currentUser, clearState}) =>
   } else if (firstTime === false){
     albumsUl =
     <ul>
-      <li className="Header">Album Results:</li>
+      <li className="Header">Albums</li>
       <li>No matchings albums</li>
     </ul>;
   }
