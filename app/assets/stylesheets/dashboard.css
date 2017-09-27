@@ -83,12 +83,21 @@
 
 .SuggestedAlbumTitle, .SuggestedAlbumArtist {
   margin: 10px 0 0 0;
+}
+
+.SuggestedAlbumTitle {
   font-size: 16px;
+  font-weight: bold;
+}
+
+.SuggestedAlbumArtist {
+  font-size: 14px;
 }
 
 .SuggestedAlbum {
   margin: 5px 0 0 0;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .FollowButton-DB {
