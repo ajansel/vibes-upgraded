@@ -23,6 +23,10 @@
   box-sizing: border-box;
 }
 
+.MusicSearch > input:focus {
+  outline: 0;
+}
+
 .SearchIndex > ul {
   padding: 0;
 }
@@ -30,6 +34,8 @@
 .Header {
   background-color: rgb(175, 175, 175);
   border-bottom: 3px solid black;
+  // border: 1px solid #C0C0C0;
+  border-radius: 5px;
 }
 
 .SearchIndex > ul > * {
@@ -40,7 +46,7 @@
   width: 400px;
   cursor: pointer;
   display: inline-block;
-  background-color: white;
+  background-color: #3D93FC;
 }
 
 .SearchIndex > ul > *:nth-child(2n):not(.Header) {
@@ -60,7 +66,7 @@
 .SearchIndex {
   position: absolute;
   // top: 138px;
-  top: 168px;
+  top: 161px;
   margin: 0;
   padding: 0;
   width: 400px;

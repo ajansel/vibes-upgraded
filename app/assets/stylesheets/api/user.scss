@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+.UserSearch > input:focus {
+  outline: 0;
+}
+
 .UserSearchIndex > li {
   list-style-type: none;
   text-align: center;
@@ -72,6 +76,10 @@
   border: 2px solid #3396ff;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.FollowButton-US:focus, .UnfollowButton-US:focus {
+  outline: 0;
 }
 
 .UserSearchIndex > li > button:hover {
