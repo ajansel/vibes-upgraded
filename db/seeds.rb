@@ -11,22 +11,22 @@ Post.destroy_all
 Like.destroy_all
 Follower.destroy_all
 
-counter = 2 # Because I want Jon Snow's to be 1
-images = []
-11.times do
-  images += [
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=bythepool&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=frogideas&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=sugarsweets&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=heatwave&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=daisygarden&numcolors=4&size=220&fmt=sv",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=seascape&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=summerwarmth&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=duskfalling&numcolors=4&size=220&fmt=svg",
-    "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=berrypie&numcolors=4&size=220&fmt=svg",
-  ]
-  counter += 1
-end
+# counter = 2 # Because I want Jon Snow's to be 1
+# images = []
+# 11.times do
+#   images += [
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=bythepool&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=frogideas&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=sugarsweets&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=heatwave&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=daisygarden&numcolors=4&size=220&fmt=sv",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=seascape&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=summerwarmth&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=duskfalling&numcolors=4&size=220&fmt=svg",
+#     "http://www.tinygraphs.com/labs/isogrids/hexa/#{counter}?theme=berrypie&numcolors=4&size=220&fmt=svg",
+#   ]
+#   counter += 1
+# end
 
 User.create!(
   name: 'Jon Snow',
@@ -36,34 +36,41 @@ User.create!(
   password: 'password'
 )
 
-99.times do
+499.times do
   name = Faker::Name.unique.name
   name_arr = name.remove('.').split(' ')
   username = name_arr[0]
   username += '_' + name_arr[1] if name_arr[1]
   email = username + '@gmail.com'
 
+  rand_color = [3,4].sample
+  rand_theme = ['bythepool', 'frogideas', 'sugarsweets', 'heatwave',
+                'daisygarden', 'seascape', 'summerwarmth', 'duskfalling',
+                'berrypie'].sample
+
   User.create!(
     name: name,
     username: username,
     email: email,
-    img_url: images.pop,
+    img_url: "http://www.tinygraphs.com/labs/isogrids/hexa/#{username}?theme=#{rand_theme}&numcolors=#{rand_color}&size=220&fmt=svg",
     password: 'password'
   )
 end
 
 User.all.each do |user|
-  random_song = Song.all[rand(Song.all.length)]
-
-  until random_song.lyrics.split("\n")[2] != "" and random_song.lyrics.split("\n")[2] != nil
+  5.times do
     random_song = Song.all[rand(Song.all.length)]
-  end
 
-  Post.create!(body: random_song.lyrics.split("\n")[2],
-               song_id: random_song.id, author_id: user.id)
+    until random_song.lyrics.split("\n")[2] != "" and random_song.lyrics.split("\n")[2] != nil
+      random_song = Song.all[rand(Song.all.length)]
+    end
+
+    Post.create!(body: random_song.lyrics.split("\n")[2],
+                 song_id: random_song.id, author_id: user.id)
+  end
 end
 
-5.times do
+1000.times do
   User.all.each do |user|
     post = Post.all[rand(Post.all.length)]
       if user.id != post.author_id && Like.where(user_id: user.id, post_id: post.id).length == 0
@@ -72,7 +79,7 @@ end
   end
 end
 
-5.times do
+500.times do
   User.all.each do |user|
     new_user = User.all[rand(User.all.length)]
       if user.id != new_user.id && Follower.where(follower_id: user.id, followee_id: new_user.id).length == 0
