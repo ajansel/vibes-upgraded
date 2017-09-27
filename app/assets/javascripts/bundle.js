@@ -30838,6 +30838,7 @@ var SessionForm = function (_React$Component) {
     };
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
