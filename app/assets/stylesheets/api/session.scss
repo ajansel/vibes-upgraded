@@ -109,10 +109,11 @@
   font-family: sans-serif;
   padding: 6px 16px;
   border-radius: 5px;
-  border: 2px solid white;
   cursor: pointer;
-  width: 121px;
+  width: 125px;
   text-align: center;
+  background-color: #4c4c4c;
+  // opacity: .7;
 }
 
 .SessionButtons-SessionForm {
@@ -125,5 +126,4 @@
 .DemoButton:hover {
   background-color: #0258B1;
   border-color: #0258B1;
-  border: 2px solid white;
 }
