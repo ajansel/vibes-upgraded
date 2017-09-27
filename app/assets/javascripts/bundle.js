@@ -30879,7 +30879,7 @@ var SessionForm = function (_React$Component) {
       ) : _react2.default.createElement(
         'h1',
         null,
-        'Create a New Account'
+        'Create Account'
       );
 
       var welcomeMessage = undefined;
@@ -30965,7 +30965,7 @@ var SessionForm = function (_React$Component) {
 
       return _react2.default.createElement(
         'main',
-        { className: 'PageContainer' },
+        { className: 'EntirePageContainer' },
         _react2.default.createElement(
           'div',
           { className: 'SessionFormDiv' },

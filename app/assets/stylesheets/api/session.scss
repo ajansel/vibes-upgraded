@@ -42,10 +42,9 @@
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  background-color: #E9EBEE;
-  background-image: url('https://github.com/ajansel/vibes/blob/master/my_non_rails_files/wesley-tingey-223059.jpg?raw=true');
-  background-size: cover;
   height: 600px;
+  width: 800px;
+  margin: auto;
 }
 
 .WelcomeMessage {
@@ -60,7 +59,7 @@
 }
 
 .SessionForm {
-  width: 350px;
+  width: 300px;
   margin-top: 100px;
 }
 
@@ -76,6 +75,10 @@
 .SessionForm h1, .SessionFormDiv h1 {
   color: white;
   font-size: 36px;
+}
+
+.WelcomeMessage > * {
+  text-align: right;
 }
 
 .SessionFormSubmit {
