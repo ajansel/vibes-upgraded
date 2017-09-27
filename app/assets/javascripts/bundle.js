@@ -30787,6 +30787,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     receiveSessionErrors: function receiveSessionErrors() {
       return dispatch((0, _session_actions.receiveSessionErrors)([]));
+    },
+    login: function login(user) {
+      return dispatch((0, _session_actions.login)(user));
     }
   };
 };
@@ -30868,6 +30871,16 @@ var SessionForm = function (_React$Component) {
       if (this.props.match.path !== newprops.match.path) {
         this.props.receiveSessionErrors();
       }
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+      var _this4 = this;
+
+      var demoUser = { username: 'jonsnow', password: 'password' };
+      this.props.login(demoUser).then(function () {
+        return _this4.props.history.push("/dashboard");
+      });
     }
   }, {
     key: 'render',
@@ -30994,10 +31007,19 @@ var SessionForm = function (_React$Component) {
               _react2.default.createElement('br', null)
             ),
             _react2.default.createElement(
-              'button',
-              { className: 'SessionFormSubmit',
-                type: 'submit' },
-              buttonText
+              'div',
+              { className: 'SessionButtons-SessionForm' },
+              _react2.default.createElement(
+                'button',
+                { className: 'SessionFormSubmit',
+                  type: 'submit' },
+                buttonText
+              ),
+              _react2.default.createElement(
+                'a',
+                { className: 'DemoButton', onClick: this.handleClick },
+                'See Demo'
+              )
             )
           )
         )

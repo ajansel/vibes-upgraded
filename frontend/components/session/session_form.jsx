@@ -34,6 +34,11 @@ class SessionForm extends React.Component {
     }
   }
 
+  handleClick() {
+    const demoUser = { username: 'jonsnow', password: 'password' };
+    this.props.login(demoUser).then(() => this.props.history.push("/dashboard"));
+  }
+
   render(){
     const headerText = this.props.formType === 'login' ?
                     <h1>Log In</h1> : <h1>Create Account</h1>;
@@ -113,8 +118,11 @@ class SessionForm extends React.Component {
               <br />
               <br />
             </label>
-            <button className="SessionFormSubmit"
-              type="submit">{buttonText}</button>
+            <div className="SessionButtons-SessionForm">
+              <button className="SessionFormSubmit"
+                type="submit">{buttonText}</button>
+              <a className="DemoButton" onClick={this.handleClick}>See Demo</a>
+            </div>
           </form>
         </div>
       </main>

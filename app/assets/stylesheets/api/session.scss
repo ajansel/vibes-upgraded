@@ -90,7 +90,7 @@
   border: 0px;
   cursor: pointer;
   background-color: #3396ff;
-
+  width: 157px;
 }
 
 .SessionFormSubmit:hover {
@@ -101,4 +101,29 @@
 .ErrorsList > li {
   color: white;
   font-size: 18px;
+}
+
+.DemoButton {
+  color: white;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 6px 16px;
+  border-radius: 5px;
+  border: 2px solid white;
+  cursor: pointer;
+  width: 121px;
+  text-align: center;
+}
+
+.SessionButtons-SessionForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85px;
+}
+
+.DemoButton:hover {
+  background-color: #0258B1;
+  border-color: #0258B1;
+  border: 2px solid white;
 }
