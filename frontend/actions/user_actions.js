@@ -1,6 +1,7 @@
 import {searchUserDatabase, getUser} from '../util/user_api_util';
 import {postFollow, deleteFollow } from '../util/follow_api_util';
 import {receiveCurrentUser} from './session_actions';
+import {fetchProfilePosts, fetchPostsFromFollowers} from './post_actions';
 
 export const RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -29,19 +30,37 @@ export const searchDatabase = (query) => (dispatch) => (
   )
 );
 
-export const followUser = (id, currentUserId) => (dispatch) => (
+export const followUser = (id, currentUserId, feedType, userId) => (dispatch) => (
   postFollow(id).then(
     user => dispatch(receiveUser(user))
   ).then(
-    () => dispatch(updateCurrentUser(currentUserId))
+    () => {
+      return dispatch(updateCurrentUser(currentUserId, feedType, userId));
+    }
+  ).then(
+    () => {
+      if (feedType === 'dashboard'){
+        return dispatch(fetchPostsFromFollowers());
+      } else if (feedType === 'profile') {
+        return dispatch(fetchProfilePosts(userId));
+      }
+    }
   )
 );
 
-export const unfollowUser = (id, currentUserId) => (dispatch) => (
+export const unfollowUser = (id, currentUserId, feedType, userId) => (dispatch) => (
   deleteFollow(id).then(
     user => dispatch(receiveUser(user))
   ).then(
-    () => dispatch(updateCurrentUser(currentUserId))
+    () => dispatch(updateCurrentUser(currentUserId, feedType, userId))
+  ).then(
+    () => {
+      if (feedType === 'dashboard'){
+        dispatch(fetchPostsFromFollowers());
+      } else if (feedType === 'profile'){
+        dispatch(fetchProfilePosts(userId));
+      }
+    }
   )
 );
 

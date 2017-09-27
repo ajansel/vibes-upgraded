@@ -3994,6 +3994,8 @@ var _follow_api_util = __webpack_require__(262);
 
 var _session_actions = __webpack_require__(32);
 
+var _post_actions = __webpack_require__(44);
+
 var RECEIVE_USER_SEARCH_RESULTS = exports.RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
 var RECEIVE_USER = exports.RECEIVE_USER = "RECEIVE_USER";
 // export const RECEIVE_USER_SEARCH_RESULTS_ERRORS =
@@ -4029,22 +4031,34 @@ var searchDatabase = exports.searchDatabase = function searchDatabase(query) {
   };
 };
 
-var followUser = exports.followUser = function followUser(id, currentUserId) {
+var followUser = exports.followUser = function followUser(id, currentUserId, feedType, userId) {
   return function (dispatch) {
     return (0, _follow_api_util.postFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
     }).then(function () {
-      return dispatch(updateCurrentUser(currentUserId));
+      return dispatch(updateCurrentUser(currentUserId, feedType, userId));
+    }).then(function () {
+      if (feedType === 'dashboard') {
+        return dispatch((0, _post_actions.fetchPostsFromFollowers)());
+      } else if (feedType === 'profile') {
+        return dispatch((0, _post_actions.fetchProfilePosts)(userId));
+      }
     });
   };
 };
 
-var unfollowUser = exports.unfollowUser = function unfollowUser(id, currentUserId) {
+var unfollowUser = exports.unfollowUser = function unfollowUser(id, currentUserId, feedType, userId) {
   return function (dispatch) {
     return (0, _follow_api_util.deleteFollow)(id).then(function (user) {
       return dispatch(receiveUser(user));
     }).then(function () {
-      return dispatch(updateCurrentUser(currentUserId));
+      return dispatch(updateCurrentUser(currentUserId, feedType, userId));
+    }).then(function () {
+      if (feedType === 'dashboard') {
+        dispatch((0, _post_actions.fetchPostsFromFollowers)());
+      } else if (feedType === 'profile') {
+        dispatch((0, _post_actions.fetchProfilePosts)(userId));
+      }
     });
   };
 };
@@ -13395,12 +13409,17 @@ var _user_search2 = _interopRequireDefault(_user_search);
 
 var _user_actions = __webpack_require__(33);
 
+var _reactRouterDom = __webpack_require__(9);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var bool = ownProps.location.pathname.includes("profile");
   return {
     currentUser: state.session.currentUser,
-    userSearchResults: state.entities.userSearchResults
+    userSearchResults: state.entities.userSearchResults,
+    feedType: bool ? "profile" : "dashboard",
+    profileUser: bool ? ownProps.location.pathname.slice(9) : null
   };
 };
 
@@ -13409,16 +13428,16 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     searchDatabase: function searchDatabase(query) {
       return dispatch((0, _user_actions.searchDatabase)(query));
     },
-    followUser: function followUser(followeeId, currentUserId) {
-      return dispatch((0, _user_actions.followUser)(followeeId, currentUserId));
+    followUser: function followUser(followeeId, currentUserId, feedType, userId) {
+      return dispatch((0, _user_actions.followUser)(followeeId, currentUserId, feedType, userId));
     },
-    unfollowUser: function unfollowUser(followeeId, currentUserId) {
-      return dispatch((0, _user_actions.unfollowUser)(followeeId, currentUserId));
+    unfollowUser: function unfollowUser(followeeId, currentUserId, feedType, userId) {
+      return dispatch((0, _user_actions.unfollowUser)(followeeId, currentUserId, feedType, userId));
     }
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user_search2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user_search2.default));
 
 /***/ }),
 /* 129 */
@@ -33332,7 +33351,9 @@ var UserSearch = function (_React$Component) {
           currentUser: this.props.currentUser,
           followUser: this.props.followUser,
           unfollowUser: this.props.unfollowUser,
-          clearState: this.clearState })
+          clearState: this.clearState,
+          feedType: this.props.feedType,
+          profileUser: this.props.profileUser })
       );
     }
   }]);
@@ -33370,7 +33391,9 @@ exports.default = function (_ref) {
       currentUser = _ref.currentUser,
       followUser = _ref.followUser,
       unfollowUser = _ref.unfollowUser,
-      clearState = _ref.clearState;
+      clearState = _ref.clearState,
+      feedType = _ref.feedType,
+      profileUser = _ref.profileUser;
 
   if (searchVal === "") return _react2.default.createElement('ul', { className: 'UserSearchIndex' });
 
@@ -33384,7 +33407,9 @@ exports.default = function (_ref) {
         user: user, key: user.id,
         followUser: followUser,
         unfollowUser: unfollowUser,
-        clearState: clearState });
+        clearState: clearState,
+        feedType: feedType,
+        profileUser: profileUser });
     });
   } else if (firstTime === false) {
     listItems = _react2.default.createElement(
@@ -33455,14 +33480,14 @@ var UserSearchIndexItem = function (_React$Component) {
         if (action === "follow") {
           var oppositeCurrentFollowing = !_this2.state.following;
           _this2.setState({ following: oppositeCurrentFollowing }, function () {
-            _this2.followUser(_this2.user.id, _this2.currentUser.id);
+            _this2.followUser(_this2.user.id, _this2.currentUser.id, _this2.props.feedType, _this2.props.profileUser);
             // this.currentUser.followees += 1;
             // this.updateCurrentUser(this.currentUser);
           });
         } else {
           var _oppositeCurrentFollowing = !_this2.state.following;
           _this2.setState({ following: _oppositeCurrentFollowing }, function () {
-            _this2.unfollowUser(_this2.user.id, _this2.currentUser.id);
+            _this2.unfollowUser(_this2.user.id, _this2.currentUser.id, _this2.props.feedType, _this2.props.profileUser);
             // this.currentUser.followees -= 1;
             // this.updateCurrentUser(this.currentUser);
           });
@@ -34105,7 +34130,7 @@ var Profile = function (_React$Component) {
         if (_this5.currentUser && action === "follow") {
           var oppositeCurrentFollowing = !_this5.props.following;
           _this5.setState({ following: oppositeCurrentFollowing }, function () {
-            _this5.followUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
+            _this5.followUser(_this5.state.user.id, _this5.currentUser.id, 'profile', _this5.props.user).then(function () {
               return _this5.props.fetchUser(_this5.props.userId);
             });
             // .then(
@@ -34114,7 +34139,7 @@ var Profile = function (_React$Component) {
         } else if (_this5.currentUser) {
           var _oppositeCurrentFollowing = !_this5.props.following;
           _this5.setState({ following: _oppositeCurrentFollowing }, function () {
-            _this5.unfollowUser(_this5.state.user.id, _this5.currentUser.id).then(function () {
+            _this5.unfollowUser(_this5.state.user.id, _this5.currentUser.id, 'profile', _this5.props.user).then(function () {
               return _this5.props.fetchUser(_this5.props.userId);
             });
             // .then(

@@ -35,7 +35,9 @@ class UserSearch extends React.Component {
           currentUser={this.props.currentUser}
           followUser={this.props.followUser}
           unfollowUser={this.props.unfollowUser}
-          clearState={this.clearState}/>
+          clearState={this.clearState}
+          feedType={this.props.feedType}
+          profileUser={this.props.profileUser}/>
       </div>
     );
   }

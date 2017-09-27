@@ -19,14 +19,14 @@ class UserSearchIndexItem extends React.Component {
       if (action === "follow") {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.followUser(this.user.id, this.currentUser.id);
+          this.followUser(this.user.id, this.currentUser.id, this.props.feedType, this.props.profileUser);
           // this.currentUser.followees += 1;
           // this.updateCurrentUser(this.currentUser);
         });
       } else {
         let oppositeCurrentFollowing = !this.state.following;
         this.setState({ following: oppositeCurrentFollowing}, () => {
-          this.unfollowUser(this.user.id, this.currentUser.id);
+          this.unfollowUser(this.user.id, this.currentUser.id, this.props.feedType, this.props.profileUser);
           // this.currentUser.followees -= 1;
           // this.updateCurrentUser(this.currentUser);
         });
