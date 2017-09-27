@@ -30607,17 +30607,13 @@ var App = function App(props) {
       )
     ),
     _react2.default.createElement(
-      'main',
-      { className: 'PageContainer' },
-      _react2.default.createElement(
-        _reactRouterDom.Switch,
-        null,
-        _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
-        _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
-        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/profile/:userId', component: _profile_container2.default }),
-        _react2.default.createElement(_route_util.AuthRoute, { path: '/', component: _homepage_container2.default })
-      )
+      _reactRouterDom.Switch,
+      null,
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/dashboard', component: _dashboard_container2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/profile/:userId', component: _profile_container2.default }),
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/', component: _homepage_container2.default })
     )
   );
 };
@@ -30968,37 +30964,41 @@ var SessionForm = function (_React$Component) {
       );
 
       return _react2.default.createElement(
-        'div',
-        { className: 'SessionFormDiv' },
-        welcomeMessage,
+        'main',
+        { className: 'PageContainer' },
         _react2.default.createElement(
-          'form',
-          { onSubmit: this.handleSubmit(), className: 'SessionForm' },
-          headerText,
-          renderErrors,
-          fullName,
+          'div',
+          { className: 'SessionFormDiv' },
+          welcomeMessage,
           _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement('input', { type: 'text', onChange: this.handleChange("username"),
-              placeholder: 'Username', value: this.state.username }),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null)
-          ),
-          email,
-          _react2.default.createElement(
-            'label',
-            null,
-            _react2.default.createElement('input', { type: 'password', onChange: this.handleChange("password"),
-              placeholder: 'Password', value: this.state.password }),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement('br', null)
-          ),
-          _react2.default.createElement(
-            'button',
-            { className: 'SessionFormSubmit',
-              type: 'submit' },
-            buttonText
+            'form',
+            { onSubmit: this.handleSubmit(), className: 'SessionForm' },
+            headerText,
+            renderErrors,
+            fullName,
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement('input', { type: 'text', onChange: this.handleChange("username"),
+                placeholder: 'Username', value: this.state.username }),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement('br', null)
+            ),
+            email,
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement('input', { type: 'password', onChange: this.handleChange("password"),
+                placeholder: 'Password', value: this.state.password }),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement('br', null)
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'SessionFormSubmit',
+                type: 'submit' },
+              buttonText
+            )
           )
         )
       );
@@ -31098,33 +31098,37 @@ var Homepage = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'Homepage' },
+        'main',
+        { className: 'EntirePageContainer' },
         _react2.default.createElement(
           'div',
-          { className: 'Intro' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Good. Vibes. Only.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'No more custom posts or subtweets. Vibes let\'s you express yourself through lytics. Search for your favorite song, highlight the snippet of lyrics that fits your fibe, and click post. It\'s fast, easy, and free!'
-          ),
+          { className: 'Homepage' },
           _react2.default.createElement(
             'div',
-            { className: 'SignupButtons' },
+            { className: 'Intro' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/signup' },
-              'Sign Up'
+              'h1',
+              null,
+              'Good. Vibes. Only.'
             ),
             _react2.default.createElement(
-              'a',
-              { onClick: this.handleClick },
-              'See Demo'
+              'p',
+              null,
+              'No more custom posts or subtweets. Vibes let\'s you express yourself through lytics. Search for your favorite song, highlight the snippet of lyrics that fits your fibe, and click post. It\'s fast, easy, and free!'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'SignupButtons' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/signup' },
+                'Sign Up'
+              ),
+              _react2.default.createElement(
+                'a',
+                { onClick: this.handleClick },
+                'See Demo'
+              )
             )
           )
         )
@@ -31255,104 +31259,108 @@ var Dashboard = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'Dashboard' },
+        'main',
+        { className: 'PageContainer' },
         _react2.default.createElement(
           'div',
-          { className: 'UserWidget' },
+          { className: 'Dashboard' },
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/profile/' + this.props.currentUser.id },
-            _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url })
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/profile/' + this.props.currentUser.id },
+            'div',
+            { className: 'UserWidget' },
             _react2.default.createElement(
-              'p',
-              { className: 'Name' },
-              this.props.currentUser.name
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.props.currentUser.id },
+              _react2.default.createElement('img', { className: 'DashboardPic', src: this.props.currentUser.img_url })
             ),
             _react2.default.createElement(
-              'p',
-              { className: 'Name' },
-              "@" + this.props.currentUser.username
+              _reactRouterDom.Link,
+              { to: '/profile/' + this.props.currentUser.id },
+              _react2.default.createElement(
+                'p',
+                { className: 'Name' },
+                this.props.currentUser.name
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'Name' },
+                "@" + this.props.currentUser.username
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'StatHeaders' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Posts'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'Followers'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'Following'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'Stats' },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.currentUser.posts
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.currentUser.followers
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.currentUser.followees
+              )
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'StatHeaders' },
+            { className: 'SearchAndFeed' },
             _react2.default.createElement(
-              'p',
-              null,
-              'Posts'
+              'div',
+              { className: 'MusicSearchDiv' },
+              _react2.default.createElement(_music_search_container2.default, null)
             ),
             _react2.default.createElement(
-              'p',
-              null,
-              'Followers'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Following'
+              'div',
+              { className: 'Feed' },
+              _react2.default.createElement(_post_feed_dashboard_container2.default, { params: this.props.params,
+                feedType: "dashboard" })
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'Stats' },
+            { className: 'BonusWidget' },
             _react2.default.createElement(
               'p',
-              null,
-              this.props.currentUser.posts
+              { className: 'SuggestedAlbum' },
+              'Suggested Album'
+            ),
+            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
+            _react2.default.createElement(
+              'p',
+              { className: 'SuggestedAlbumTitle' },
+              'Title: ',
+              this.state.albumOfTheDay.title
             ),
             _react2.default.createElement(
               'p',
-              null,
-              this.props.currentUser.followers
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.currentUser.followees
+              { className: 'SuggestedAlbumArtist' },
+              'Artist: ',
+              this.state.artist.name
             )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'SearchAndFeed' },
-          _react2.default.createElement(
-            'div',
-            { className: 'MusicSearchDiv' },
-            _react2.default.createElement(_music_search_container2.default, null)
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'Feed' },
-            _react2.default.createElement(_post_feed_dashboard_container2.default, { params: this.props.params,
-              feedType: "dashboard" })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'BonusWidget' },
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbum' },
-            'Suggested Album'
-          ),
-          _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbumTitle' },
-            'Title: ',
-            this.state.albumOfTheDay.title
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbumArtist' },
-            'Artist: ',
-            this.state.artist.name
           )
         )
       );
@@ -34081,92 +34089,96 @@ var Profile = function (_React$Component) {
       }
 
       return _react2.default.createElement(
-        'div',
-        { className: 'Dashboard' },
+        'main',
+        { className: 'PageContainer' },
         _react2.default.createElement(
           'div',
-          { className: 'UserWidget' },
-          _react2.default.createElement('img', { className: 'DashboardPic', src: this.state.user.img_url }),
+          { className: 'Dashboard' },
           _react2.default.createElement(
-            'p',
-            { className: 'Name' },
-            this.state.user.name
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'Name' },
-            "@" + this.state.user.username
+            'div',
+            { className: 'UserWidget' },
+            _react2.default.createElement('img', { className: 'DashboardPic', src: this.state.user.img_url }),
+            _react2.default.createElement(
+              'p',
+              { className: 'Name' },
+              this.state.user.name
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'Name' },
+              "@" + this.state.user.username
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'StatHeaders' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Posts'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'Followers'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'Following'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'Stats' },
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.user.posts
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.user.followers
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.user.followees
+              )
+            ),
+            followButton
           ),
           _react2.default.createElement(
             'div',
-            { className: 'StatHeaders' },
+            { className: 'SearchAndFeed' },
             _react2.default.createElement(
-              'p',
-              null,
-              'Posts'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Followers'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Following'
+              'div',
+              { className: 'Feed' },
+              _react2.default.createElement(_post_feed_dashboard_container2.default, { userId: this.state.user.id,
+                feedType: "profile" })
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'Stats' },
+            { className: 'BonusWidget' },
             _react2.default.createElement(
               'p',
-              null,
-              this.props.user.posts
+              { className: 'SuggestedAlbum' },
+              'Suggested Album'
+            ),
+            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
+            _react2.default.createElement(
+              'p',
+              { className: 'SuggestedAlbumTitle' },
+              'Title: ',
+              this.state.albumOfTheDay.title
             ),
             _react2.default.createElement(
               'p',
-              null,
-              this.props.user.followers
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.user.followees
+              { className: 'SuggestedAlbumArtist' },
+              'Artist: ',
+              this.state.artist.name
             )
-          ),
-          followButton
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'SearchAndFeed' },
-          _react2.default.createElement(
-            'div',
-            { className: 'Feed' },
-            _react2.default.createElement(_post_feed_dashboard_container2.default, { userId: this.state.user.id,
-              feedType: "profile" })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'BonusWidget' },
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbum' },
-            'Suggested Album'
-          ),
-          _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbumTitle' },
-            'Title: ',
-            this.state.albumOfTheDay.title
-          ),
-          _react2.default.createElement(
-            'p',
-            { className: 'SuggestedAlbumArtist' },
-            'Artist: ',
-            this.state.artist.name
           )
         )
       );

@@ -83,36 +83,38 @@ class Profile extends React.Component {
     }
 
     return (
-      <div className="Dashboard">
-        <div className="UserWidget">
-          <img className="DashboardPic" src={this.state.user.img_url}/>
-          <p className="Name">{this.state.user.name}</p>
-          <p className="Name">{"@" + this.state.user.username}</p>
-          <div className="StatHeaders">
-            <p>Posts</p>
-            <p>Followers</p>
-            <p>Following</p>
+      <main className="PageContainer">
+        <div className="Dashboard">
+          <div className="UserWidget">
+            <img className="DashboardPic" src={this.state.user.img_url}/>
+            <p className="Name">{this.state.user.name}</p>
+            <p className="Name">{"@" + this.state.user.username}</p>
+            <div className="StatHeaders">
+              <p>Posts</p>
+              <p>Followers</p>
+              <p>Following</p>
+            </div>
+            <div className="Stats">
+              <p>{this.props.user.posts}</p>
+              <p>{this.props.user.followers}</p>
+              <p>{this.props.user.followees}</p>
+            </div>
+            {followButton}
           </div>
-          <div className="Stats">
-            <p>{this.props.user.posts}</p>
-            <p>{this.props.user.followers}</p>
-            <p>{this.props.user.followees}</p>
+          <div className="SearchAndFeed">
+            <div className="Feed">
+              <PostFeedDashboardContainer userId={this.state.user.id}
+                feedType={"profile"}/>
+            </div>
           </div>
-          {followButton}
-        </div>
-        <div className="SearchAndFeed">
-          <div className="Feed">
-            <PostFeedDashboardContainer userId={this.state.user.id}
-              feedType={"profile"}/>
+          <div className="BonusWidget">
+            <p className="SuggestedAlbum">Suggested Album</p>
+            <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
+            <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
+            <p className="SuggestedAlbumArtist">Artist: {this.state.artist.name}</p>
           </div>
         </div>
-        <div className="BonusWidget">
-          <p className="SuggestedAlbum">Suggested Album</p>
-          <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
-          <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
-          <p className="SuggestedAlbumArtist">Artist: {this.state.artist.name}</p>
-        </div>
-      </div>
+      </main>
     );
   }
 }

@@ -28,38 +28,40 @@ class Dashboard extends React.Component {
 
   render(){
     return (
-      <div className="Dashboard">
-        <div className="UserWidget">
-          <Link to={`/profile/${this.props.currentUser.id}`}><img className="DashboardPic" src={this.props.currentUser.img_url}/></Link>
-          <Link to={`/profile/${this.props.currentUser.id}`}><p className="Name">{this.props.currentUser.name}</p>
-          <p className="Name">{"@" + this.props.currentUser.username}</p></Link>
-          <div className="StatHeaders">
-            <p>Posts</p>
-            <p>Followers</p>
-            <p>Following</p>
+      <main className="PageContainer">
+        <div className="Dashboard">
+          <div className="UserWidget">
+            <Link to={`/profile/${this.props.currentUser.id}`}><img className="DashboardPic" src={this.props.currentUser.img_url}/></Link>
+            <Link to={`/profile/${this.props.currentUser.id}`}><p className="Name">{this.props.currentUser.name}</p>
+            <p className="Name">{"@" + this.props.currentUser.username}</p></Link>
+            <div className="StatHeaders">
+              <p>Posts</p>
+              <p>Followers</p>
+              <p>Following</p>
+            </div>
+            <div className="Stats">
+              <p>{this.props.currentUser.posts}</p>
+              <p>{this.props.currentUser.followers}</p>
+              <p>{this.props.currentUser.followees}</p>
+            </div>
           </div>
-          <div className="Stats">
-            <p>{this.props.currentUser.posts}</p>
-            <p>{this.props.currentUser.followers}</p>
-            <p>{this.props.currentUser.followees}</p>
+          <div className="SearchAndFeed">
+            <div className="MusicSearchDiv">
+              <MusicSearchContainer />
+            </div>
+            <div className="Feed">
+              <PostFeedDashboardContainer params={this.props.params}
+                feedType={"dashboard"} />
+            </div>
+          </div>
+          <div className="BonusWidget">
+            <p className="SuggestedAlbum">Suggested Album</p>
+            <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
+            <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
+            <p className="SuggestedAlbumArtist">Artist: {this.state.artist.name}</p>
           </div>
         </div>
-        <div className="SearchAndFeed">
-          <div className="MusicSearchDiv">
-            <MusicSearchContainer />
-          </div>
-          <div className="Feed">
-            <PostFeedDashboardContainer params={this.props.params}
-              feedType={"dashboard"} />
-          </div>
-        </div>
-        <div className="BonusWidget">
-          <p className="SuggestedAlbum">Suggested Album</p>
-          <img className="SuggestedAlbumPic" src={this.state.albumOfTheDay.img_url}/>
-          <p className="SuggestedAlbumTitle">Title: {this.state.albumOfTheDay.title}</p>
-          <p className="SuggestedAlbumArtist">Artist: {this.state.artist.name}</p>
-        </div>
-      </div>
+      </main>
     );
   }
 }

@@ -19,15 +19,13 @@ const App = (props) => {
           <SessionButtonsContainer />
         </div>
       </header>
-      <main className="PageContainer">
-        <Switch>
-          <AuthRoute path="/login" component={SessionFormContainer} />
-          <AuthRoute path="/signup" component={SessionFormContainer} />
-          <ProtectedRoute path="/dashboard" component={DashboardContainer} />
-          <Route path="/profile/:userId" component={ProfileContainer} />
-          <AuthRoute path="/" component={HomepageContainer} />
-        </Switch>
-      </main>
+      <Switch>
+        <AuthRoute path="/login" component={SessionFormContainer} />
+        <AuthRoute path="/signup" component={SessionFormContainer} />
+        <ProtectedRoute path="/dashboard" component={DashboardContainer} />
+        <Route path="/profile/:userId" component={ProfileContainer} />
+        <AuthRoute path="/" component={HomepageContainer} />
+      </Switch>
     </div>
   );
 };

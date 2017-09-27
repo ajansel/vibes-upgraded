@@ -93,29 +93,31 @@ class SessionForm extends React.Component {
       </ul>;
 
     return (
-      <div className="SessionFormDiv">
-        {welcomeMessage}
-        <form onSubmit={this.handleSubmit()} className="SessionForm">
-          {headerText}
-          {renderErrors}
-          {fullName}
-          <label>
-            <input type="text" onChange={this.handleChange("username")}
-              placeholder="Username"value={this.state.username}/>
-            <br />
-            <br />
-          </label>
-          {email}
-          <label>
-            <input type="password" onChange={this.handleChange("password")}
-              placeholder="Password" value={this.state.password}/>
-            <br />
-            <br />
-          </label>
-          <button className="SessionFormSubmit"
-                 type="submit">{buttonText}</button>
-        </form>
-      </div>
+      <main className="PageContainer">
+        <div className="SessionFormDiv">
+          {welcomeMessage}
+          <form onSubmit={this.handleSubmit()} className="SessionForm">
+            {headerText}
+            {renderErrors}
+            {fullName}
+            <label>
+              <input type="text" onChange={this.handleChange("username")}
+                placeholder="Username"value={this.state.username}/>
+              <br />
+              <br />
+            </label>
+            {email}
+            <label>
+              <input type="password" onChange={this.handleChange("password")}
+                placeholder="Password" value={this.state.password}/>
+              <br />
+              <br />
+            </label>
+            <button className="SessionFormSubmit"
+              type="submit">{buttonText}</button>
+          </form>
+        </div>
+      </main>
     );
   }
 }
