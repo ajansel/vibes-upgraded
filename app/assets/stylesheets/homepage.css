@@ -1,14 +1,15 @@
 .Homepage {
   display: flex;
   justify-content: center;
-  background-image: url('https://github.com/ajansel/vibes/blob/master/my_non_rails_files/wesley-tingey-223059.jpg?raw=true');
-  background-size: cover;
   height: 100%;
   opacity: 50%
 }
 
 .EntirePageContainer {
   height: calc(100vh - 75px);
+  background-image: url('https://github.com/ajansel/vibes/blob/master/my_non_rails_files/splash_pictures/headphones-2588056_1920.jpg?raw=true');
+  background-size: cover;
+  background-position: center bottom;
 }
 
 .Intro {
