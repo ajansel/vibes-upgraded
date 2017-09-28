@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.session.currentUser,
     posts: state.entities.posts,
+    loading: state.ui.loading
   };
 };
 

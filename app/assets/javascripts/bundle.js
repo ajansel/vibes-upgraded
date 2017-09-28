@@ -4137,6 +4137,7 @@ var fetchPostsFromFollowers = exports.fetchPostsFromFollowers = function fetchPo
 
 var fetchProfilePosts = exports.fetchProfilePosts = function fetchProfilePosts(id) {
   return function (dispatch) {
+    dispatch((0, _loading.receiveLoading)());
     return (0, _post_api_util.getProfilePosts)(id).then(function (posts) {
       return dispatch(receivePosts(posts));
     });
@@ -13466,7 +13467,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
-    posts: state.entities.posts
+    posts: state.entities.posts,
+    loading: state.ui.loading
   };
 };
 
@@ -33635,6 +33637,12 @@ var PostFeedDashboard = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _this2 = this;
+
+      if (this.props.loading === true) return _react2.default.createElement(
+        'div',
+        { className: 'loader' },
+        ' Loading... '
+      );
 
       var posts = Object.values(this.props.posts);
 

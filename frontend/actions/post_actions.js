@@ -36,11 +36,13 @@ export const fetchPostsFromFollowers = () => (dispatch) => {
   );
 };
 
-export const fetchProfilePosts = (id) => (dispatch) => (
-  getProfilePosts(id).then(
+export const fetchProfilePosts = (id) => (dispatch) => {
+  dispatch(receiveLoading());
+  return getProfilePosts(id).then(
     (posts) => dispatch(receivePosts(posts))
-  )
-);
+  );
+};
+
 
 export const createPost = (formPost, currentUserId) => (dispatch) => (
   postPost(formPost).then(

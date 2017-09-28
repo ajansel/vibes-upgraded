@@ -30,6 +30,7 @@ class PostFeedDashboard extends React.Component {
   }
 
   render(){
+    if(this.props.loading === true) return <div className="loader"> Loading... </div>;
 
     let posts = Object.values(this.props.posts);
 
