@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchIndex from './search_index';
+import onClickOutside from 'react-onclickoutside';
 
 class MusicSearch extends React.Component {
   constructor(props) {
@@ -22,9 +23,11 @@ class MusicSearch extends React.Component {
   clearState() {
     this.setState({ searchVal: '', firstTime: false });
   }
-  //
-  // <i className={`fa fa-pencil`} aria-hidden="true"></i>
-  // <p>Find a song. Highlight your text. Click Post.</p>
+
+  handleClickOutside() {
+    this.clearState();
+  }
+
   render(){
     return (
       <div className="MusicSearch">
@@ -44,8 +47,7 @@ class MusicSearch extends React.Component {
         </div>
         <input onChange={this.handleChange} type="text"
           placeholder="Search for a song, artist, or album"
-          value={this.state.searchVal} 
-          onBlur={() => this.clearState()}></input>
+          value={this.state.searchVal}></input>
         <SearchIndex firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.searchResults)}
           searchVal={this.state.searchVal}
@@ -56,4 +58,4 @@ class MusicSearch extends React.Component {
   }
 }
 
-export default MusicSearch;
+export default onClickOutside(MusicSearch);

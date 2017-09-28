@@ -90,7 +90,7 @@ class PostForm extends React.Component {
     }
 
     return (
-      <div className="PostForm">
+      <div className="PostForm ignore-react-onclickoutside">
         <div className="UserInfo">
           <Link to={`/profile/${this.props.currentUser.id}`}><img src={this.props.currentUser.img_url}/></Link>
           <div className="UserNames">

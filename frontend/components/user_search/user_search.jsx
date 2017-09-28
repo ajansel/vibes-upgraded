@@ -1,5 +1,6 @@
 import React from 'react';
 import UserSearchIndex from './user_search_index';
+import onClickOutside from 'react-onclickoutside';
 
 class UserSearch extends React.Component {
   constructor(props) {
@@ -23,13 +24,16 @@ class UserSearch extends React.Component {
     this.setState({ searchVal: '', firstTime: false });
   }
 
+  handleClickOutside() {
+    this.clearState();
+  }
+
   render(){
     return (
       <div className="UserSearch">
         <input id="UserSearchInput" onChange={this.handleChange} type="text"
           placeholder="Search for a user"
-          value={this.state.searchVal}
-          onBlur={() => this.clearState()}></input>
+          value={this.state.searchVal}></input>
         <UserSearchIndex id="UserSearchUL" firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.userSearchResults)}
           searchVal={this.state.searchVal}
@@ -44,4 +48,4 @@ class UserSearch extends React.Component {
   }
 }
 
-export default UserSearch;
+export default onClickOutside(UserSearch);

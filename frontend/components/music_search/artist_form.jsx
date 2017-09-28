@@ -25,7 +25,7 @@ class ArtistForm extends React.Component {
     );
 
     return (
-      <div className="ArtistForm">
+      <div className="ArtistForm ignore-react-onclickoutside">
         <div className="UserInfo">
           <Link to={`/profile/${this.props.currentUser.id}`}><img src={this.props.currentUser.img_url}/></Link>
           <div className="UserNames">
