@@ -122,7 +122,7 @@ class PostFeedDashboardItem extends React.Component {
           </div>
           <div className="LikeContent">
             {likeButton}
-            {likes}
+            <p>{likes}</p>
           </div>
         </div>
 

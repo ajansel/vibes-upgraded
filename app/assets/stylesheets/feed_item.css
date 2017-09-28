@@ -56,6 +56,7 @@
 
 .LikeButton {
   height: 14px;
+  width: 15px;
   padding: 0px;
   margin-right: 10px;
   color: white;
@@ -73,7 +74,15 @@
 
 .LikeContent {
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.LikeContent > p {
+  margin: 0px;
+  height: 17px;
 }
 
 .red {

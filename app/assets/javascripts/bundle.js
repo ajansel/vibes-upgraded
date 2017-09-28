@@ -33862,7 +33862,11 @@ var PostFeedDashboardItem = function (_React$Component) {
             'div',
             { className: 'LikeContent' },
             likeButton,
-            likes
+            _react2.default.createElement(
+              'p',
+              null,
+              likes
+            )
           )
         ),
         _react2.default.createElement(
