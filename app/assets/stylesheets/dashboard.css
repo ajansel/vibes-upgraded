@@ -7,6 +7,16 @@
 .UserWidget, .BonusWidget {
   width: 200px;
   height: 265px;
+  position: fixed;
+  top: 85px;
+}
+
+.UserWidget {
+  left: calc((100vw - 1024px)/2);
+}
+
+.BonusWidget {
+  right: calc((100vw - 1024px)/2);
 }
 
 .SearchAndFeed {
@@ -48,7 +58,7 @@
   /*border: 1px solid black;*/
   /*background: white;*/
   box-sizing: border-box;
-  padding: 5px;
+  padding: 0px 5px 5px 5px;
   text-align: center;
 }
 
