@@ -31517,6 +31517,8 @@ var MusicSearch = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'MusicSearch' },
@@ -31556,7 +31558,10 @@ var MusicSearch = function (_React$Component) {
         ),
         _react2.default.createElement('input', { onChange: this.handleChange, type: 'text',
           placeholder: 'Search for a song, artist, or album',
-          value: this.state.searchVal }),
+          value: this.state.searchVal,
+          onBlur: function onBlur() {
+            return _this3.clearState();
+          } }),
         _react2.default.createElement(_search_index2.default, { firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.searchResults),
           searchVal: this.state.searchVal,
@@ -33337,12 +33342,17 @@ var UserSearch = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'UserSearch' },
         _react2.default.createElement('input', { id: 'UserSearchInput', onChange: this.handleChange, type: 'text',
           placeholder: 'Search for a user',
-          value: this.state.searchVal }),
+          value: this.state.searchVal,
+          onBlur: function onBlur() {
+            return _this3.clearState();
+          } }),
         _react2.default.createElement(_user_search_index2.default, { id: 'UserSearchUL', firstTime: this.state.firstTime,
           searchItems: Object.values(this.props.userSearchResults),
           searchVal: this.state.searchVal,

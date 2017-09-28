@@ -44,7 +44,8 @@ class MusicSearch extends React.Component {
         </div>
         <input onChange={this.handleChange} type="text"
           placeholder="Search for a song, artist, or album"
-          value={this.state.searchVal}></input>
+          value={this.state.searchVal} 
+          onBlur={() => this.clearState()}></input>
         <SearchIndex firstTime={this.state.firstTime}
           searchItems={Object.values(this.props.searchResults)}
           searchVal={this.state.searchVal}

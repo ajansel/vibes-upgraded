@@ -82,3 +82,8 @@
   font-size: 16px;
   margin: 0 0 5px 0;
 }
+
+.UserInfoAndYouTube {
+  display: flex;
+  justify-content: space-between;
+}
