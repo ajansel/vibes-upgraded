@@ -1,17 +1,18 @@
 import {connect} from 'react-redux';
 import Dashboard from './dashboard';
-import {fetchAlbums, fetchArtist} from '../../actions/music_actions';
+import {fetchAlbums, fetchArtist, fetchRandomAlbum} from '../../actions/music_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.session.currentUser,
     allAlbums: state.entities.albums,
-    artist: state.entities.artists,
-    params: ownProps.match.params
+    params: ownProps.match.params,
+    albumOfTheDay: Object.values(state.entities.albums)[0]
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchRandomAlbum: () => dispatch(fetchRandomAlbum()),
   fetchAlbums: () => dispatch(fetchAlbums()),
   fetchArtist: (id) => dispatch(fetchArtist(id))
 });

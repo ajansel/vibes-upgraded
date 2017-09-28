@@ -31235,13 +31235,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.currentUser,
     allAlbums: state.entities.albums,
-    artist: state.entities.artists,
-    params: ownProps.match.params
+    params: ownProps.match.params,
+    albumOfTheDay: Object.values(state.entities.albums)[0]
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchRandomAlbum: function fetchRandomAlbum() {
+      return dispatch((0, _music_actions.fetchRandomAlbum)());
+    },
     fetchAlbums: function fetchAlbums() {
       return dispatch((0, _music_actions.fetchAlbums)());
     },
@@ -31298,35 +31301,33 @@ var Dashboard = function (_React$Component) {
   function Dashboard(props) {
     _classCallCheck(this, Dashboard);
 
-    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
-
-    _this.state = { albumOfTheDay: {}, artist: "" };
-    return _this;
+    return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
+    // this.state = {albumOfTheDay: {}, artist: ""};
   }
 
   _createClass(Dashboard, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
+      // this.props.fetchAlbums().then(() => {
+      //   const albumOfTheDay = this.getRandomAlbum();
+      //     this.setState({albumOfTheDay}, () => {
+      //       this.props.fetchArtist(this.state.albumOfTheDay.artist_id).then(() => {
+      //         this.setState({artist: Object.values(this.props.artist)[0]});
+      //       });
+      //     });
+      //   });
+      this.props.fetchRandomAlbum();
+    }
 
-      this.props.fetchAlbums().then(function () {
-        var albumOfTheDay = _this2.getRandomAlbum();
-        _this2.setState({ albumOfTheDay: albumOfTheDay }, function () {
-          _this2.props.fetchArtist(_this2.state.albumOfTheDay.artist_id).then(function () {
-            _this2.setState({ artist: Object.values(_this2.props.artist)[0] });
-          });
-        });
-      });
-    }
-  }, {
-    key: 'getRandomAlbum',
-    value: function getRandomAlbum() {
-      var albumsArr = Object.values(this.props.allAlbums);
-      return albumsArr[Math.floor(Math.random() * albumsArr.length)];
-    }
+    // getRandomAlbum() {
+    //   const albumsArr = Object.values(this.props.allAlbums);
+    //   return albumsArr[Math.floor(Math.random() * albumsArr.length)];
+    // }
+
   }, {
     key: 'render',
     value: function render() {
+      if (!this.props.albumOfTheDay) return null;
       return _react2.default.createElement(
         'main',
         { className: 'PageContainer' },
@@ -31417,16 +31418,16 @@ var Dashboard = function (_React$Component) {
               { className: 'SuggestedAlbum' },
               'Suggested Album'
             ),
-            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
+            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.props.albumOfTheDay.img_url }),
             _react2.default.createElement(
               'p',
               { className: 'SuggestedAlbumTitle' },
-              this.state.albumOfTheDay.title
+              this.props.albumOfTheDay.title
             ),
             _react2.default.createElement(
               'p',
               { className: 'SuggestedAlbumArtist' },
-              this.state.artist.name
+              this.props.albumOfTheDay.artist.name
             )
           )
         )
