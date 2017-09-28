@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :music_searches, only: [:index] do
       get "songs_by_artist", on: :collection
       get "songs_by_album", on: :collection
+      get "random_album", on: :collection
     end
   end
 end

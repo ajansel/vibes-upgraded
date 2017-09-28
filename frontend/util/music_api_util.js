@@ -63,3 +63,10 @@ export const getSongsByAlbum = (id) => {
     data: { search: {album_id: id} }
   });
 };
+
+export const getRandomAlbum = () => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches/random_album'
+  });
+};

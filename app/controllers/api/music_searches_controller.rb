@@ -6,6 +6,11 @@ class Api::MusicSearchesController < ApplicationController
     render :index
   end
 
+  def random_album
+    @album = Album.all.sample
+    render 'api/albums/show'
+  end
+
   def songs_by_artist
     @songs = Song.where(artist_id: search_params[:artist_id])
     render :songs_by_artist_or_album

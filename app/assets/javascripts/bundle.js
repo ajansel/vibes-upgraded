@@ -3366,7 +3366,7 @@ var updateCurrentUser = exports.updateCurrentUser = function updateCurrentUser(c
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSongsByAlbum = exports.fetchSongsByArtist = exports.searchDatabase = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
+exports.fetchRandomAlbum = exports.fetchSongsByAlbum = exports.fetchSongsByArtist = exports.searchDatabase = exports.fetchSongs = exports.fetchSong = exports.fetchAlbums = exports.fetchAlbum = exports.fetchArtists = exports.fetchArtist = exports.RECEIVE_SEARCH_RESULTS = exports.RECEIVE_SONGS = exports.RECEIVE_SONG = exports.RECEIVE_ALBUMS = exports.RECEIVE_ALBUM = exports.RECEIVE_ARTISTS = exports.RECEIVE_ARTIST = undefined;
 
 var _music_api_util = __webpack_require__(260);
 
@@ -3495,6 +3495,14 @@ var fetchSongsByAlbum = exports.fetchSongsByAlbum = function fetchSongsByAlbum(i
   return function (dispatch) {
     return (0, _music_api_util.getSongsByAlbum)(id).then(function (songs) {
       return dispatch(receiveSongs(songs));
+    });
+  };
+};
+
+var fetchRandomAlbum = exports.fetchRandomAlbum = function fetchRandomAlbum() {
+  return function (dispatch) {
+    return (0, _music_api_util.getRandomAlbum)().then(function (album) {
+      return dispatch(receiveAlbum(album));
     });
   };
 };
@@ -13514,7 +13522,7 @@ var _root = __webpack_require__(264);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _user_actions = __webpack_require__(27);
+var _music_actions = __webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13538,7 +13546,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // window.fetchAlbums = fetchAlbums;
   // window.fetchSong = fetchSong;
   // window.fetchSongs = fetchSongs;
-  window.searchDatabase = _user_actions.searchDatabase;
+  // window.searchDatabase = searchDatabase;
+  window.fetchRandomAlbum = _music_actions.fetchRandomAlbum;
 
   // DELETE LATER
 
@@ -13548,6 +13557,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // import {fetchArtist, fetchArtists, fetchAlbum, fetchAlbums,
 //         fetchSong, fetchSongs, searchDatabase}
 //         from './actions/music_actions';
+// import {searchDatabase} from './actions/user_actions';
 
 /***/ }),
 /* 131 */
@@ -26819,6 +26829,13 @@ var getSongsByAlbum = exports.getSongsByAlbum = function getSongsByAlbum(id) {
     method: 'GET',
     url: 'api/music_searches/songs_by_album',
     data: { search: { album_id: id } }
+  });
+};
+
+var getRandomAlbum = exports.getRandomAlbum = function getRandomAlbum() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/music_searches/random_album'
   });
 };
 

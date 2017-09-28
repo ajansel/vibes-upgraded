@@ -1,5 +1,5 @@
 import {getArtist, getArtists, getAlbum, getAlbums, getSong, getSongs,
-    searchMusicDatabase, getSongsByArtist, getSongsByAlbum}
+    searchMusicDatabase, getSongsByArtist, getSongsByAlbum, getRandomAlbum}
     from '../util/music_api_util';
 
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
@@ -96,5 +96,11 @@ export const fetchSongsByArtist = (id) => (dispatch) => (
 export const fetchSongsByAlbum = (id) => (dispatch) => (
   getSongsByAlbum(id).then(
     (songs) => dispatch(receiveSongs(songs))
+  )
+);
+
+export const fetchRandomAlbum = () => (dispatch) => (
+  getRandomAlbum().then(
+    (album) => dispatch(receiveAlbum(album))
   )
 );
