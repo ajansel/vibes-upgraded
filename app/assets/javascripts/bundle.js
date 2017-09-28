@@ -4089,6 +4089,8 @@ var _like_api_util = __webpack_require__(255);
 
 var _user_actions = __webpack_require__(27);
 
+var _loading = __webpack_require__(336);
+
 var RECEIVE_POST = exports.RECEIVE_POST = "RECEIVE_POST";
 var RECEIVE_POSTS = exports.RECEIVE_POSTS = "RECEIVE_POSTS";
 var RECEIVE_POST_ERRORS = exports.RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
@@ -4126,6 +4128,7 @@ var fetchPost = exports.fetchPost = function fetchPost(id) {
 
 var fetchPostsFromFollowers = exports.fetchPostsFromFollowers = function fetchPostsFromFollowers() {
   return function (dispatch) {
+    dispatch((0, _loading.receiveLoading)());
     return (0, _post_api_util.getPosts)().then(function (posts) {
       return dispatch(receivePosts(posts));
     });
@@ -34688,7 +34691,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _post_actions = __webpack_require__(34);
 
-var _loading = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions/loading\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _loading = __webpack_require__(336);
 
 var _nullLoading = {
   loading: false
@@ -34710,6 +34713,24 @@ var UiReducer = function UiReducer() {
 };
 
 exports.default = UiReducer;
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var RECEIVE_LOADING = exports.RECEIVE_LOADING = "RECEIVE_LOADING";
+
+var receiveLoading = exports.receiveLoading = function receiveLoading() {
+  return {
+    type: RECEIVE_LOADING
+  };
+};
 
 /***/ })
 /******/ ]);

@@ -1,6 +1,7 @@
 import {getPost, getPosts, postPost, getProfilePosts, patchPost, destroyPost} from '../util/post_api_util';
 import {postLike, deleteLike } from '../util/like_api_util';
 import {updateCurrentUser} from './user_actions';
+import {receiveLoading} from './loading';
 
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
@@ -28,11 +29,12 @@ export const fetchPost = (id) => (dispatch) => (
   )
 );
 
-export const fetchPostsFromFollowers = () => (dispatch) => (
-  getPosts().then(
+export const fetchPostsFromFollowers = () => (dispatch) => {
+  dispatch(receiveLoading());
+  return getPosts().then(
     (posts) => dispatch(receivePosts(posts))
-  )
-);
+  );
+};
 
 export const fetchProfilePosts = (id) => (dispatch) => (
   getProfilePosts(id).then(
