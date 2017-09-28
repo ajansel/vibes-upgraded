@@ -32917,6 +32917,11 @@ var PostForm = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
+          'h3',
+          null,
+          this.props.song.title
+        ),
+        _react2.default.createElement(
           'label',
           { className: 'PostBody' },
           _react2.default.createElement('textarea', { disabled: 'yes', type: 'text',
@@ -32931,11 +32936,6 @@ var PostForm = function (_React$Component) {
           'Post'
         ),
         deleteButton,
-        _react2.default.createElement(
-          'p',
-          null,
-          this.props.song.title
-        ),
         _react2.default.createElement(
           'div',
           { className: 'Lyrics', onMouseUp: function onMouseUp() {

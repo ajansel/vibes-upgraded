@@ -99,6 +99,7 @@ class PostForm extends React.Component {
           </div>
         </div>
 
+        <h3>{this.props.song.title}</h3>
         <label className="PostBody">
           <textarea disabled="yes" type="text"
             placeholder="Highlight lyrics below to fill the body of your post"
@@ -108,7 +109,6 @@ class PostForm extends React.Component {
         </label>
         <button className="PostPost" onClick={this.handleClick}>Post</button>
         {deleteButton}
-        <p>{this.props.song.title}</p>
         <div className="Lyrics" onMouseUp={() => this.handleHighlight()}>
           {lyrics}
         </div>
