@@ -7,25 +7,11 @@ import PostFeedDashboardContainer from '../post/post_feed_dashboard_container';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {albumOfTheDay: {}, artist: ""};
   }
 
   componentDidMount() {
-    // this.props.fetchAlbums().then(() => {
-    //   const albumOfTheDay = this.getRandomAlbum();
-    //     this.setState({albumOfTheDay}, () => {
-    //       this.props.fetchArtist(this.state.albumOfTheDay.artist_id).then(() => {
-    //         this.setState({artist: Object.values(this.props.artist)[0]});
-    //       });
-    //     });
-    //   });
     this.props.fetchRandomAlbum();
   }
-
-  // getRandomAlbum() {
-  //   const albumsArr = Object.values(this.props.allAlbums);
-  //   return albumsArr[Math.floor(Math.random() * albumsArr.length)];
-  // }
 
   render(){
     if (!this.props.albumOfTheDay) return null;
