@@ -13522,8 +13522,6 @@ var _root = __webpack_require__(264);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _music_actions = __webpack_require__(28);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -13536,28 +13534,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var store = (0, _store2.default)(preloadedState);
-
-  // DELETE LATER
-  window.dispatch = store.dispatch;
-  window.getState = store.getState;
-  // window.fetchArtist = fetchArtist;
-  // window.fetchArtists = fetchArtists;
-  // window.fetchAlbum = fetchAlbum;
-  // window.fetchAlbums = fetchAlbums;
-  // window.fetchSong = fetchSong;
-  // window.fetchSongs = fetchSongs;
-  // window.searchDatabase = searchDatabase;
-  window.fetchRandomAlbum = _music_actions.fetchRandomAlbum;
-
-  // DELETE LATER
-
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
-
-// import {fetchArtist, fetchArtists, fetchAlbum, fetchAlbums,
-//         fetchSong, fetchSongs, searchDatabase}
-//         from './actions/music_actions';
-// import {searchDatabase} from './actions/user_actions';
 
 /***/ }),
 /* 131 */
