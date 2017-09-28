@@ -34038,12 +34038,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     artist: state.entities.artists,
     userId: ownProps.match.params.userId,
     user: state.entities.users[ownProps.match.params.userId],
-    following: user ? user.followed_by_current_user : false
+    following: user ? user.followed_by_current_user : false,
+    albumOfTheDay: Object.values(state.entities.albums)[0]
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchRandomAlbum: function fetchRandomAlbum() {
+      return dispatch((0, _music_actions.fetchRandomAlbum)());
+    },
     fetchAlbums: function fetchAlbums() {
       return dispatch((0, _music_actions.fetchAlbums)());
     },
@@ -34107,7 +34111,7 @@ var Profile = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 
-    _this.state = { albumOfTheDay: {}, artist: "", user: _this.props.user };
+    _this.state = { user: _this.props.user };
     _this.currentUser = props.currentUser;
     _this.user = props.user;
     _this.followUser = props.followUser;
@@ -34118,64 +34122,49 @@ var Profile = function (_React$Component) {
   _createClass(Profile, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.props.fetchAlbums().then(function () {
-        var albumOfTheDay = _this2.getRandomAlbum();
-        _this2.setState({ albumOfTheDay: albumOfTheDay }, function () {
-          _this2.props.fetchArtist(_this2.state.albumOfTheDay.artist_id).then(function () {
-            _this2.setState({ artist: Object.values(_this2.props.artist)[0] });
-          });
-        });
-      });
+      this.props.fetchRandomAlbum();
     }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.props.match.params.userId !== newProps.match.params.userId) {
         this.props.fetchUser(newProps.match.params.userId).then(function (res) {
-          _this3.setState({ user: res.user, following: res.user.followed_by_current_user });
+          _this2.setState({ user: res.user, following: res.user.followed_by_current_user });
         });
       }
     }
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.props.fetchUser(this.props.userId).then(function (res) {
-        return _this4.setState({ user: res.user, following: res.user.followed_by_current_user });
+        return _this3.setState({ user: res.user, following: res.user.followed_by_current_user });
       });
-    }
-  }, {
-    key: 'getRandomAlbum',
-    value: function getRandomAlbum() {
-      var albumsArr = Object.values(this.props.allAlbums);
-      return albumsArr[Math.floor(Math.random() * albumsArr.length)];
     }
   }, {
     key: 'handleClick',
     value: function handleClick(action) {
-      var _this5 = this;
+      var _this4 = this;
 
       return function (e) {
         e.preventDefault();
-        if (_this5.currentUser && action === "follow") {
-          var oppositeCurrentFollowing = !_this5.props.following;
-          _this5.setState({ following: oppositeCurrentFollowing }, function () {
-            _this5.followUser(_this5.state.user.id, _this5.currentUser.id, 'profile', _this5.props.user).then(function () {
-              return _this5.props.fetchUser(_this5.props.userId);
+        if (_this4.currentUser && action === "follow") {
+          var oppositeCurrentFollowing = !_this4.props.following;
+          _this4.setState({ following: oppositeCurrentFollowing }, function () {
+            _this4.followUser(_this4.state.user.id, _this4.currentUser.id, 'profile', _this4.props.user).then(function () {
+              return _this4.props.fetchUser(_this4.props.userId);
             });
             // .then(
             // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
           });
-        } else if (_this5.currentUser) {
-          var _oppositeCurrentFollowing = !_this5.props.following;
-          _this5.setState({ following: _oppositeCurrentFollowing }, function () {
-            _this5.unfollowUser(_this5.state.user.id, _this5.currentUser.id, 'profile', _this5.props.user).then(function () {
-              return _this5.props.fetchUser(_this5.props.userId);
+        } else if (_this4.currentUser) {
+          var _oppositeCurrentFollowing = !_this4.props.following;
+          _this4.setState({ following: _oppositeCurrentFollowing }, function () {
+            _this4.unfollowUser(_this4.state.user.id, _this4.currentUser.id, 'profile', _this4.props.user).then(function () {
+              return _this4.props.fetchUser(_this4.props.userId);
             });
             // .then(
             // (res) => this.setState({user: res.user, following: res.user.followed_by_current_user}));
@@ -34186,7 +34175,7 @@ var Profile = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (!this.state.user || !this.props.user) return null;
+      if (!this.props.albumOfTheDay || !this.state.user || !this.props.user) return null;
 
       var followButton = void 0;
       if (this.currentUser && this.state.user.id === this.currentUser.id) {
@@ -34287,16 +34276,16 @@ var Profile = function (_React$Component) {
               { className: 'SuggestedAlbum' },
               'Suggested Album'
             ),
-            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.state.albumOfTheDay.img_url }),
+            _react2.default.createElement('img', { className: 'SuggestedAlbumPic', src: this.props.albumOfTheDay.img_url }),
             _react2.default.createElement(
               'p',
               { className: 'SuggestedAlbumTitle' },
-              this.state.albumOfTheDay.title
+              this.props.albumOfTheDay.title
             ),
             _react2.default.createElement(
               'p',
               { className: 'SuggestedAlbumArtist' },
-              this.state.artist.name
+              this.props.albumOfTheDay.artist.name
             )
           )
         )
