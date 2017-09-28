@@ -33950,7 +33950,7 @@ var PostShow = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'p',
+          'h3',
           null,
           this.props.song.title
         ),

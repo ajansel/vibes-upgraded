@@ -36,7 +36,8 @@ User.create!(
   password: 'password'
 )
 
-249.times do
+# Results in 100 users total
+99.times do
   name = Faker::Name.unique.name
   name_arr = name.remove('.').split(' ')
   username = name_arr[0]
@@ -57,7 +58,8 @@ User.create!(
   )
 end
 
-5.times do
+# Results in every user having 3 posts (300 posts exist total)
+3.times do
   User.all.each do |user|
     random_song = Song.all[rand(Song.all.length)]
 
@@ -70,7 +72,8 @@ end
   end
 end
 
-250.times do
+# Results in every user randomly liking 10 posts (1000 likes exist total)
+10.times do
   User.all.each do |user|
     post = Post.all[rand(Post.all.length)]
       if user.id != post.author_id && Like.where(user_id: user.id, post_id: post.id).length == 0
@@ -79,7 +82,8 @@ end
   end
 end
 
-250.times do
+# Every user follows approx 40 users (4000 followers exist total)
+40.times do
   User.all.each do |user|
     new_user = User.all[rand(User.all.length)]
       if user.id != new_user.id && Follower.where(follower_id: user.id, followee_id: new_user.id).length == 0

@@ -22,7 +22,7 @@ class PostShow extends React.Component {
             <p>{"@" + this.props.user.username}</p></Link>
           </div>
         </div>
-        <p>{this.props.song.title}</p>
+        <h3>{this.props.song.title}</h3>
         <div className="Lyrics" >
           {lyrics}
         </div>
