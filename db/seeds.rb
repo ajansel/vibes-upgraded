@@ -36,7 +36,7 @@ User.create!(
   password: 'password'
 )
 
-499.times do
+249.times do
   name = Faker::Name.unique.name
   name_arr = name.remove('.').split(' ')
   username = name_arr[0]
@@ -57,8 +57,8 @@ User.create!(
   )
 end
 
-User.all.each do |user|
-  5.times do
+5.times do
+  User.all.each do |user|
     random_song = Song.all[rand(Song.all.length)]
 
     until random_song.lyrics.split("\n")[2] != "" and random_song.lyrics.split("\n")[2] != nil
@@ -70,7 +70,7 @@ User.all.each do |user|
   end
 end
 
-1000.times do
+250.times do
   User.all.each do |user|
     post = Post.all[rand(Post.all.length)]
       if user.id != post.author_id && Like.where(user_id: user.id, post_id: post.id).length == 0
@@ -79,7 +79,7 @@ end
   end
 end
 
-500.times do
+250.times do
   User.all.each do |user|
     new_user = User.all[rand(User.all.length)]
       if user.id != new_user.id && Follower.where(follower_id: user.id, followee_id: new_user.id).length == 0
