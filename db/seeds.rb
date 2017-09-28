@@ -63,11 +63,30 @@ end
   User.all.each do |user|
     random_song = Song.all[rand(Song.all.length)]
 
-    until random_song.lyrics.split("\n")[2] != "" and random_song.lyrics.split("\n")[2] != nil
+    bad_words = %w(fuck shit damn dick pussy cum bitch cunt blunt joint
+                    weed coke drug  anal anus arse ass ballsack balls
+                    bastard bitch biatch blowjob bollock bollok boner
+                    boob bugger butt buttplug clitoris clit cock coon crap
+                    cunt damn dick dildo dyke fag feck fellate fellatio
+                    felching fuck fudgepacker flange Goddamn hell homo
+                    jerk jizz knobend labia lmao lmfao muff nigger nigga
+                    penis piss poop prick pube pussy queer scrotum sex
+                    shit slut smegma spunk tit tosser turd twat vagina
+                    wank whore wtf)
+
+    idx = rand(1..5)
+    until random_song.lyrics.split("\n")[idx] != "" &&
+          random_song.lyrics.split("\n")[idx] != nil &&
+          !random_song.lyrics.split("\n")[idx].include?('[') &&
+          !random_song.lyrics.split("\n")[idx].include?(']') &&
+          random_song.lyrics.split("\n")[idx].downcase.split(" ")
+                     .none? { |word| bad_words.include?(word) }
+
       random_song = Song.all[rand(Song.all.length)]
+      idx = rand(1..5)
     end
 
-    Post.create!(body: random_song.lyrics.split("\n")[2],
+    Post.create!(body: random_song.lyrics.split("\n")[idx],
                  song_id: random_song.id, author_id: user.id)
   end
 end
