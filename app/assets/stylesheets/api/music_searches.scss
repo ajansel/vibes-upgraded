@@ -9,6 +9,8 @@
   align-items: center;
   // background-color: #c4defd;
   background-color: white;
+  padding: 12px 10px;
+  box-sizing: border-box;
 }
 
 .MusicSearch > input {
@@ -66,7 +68,7 @@
 .SearchIndex {
   position: absolute;
   // top: 138px;
-  top: 161px;
+  top: 170px;
   margin: 0;
   padding: 0;
   width: 400px;

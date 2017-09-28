@@ -6,7 +6,7 @@
 
 .UserWidget, .BonusWidget {
   width: 200px;
-  height: 265px;
+  height: 275px;
   position: fixed;
   top: 85px;
 }
@@ -37,14 +37,14 @@
   /*border: 1px solid black;*/
   background-color: white;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   text-align: center;
 }
 
 .MusicSearchDiv {
   /*border: 1px solid black;*/
   box-sizing: border-box;
-  padding: 5px;
+  padding: 5px 5px 10px 5px;
   padding-top: 0px;
   text-align: center;
   margin: 0px;
@@ -67,6 +67,7 @@
   height: 80px;
   border-radius: 50%;
   margin-bottom: 0px;
+  margin-top: 5px;
 }
 
 .Name, .Username {
@@ -105,7 +106,7 @@
 }
 
 .SuggestedAlbum {
-  margin: 5px 0 0 0;
+  margin: 0 0 0 0;
   font-size: 18px;
   font-weight: bold;
 }
