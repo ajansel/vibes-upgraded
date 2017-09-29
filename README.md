@@ -13,7 +13,7 @@ to have as resources through the development process. These MVPs were then caref
 final deadline.
 
 ## Technologies
-Vibes is built using Ruby on Rails 5.0 as its backend and ProgresSQL for
+Vibes is built using Ruby on Rails 5.0 as its backend and PostgreSQL for
 database management. jQuery AJAX requests were used to communicate with
 the backend and all responses render JSON back to the front-end that uses [React](https://reactjs.org/), a JavaScript library for building
 user interfaces developed by Facebook.
@@ -43,4 +43,4 @@ a much better UX.
   + Further polished User Interface
     + Review from a design specialist
     + Create official logo
-    + Survey users on how it could improve / be easier to use 
+    + Survey users on how it could improve / be easier to use
