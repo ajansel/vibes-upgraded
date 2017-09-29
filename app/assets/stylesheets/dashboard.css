@@ -6,9 +6,10 @@
 
 .UserWidget, .BonusWidget {
   width: 200px;
-  height: 285px;
+  min-height: 285px;
   position: fixed;
   top: 85px;
+  overflow: auto;
 }
 
 .UserWidget {
