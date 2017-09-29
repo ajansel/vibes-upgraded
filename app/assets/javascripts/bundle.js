@@ -31161,7 +31161,7 @@ var Homepage = function (_React$Component) {
             _react2.default.createElement(
               'p',
               null,
-              'No more custom posts or subtweets. Vibes let\'s you express yourself through lytics. Search for your favorite song, highlight the snippet of lyrics that fits your fibe, and click post. It\'s fast, easy, and free!'
+              'No more custom posts or subtweets. Vibes let\'s you express yourself through lyrics. Search for your favorite song, highlight the snippet of lyrics that fits your fibe, and click post. It\'s fast, easy, and free!'
             ),
             _react2.default.createElement(
               'div',

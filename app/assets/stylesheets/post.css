@@ -76,6 +76,7 @@
   box-sizing: border-box;
   font-size: 18px;
   padding: 1px;
+  cursor: pointer;
 }
 
 .ArtistForm > p, .AlbumForm > p {
