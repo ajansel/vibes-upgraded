@@ -67,6 +67,10 @@
   margin-top: 20px;
 }
 
+.ArtistForm > h3, .AlbumForm > h3 {
+  font-size: 22px;
+}
+
 .Songs {
   margin: 0px;
 }
@@ -74,13 +78,14 @@
 .Songs > li{
   /*This is for formatting the songs on Artist or Album modal*/
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 20px;
   padding: 1px;
   cursor: pointer;
+  margin-bottom: 2px;
 }
 
 .ArtistForm > p, .AlbumForm > p {
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 0 5px 0;
 }
 

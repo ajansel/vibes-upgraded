@@ -33087,13 +33087,12 @@ var ArtistForm = function (_React$Component) {
         _react2.default.createElement(
           'h3',
           null,
-          'Artist: ',
           this.props.artist.name
         ),
         _react2.default.createElement(
           'p',
           null,
-          'Select a song to start creating a post'
+          'Select a song to create a post'
         ),
         _react2.default.createElement(
           'ul',
@@ -33248,13 +33247,12 @@ var AlbumForm = function (_React$Component) {
         _react2.default.createElement(
           'h3',
           null,
-          'Album: ',
           this.props.album.title
         ),
         _react2.default.createElement(
           'p',
           null,
-          'Select a song to start creating a post'
+          'Select a song to create a post'
         ),
         _react2.default.createElement(
           'ul',
