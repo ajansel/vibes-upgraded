@@ -114,3 +114,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.ErrorsListPostForm {
+  color: #3396ff;
+  font-size: 18px;
+}

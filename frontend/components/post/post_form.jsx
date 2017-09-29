@@ -17,6 +17,10 @@ class PostForm extends React.Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
+  componentWillUnmount(newprops){
+    this.props.receivePostErrors();
+  }
+
   handleClick(e) {
     e.preventDefault();
 
@@ -29,28 +33,29 @@ class PostForm extends React.Component {
 
     if (this.postId) {
       this.props.updatePost(post)
-                .then(this.props.closeSongModal()).then(
-                  () => {
+                .then((response) => {
+                  if (response.type !== 'RECEIVE_POST_ERRORS') {
+                    // this.props.closeSongModal();
                     if (this.props.feedType === 'dashboard'){
                       this.props.fetchPostsFromFollowers();
                     } else if (this.props.feedType === 'profile'){
                       this.props.fetchProfilePosts(this.props.userId);
                     }
                   }
-                );
+                });
     } else {
       this.props.createPost(post, this.props.currentUser.id)
-                .then(this.props.closeSongModal()).then(
-                  () => {
+                .then((response) => {
+                  if (response.type !== 'RECEIVE_POST_ERRORS') {
+                    this.props.closeSongModal();
                     if (this.props.feedType === 'dashboard'){
                       this.props.fetchPostsFromFollowers();
                     } else if (this.props.feedType === 'profile'){
                       this.props.fetchProfilePosts(this.props.userId);
                     }
+                    this.props.clearState();
                   }
-                ).then(
-                  this.props.clearState()
-                );
+                });
     }
   }
 
@@ -89,6 +94,14 @@ class PostForm extends React.Component {
 
     }
 
+    const renderErrors =
+      <ul className="ErrorsListPostForm">
+          {this.props.errors.map(
+            (err) => (<li key={err}>{err}</li>)
+          )}
+      </ul>;
+
+
     return (
       <div className="PostForm ignore-react-onclickoutside">
         <div className="UserInfo">
@@ -100,6 +113,7 @@ class PostForm extends React.Component {
         </div>
 
         <h3>{this.props.song.title}</h3>
+        {renderErrors}
         <label className="PostBody">
           <textarea disabled="yes" type="text"
             placeholder="Highlight lyrics below to fill the body of your post"

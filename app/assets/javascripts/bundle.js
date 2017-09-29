@@ -13432,6 +13432,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     // currentUser: state.session.currentUser,
     // searchResults: state.entities.searchResults
+    errors: state.errors.post
   };
 };
 
@@ -13445,6 +13446,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     deletePost: function deletePost(postId, currentUserId) {
       return dispatch((0, _post_actions.deletePost)(postId, currentUserId));
+    },
+    receivePostErrors: function receivePostErrors() {
+      return dispatch((0, _post_actions.receivePostErrors)([]));
     }
   };
 };
@@ -32804,6 +32808,11 @@ var PostForm = function (_React$Component) {
   }
 
   _createClass(PostForm, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount(newprops) {
+      this.props.receivePostErrors();
+    }
+  }, {
     key: 'handleClick',
     value: function handleClick(e) {
       var _this2 = this;
@@ -32818,21 +32827,28 @@ var PostForm = function (_React$Component) {
       };
 
       if (this.postId) {
-        this.props.updatePost(post).then(this.props.closeSongModal()).then(function () {
-          if (_this2.props.feedType === 'dashboard') {
-            _this2.props.fetchPostsFromFollowers();
-          } else if (_this2.props.feedType === 'profile') {
-            _this2.props.fetchProfilePosts(_this2.props.userId);
+        this.props.updatePost(post).then(function (response) {
+          if (response.type !== 'RECEIVE_POST_ERRORS') {
+            // this.props.closeSongModal();
+            if (_this2.props.feedType === 'dashboard') {
+              _this2.props.fetchPostsFromFollowers();
+            } else if (_this2.props.feedType === 'profile') {
+              _this2.props.fetchProfilePosts(_this2.props.userId);
+            }
           }
         });
       } else {
-        this.props.createPost(post, this.props.currentUser.id).then(this.props.closeSongModal()).then(function () {
-          if (_this2.props.feedType === 'dashboard') {
-            _this2.props.fetchPostsFromFollowers();
-          } else if (_this2.props.feedType === 'profile') {
-            _this2.props.fetchProfilePosts(_this2.props.userId);
+        this.props.createPost(post, this.props.currentUser.id).then(function (response) {
+          if (response.type !== 'RECEIVE_POST_ERRORS') {
+            _this2.props.closeSongModal();
+            if (_this2.props.feedType === 'dashboard') {
+              _this2.props.fetchPostsFromFollowers();
+            } else if (_this2.props.feedType === 'profile') {
+              _this2.props.fetchProfilePosts(_this2.props.userId);
+            }
+            _this2.props.clearState();
           }
-        }).then(this.props.clearState());
+        });
       }
     }
   }, {
@@ -32882,6 +32898,18 @@ var PostForm = function (_React$Component) {
         );
       }
 
+      var renderErrors = _react2.default.createElement(
+        'ul',
+        { className: 'ErrorsListPostForm' },
+        this.props.errors.map(function (err) {
+          return _react2.default.createElement(
+            'li',
+            { key: err },
+            err
+          );
+        })
+      );
+
       return _react2.default.createElement(
         'div',
         { className: 'PostForm ignore-react-onclickoutside' },
@@ -32917,6 +32945,7 @@ var PostForm = function (_React$Component) {
           null,
           this.props.song.title
         ),
+        renderErrors,
         _react2.default.createElement(
           'label',
           { className: 'PostBody' },
