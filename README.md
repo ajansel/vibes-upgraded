@@ -31,6 +31,10 @@ a much better UX.
   + Real, searchable, seed data using the top 10 songs from the top 50 current artists
   + Post creation tool using user highlighted text
 
+[User Search](https://github.com/ajansel/vibes/blob/master/my_non_rails_files/readme_gifs/live_user_search-min.gif?raw=true)
+[Music Search](https://github.com/ajansel/vibes/blob/master/my_non_rails_files/readme_gifs/music_search-min.gif?raw=true)
+[Post Creation](https://github.com/ajansel/vibes/blob/master/my_non_rails_files/readme_gifs/post_creation-min.gif?raw=true)
+
 ## Future Plans
   + O-Auth implementation, which would allow:
     + Sign in through Google/Facebook
