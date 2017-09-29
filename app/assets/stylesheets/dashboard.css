@@ -32,6 +32,7 @@
 
 .UserWidget > p {
   text-transform: capitalize;
+  word-wrap: break-word;
 }
 
 .Dashboard > .UserWidget, .Dashboard > .BonusWidget {
