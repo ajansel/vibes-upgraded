@@ -33,8 +33,7 @@ class ArtistForm extends React.Component {
             <p>{"@" + this.props.currentUser.username}</p></Link>
           </div>
         </div>
-        <h3>{this.props.artist.name}</h3>
-        <p>Select a song to create a post</p>
+        <h3>Songs by {this.props.artist.name}</h3>
         <ul className="Songs" >
           {songs}
         </ul>

@@ -69,28 +69,45 @@
 
 .ArtistForm > h3, .AlbumForm > h3 {
   font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .Songs {
   margin: 0px;
+  margin-left: 50px;
+  padding: 0px;
 }
 
 .Songs > li{
   /*This is for formatting the songs on Artist or Album modal*/
+  /*box-sizing: border-box;*/
+  /*padding: 1px;*/
+  /*cursor: pointer;*/
+
+  /*margin-bottom: 2px;*/
+  font-size: 18px;
+  list-style-type: none;
+  text-align: center;
   box-sizing: border-box;
-  font-size: 20px;
-  padding: 1px;
+  padding: 5px;
+  width: 400px;
   cursor: pointer;
-  margin-bottom: 2px;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #C0C0C0;
+  border-radius: 5px;
 }
 
 .Songs > li:hover {
   color: #3396ff;
+  border-color: #3396ff;
 }
 
 .ArtistForm > p, .AlbumForm > p {
   font-size: 18px;
   margin: 0 0 5px 0;
+  text-align: center;
 }
 
 .UserInfoAndYouTube {

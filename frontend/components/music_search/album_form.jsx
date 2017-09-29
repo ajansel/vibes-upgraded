@@ -33,8 +33,7 @@ class AlbumForm extends React.Component {
             <p>{"@" + this.props.currentUser.username}</p></Link>
           </div>
         </div>
-        <h3>{this.props.album.title}</h3>
-        <p>Select a song to create a post</p>
+        <h3>Songs from {this.props.album.title}</h3>
         <ul className="Songs" >
           {songs}
         </ul>
