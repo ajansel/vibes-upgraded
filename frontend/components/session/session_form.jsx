@@ -50,7 +50,7 @@ class SessionForm extends React.Component {
       <div className="WelcomeMessage">
           <h1>Welcome to Vibes</h1>
           <p> Search for your favorite song, highlight the snippet of
-            lyrics that fits your vibe, and click post. It’s fast,
+            lyrics that fit your vibe, and click post. It’s fast,
             easy, and free!  </p>
       </div>;
     } else {
