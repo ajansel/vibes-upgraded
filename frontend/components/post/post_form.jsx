@@ -68,7 +68,9 @@ class PostForm extends React.Component {
                   if (this.props.feedType === 'dashboard'){
                     this.props.fetchPostsFromFollowers();
                   } else if (this.props.feedType === 'profile'){
-                    this.props.fetchProfilePosts(this.props.userId);
+                    let id = this.props.userId;
+                    if (id === undefined) id = this.props.currentUser.id;
+                    this.props.fetchProfilePosts(id);
                   }
                 }
               );
