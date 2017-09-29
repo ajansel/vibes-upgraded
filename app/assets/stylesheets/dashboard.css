@@ -6,7 +6,7 @@
 
 .UserWidget, .BonusWidget {
   width: 200px;
-  height: 275px;
+  height: 285px;
   position: fixed;
   top: 85px;
 }
@@ -75,13 +75,24 @@
   font-size: 18px;
 }
 
-.Stats, .StatHeaders {
+.Stats {
   display: flex;
-  justify-content: space-around;
-  margin: 0 3px;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.StatHeaders {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 0 0;
+}
+
+.Stats > p:first-child, .StatHeaders > p:first-child {
+  width: 40px;
 }
 
 .Stats > p, .StatHeaders > p {
+  width: 70px;
   margin: 10px 0 0 0;
   font-size: 14px;
 }
