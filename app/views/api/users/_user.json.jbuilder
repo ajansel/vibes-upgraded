@@ -1,5 +1,5 @@
 if user
-  json.extract! user, :id, :name, :username, :img_url
+  json.extract! user, :id, :name, :username, :img_url, :email
   json.posts user.posts.count
   json.followers user.followers.count
   json.followees user.followees.count
