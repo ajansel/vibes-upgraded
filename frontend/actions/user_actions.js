@@ -1,6 +1,6 @@
 import {searchUserDatabase, getUser, patchUser} from '../util/user_api_util';
 import {postFollow, deleteFollow } from '../util/follow_api_util';
-import {receiveCurrentUser} from './session_actions';
+import {receiveCurrentUser, receiveSessionErrors} from './session_actions';
 import {fetchProfilePosts, fetchPostsFromFollowers} from './post_actions';
 
 export const RECEIVE_USER_SEARCH_RESULTS = "RECEIVE_USER_SEARCH_RESULTS";
@@ -26,7 +26,8 @@ export const fetchUser = (id) => (dispatch) => (
 
 export const updateUser = (formUser) => (dispatch) => (
   patchUser(formUser).then(
-    (user) => dispatch(receiveCurrentUser(user))
+    (user) => dispatch(receiveCurrentUser(user)),
+    (err) => dispatch(receiveSessionErrors(err.responseJSON))
   )
 );
 
