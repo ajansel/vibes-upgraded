@@ -1,4 +1,4 @@
-import {searchUserDatabase, getUser} from '../util/user_api_util';
+import {searchUserDatabase, getUser, patchUser} from '../util/user_api_util';
 import {postFollow, deleteFollow } from '../util/follow_api_util';
 import {receiveCurrentUser} from './session_actions';
 import {fetchProfilePosts, fetchPostsFromFollowers} from './post_actions';
@@ -21,6 +21,12 @@ const receiveUser = (user) => ({
 export const fetchUser = (id) => (dispatch) => (
   getUser(id).then(
     (user) => dispatch(receiveUser(user))
+  )
+);
+
+export const updateUser = (formUser) => (dispatch) => (
+  patchUser(formUser).then(
+    (user) => dispatch(receiveCurrentUser(user))
   )
 );
 

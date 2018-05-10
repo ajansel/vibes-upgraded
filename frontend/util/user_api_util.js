@@ -5,6 +5,14 @@ export const getUser = (id) => {
   });
 };
 
+export const patchUser = (user) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `api/users/${user.id}`,
+    data: { user }
+  });
+};
+
 export const searchUserDatabase = (query) => {
   return $.ajax({
     method: 'GET',
