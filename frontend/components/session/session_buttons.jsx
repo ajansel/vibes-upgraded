@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class SessionButtons extends React.Component {
   constructor(props) {
@@ -7,6 +8,16 @@ class SessionButtons extends React.Component {
 
     this.logout = this.props.logout;
     this.handleClick = this.handleClick.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
+  }
+
+  handleProfileClick() {
+    return (e) => {
+      e.preventDefault();
+      console.log(this.props);
+      
+      this.props.history.push("/edit-account");
+    };
   }
 
   handleClick() {
@@ -20,7 +31,7 @@ class SessionButtons extends React.Component {
     if (this.props.currentUser) {
       return (
         <div className="SessionButtons">
-          <img src={this.props.currentUser.img_url}/>
+          <img className="profile-pic" src={this.props.currentUser.img_url} onClick={this.handleProfileClick()}/>
           <a onClick={this.handleClick()}>Logout</a>
         </div>
       );
@@ -35,4 +46,4 @@ class SessionButtons extends React.Component {
   }
 }
 
-export default SessionButtons;
+export default withRouter(SessionButtons);
