@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'nokogiri'
 gem 'rubysl-open-uri'
+gem 'rack-cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
