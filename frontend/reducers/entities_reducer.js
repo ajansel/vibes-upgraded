@@ -3,6 +3,8 @@ import { ArtistsReducer, AlbumsReducer, SongsReducer, SearchReducer } from './mu
 import PostsReducer from './posts_reducer';
 import UserSearchReducer from './user_search_reducer';
 import UsersReducer from './users_reducer';
+import ChatsReducer from './chats_reducer';
+import MessagesReducer from './messages_reducer';
 
 const EntitiesReducer = combineReducers({
   artists: ArtistsReducer,
@@ -11,7 +13,9 @@ const EntitiesReducer = combineReducers({
   searchResults: SearchReducer,
   posts: PostsReducer,
   userSearchResults: UserSearchReducer,
-  users: UsersReducer
+  users: UsersReducer,
+  chats: ChatsReducer,
+  messages: MessagesReducer
 });
 
 export default EntitiesReducer;

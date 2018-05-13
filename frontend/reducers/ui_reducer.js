@@ -1,5 +1,6 @@
 import {RECEIVE_POSTS} from '../actions/post_actions';
 import {RECEIVE_LOADING} from '../actions/loading';
+import { RECEIVE_CHATS } from '../actions/chat_actions';
 
 const _nullLoading = {
   loading: false
