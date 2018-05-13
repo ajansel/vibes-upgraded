@@ -6,5 +6,6 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  # url: redis://localhost:6379/1
+  url: redis://redistogo:c92a4b55926bba790a3bce7228e8a9dc@soldierfish.redistogo.com:11002/
   channel_prefix: vibes_production
