@@ -1,0 +1,217 @@
+// Place all the styles related to the API::Chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ChatFeedDashboard {
+  width: 600px;
+}
+
+.chat-index-img {
+  width: 40px;
+  height: 40px;
+}
+
+.chat-index {
+  display: flex;
+  justify-content: center;
+
+  p, button {
+    margin: 0 0 10px 0;
+  }
+}
+
+.ChatFeedItem {
+  border: 1px solid black;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#ChatFeedItem {
+  padding: 10px;
+  width: 580px;
+}
+
+.UsernameAndName > p {
+  margin: 0px;
+}
+
+.App {
+  width: auto;
+  min-width: 1024px;
+  display: flex;
+  justify-content: center;
+}
+
+.App > * {
+  width: 1024px;
+  display: flex;
+  justify-content: center;
+}
+
+.stage {
+  width: 600px;
+}
+
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stage-header > h1 {
+  width: 560px;
+  margin: 11px 0;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.back-arrow {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.chat-logs-wrapper {
+  height: calc(100vh - 75px - 85px - 75px);
+}
+
+.chat-logs {
+  box-sizing: border-box;
+  max-height: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 100%;
+  overflow: scroll;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 10px;
+  background-color: white;
+}
+
+.chat-logs > li {
+  min-height: 57px;
+  max-width: 350px;
+  border: 1px solid black;
+  border-radius: 25px;
+  margin-bottom: 5px;
+  padding: 10px;
+  overflow: hidden;
+  overflow-wrap: normal;
+  list-style-type: none;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.chat-logs > li > img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.current-user-message {
+  background-color: #3396ff;
+  margin-left: 250px;
+}
+
+.other-user-message {
+  background-color: #E9EBEE;
+  margin-right: 250px;
+}
+
+.chat-button {
+  color: white;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 6px 16px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+  background-color: #3396ff;
+  // width: 100px;
+}
+
+.chat-button:hover {
+  background-color: #0258B1;
+  border-color: #0258B1;
+}
+
+.chat-input {
+  width: 350px;
+  font-size: 16px;
+  padding: 6px 16px;
+}
+
+.chat-upload-button {
+  width: 35px;
+  height: 35px;
+}
+
+.chat-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 10px;
+  background-color: rgb(230, 245, 254);
+}
+
+.ChatFeedDashboard > .chat-button {
+  margin-top: 10px;
+}
+
+.new-chat-members {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  padding-bottom: 0px;
+  background-color: white;
+  box-sizing: border-box;
+  min-height: 56px;
+}
+
+.new-chat-members >li {
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 5px;
+  background-color: rgb(230, 245, 254);
+}
+
+.App h3 {
+  margin: 0px;
+}
+
+.recent-users {
+  max-height: 290px;
+  overflow: scroll;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#next-chat-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-errors {
+  margin: 0px;
+}

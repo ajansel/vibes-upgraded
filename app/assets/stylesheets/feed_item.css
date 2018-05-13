@@ -1,4 +1,5 @@
 .FeedItem {
+  width: 590px;
   display: flex;
   justify-content: flex-start;
   /*border: 1px solid black;*/
@@ -31,7 +32,11 @@
   margin-bottom: 0px;
 }
 
-.UsernameAndName {}
+.UsernameAndName {
+  display: flex;
+  justify-content: space-between;
+  width: calc(558px - 60px);
+}
 
 .UsernameAndName > a > p{
   margin: 0;
