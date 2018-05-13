@@ -32,6 +32,8 @@ class SessionButtons extends React.Component {
       return (
         <div className="SessionButtons">
           <img className="profile-pic" src={this.props.currentUser.img_url} onClick={this.handleProfileClick()}/>
+          <img id="message-icon-pic" onClick={() => this.props.history.push("/chats")}
+            src='https://cdn4.iconfinder.com/data/icons/integral/128/message-128.png'/>
           <a onClick={this.handleClick()}>Logout</a>
         </div>
       );
