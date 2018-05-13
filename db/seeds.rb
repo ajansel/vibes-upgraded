@@ -29,7 +29,7 @@ all_songs = {"1":{"id":1,"title":"Look At Me!","lyrics":"[Intro]\nAyy, I'm like 
 
 
 
-Here is the code to be commented back in:
+# Here is the code to be commented back in:
 
 Artist.destroy_all
 Album.destroy_all
