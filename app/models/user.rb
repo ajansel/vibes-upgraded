@@ -49,6 +49,20 @@ class User < ApplicationRecord
     through: :followee_users,
     source: :posts
 
+  has_many :chat_messages,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :Chat
+
+  has_many :chat_memberships,
+    primary_key: :id,
+    foreign_key: :member_id,
+    class_name: :ChatMembership
+
+  has_many :chats,
+    through: :chat_memberships,
+    source: :chat
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
 

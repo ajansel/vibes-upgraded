@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:index, :create, :show, :update]
+    resources :users, only: [:index, :create, :show, :update] do 
+      get "followed_users", on: :collection
+    end 
     resource :sessions, only: [:create, :destroy]
     resources :artists, only: [:index, :show]
     resources :albums, only: [:index, :show]
@@ -21,5 +23,6 @@ Rails.application.routes.draw do
       get "songs_by_album", on: :collection
       get "random_album", on: :collection
     end
+    resources :chats, only: [:index, :show, :create]
   end
 end
