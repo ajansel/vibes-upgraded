@@ -20,3 +20,10 @@ export const searchUserDatabase = (query) => {
     data: {search: { query } }
   });
 };
+
+export const getFollowedUsers = () => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users/followed_users',
+  });
+};

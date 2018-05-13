@@ -4,6 +4,11 @@ class Api::UsersController < ApplicationController
     render :index
   end
 
+  def followed_users
+    @users = current_user.followee_users
+    render :index
+  end 
+
   def show
     @user = User.find(params[:id])
     render :show
