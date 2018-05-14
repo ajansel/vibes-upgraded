@@ -75,7 +75,7 @@ class Chat extends React.Component {
   }
 
   createSocket() {
-    let cable = Cable.createConsumer('ws://localhost:3001/cable');
+    let cable = Cable.createConsumer("wss://vibes-upgraded.herokuapp.com/cable");
     let authorId = this.props.currentUser.id;
     let chatId = this.props.chatId;
     this.chats = cable.subscriptions.create({
