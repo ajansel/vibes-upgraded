@@ -32,6 +32,7 @@ gem 'faker'
 gem 'nokogiri'
 gem 'rubysl-open-uri'
 gem 'rack-cors'
+gem 'redis'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

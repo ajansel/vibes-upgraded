@@ -35319,7 +35319,7 @@ var Chat = function (_React$Component) {
     value: function createSocket() {
       var _this5 = this;
 
-      var cable = _actioncable2.default.createConsumer('ws://localhost:3001/cable');
+      var cable = _actioncable2.default.createConsumer("wss://vibes-upgraded.herokuapp.com/cable");
       var authorId = this.props.currentUser.id;
       var chatId = this.props.chatId;
       this.chats = cable.subscriptions.create({
